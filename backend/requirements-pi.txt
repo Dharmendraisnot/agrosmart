@@ -1,0 +1,10 @@
+# Raspberry Pi specific dependencies — install only on the Pi
+# Do NOT install on development machines — these packages require ARM hardware
+-r requirements.txt
+RPi.GPIO==0.7.1
+adafruit-circuitpython-dht==4.0.3
+w1thermsensor==2.3.0
+luma.oled==3.13.0
+picamera2==0.3.19
+pyserial==3.5
+spidev==3.6

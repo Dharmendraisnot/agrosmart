@@ -1,0 +1,59 @@
+# -- Python --------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# -- Virtual environments ------------------------------------------------------
+venv/
+.venv/
+env/
+
+# -- Environment variables -----------------------------------------------------
+.env
+!.env.example
+
+# -- Flask / SQLite ------------------------------------------------------------
+instance/
+*.db
+*.sqlite
+
+# -- Uploads & Logs ------------------------------------------------------------
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/logs/*
+!backend/logs/.gitkeep
+
+# -- Trained model binaries ----------------------------------------------------
+backend/trained_models/*.pkl
+backend/trained_models/*.h5
+backend/trained_models/*.joblib
+!backend/trained_models/.gitkeep
+
+# -- ML datasets ---------------------------------------------------------------
+backend/ml_training/datasets/*.csv
+backend/ml_training/datasets/soil_images/
+!backend/ml_training/datasets/.gitkeep
+!backend/ml_training/datasets/README.md
+
+# -- Node / Frontend -----------------------------------------------------------
+node_modules/
+frontend/dist/
+frontend/.env
+!frontend/.env.example
+
+# -- IDE / OS ------------------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# -- Testing / Coverage --------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/

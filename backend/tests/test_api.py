@@ -103,6 +103,14 @@ class TestSensorEndpoints:
         assert d["moisture"] == 42.5
         assert d["ph"] == 7.1
 
+    def test_manual_submit_stores_rainfall(self, client):
+        r = client.post("/api/sensors/reading",
+                        json={"moisture": 42.5, "rainfall": 85.0, "nitrogen": 35.0})
+        assert r.status_code == 201
+        d = r.get_json()
+        assert d["moisture"] == 42.5
+        assert d["rainfall"] == 85.0
+
     def test_manual_submit_bad_type_returns_422(self, client):
         r = client.post("/api/sensors/reading",
                         json={"moisture": "not-a-number"})
@@ -178,6 +186,121 @@ class TestAnalysisEndpoints:
     def test_run_with_invalid_reading_id_type_returns_422(self, client):
         r = client.post("/api/analysis/run", json={"reading_id": "abc"})
         assert r.status_code == 422
+
+    def test_run_with_manual_sensor_data(self, client):
+        payload = {
+            "sensor_data": {
+                "nitrogen": 75.0,
+                "phosphorus": 45.0,
+                "potassium": 190.0,
+                "ph": 6.8,
+                "moisture": 55.0,
+                "soil_temperature": 25.0,
+                "air_temperature": 28.0,
+                "air_humidity": 65.0,
+                "source": "manual",
+            },
+            "soil_type": "Loamy",
+            "notes": "Software test field #1",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["sensor_reading"]["source"] == "manual"
+        assert d["sensor_reading"]["nitrogen"] == 75.0
+        assert d["sensor_reading"]["ph"] == 6.8
+        assert d["soil"]["type"] == "Loamy"
+        assert len(d["crops"]) == 3
+        assert "fertilizer" in d["fertilizer"]
+
+    def test_run_with_invalid_sensor_data_field(self, client):
+        payload = {
+            "sensor_data": {
+                "nitrogen": "not_a_number",
+            }
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 422
+
+    def test_run_with_image_path_linkage(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.5, "moisture": 45.0},
+            "soil_type": "Clayey",
+            "image_path": "uploads/test_clay_sample.jpg",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["soil"]["type"] == "Clayey"
+        analysis_id = d["analysis_id"]
+        res = client.get(f"/api/analysis/{analysis_id}").get_json()
+        assert res["soil_image_path"] == "uploads/test_clay_sample.jpg"
+
+    def test_run_with_manual_rainfall_and_moisture_preserved(self, client):
+        """Rainfall and moisture must remain separate values and not conflated."""
+        payload = {
+            "sensor_data": {
+                "rainfall": 125.0,
+                "moisture": 42.0,
+                "ph": 6.7,
+                "nitrogen": 60.0,
+                "phosphorus": 35.0,
+                "potassium": 150.0,
+                "source": "manual",
+            },
+            "soil_type": "Loamy",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["sensor_reading"]["source"] == "manual"
+        assert d["sensor_reading"]["rainfall"] == 125.0
+        assert d["sensor_reading"]["moisture"] == 42.0
+        assert d["soil"]["type"] == "Loamy"
+
+    def test_run_with_invalid_rainfall_returns_422(self, client):
+        payload = {
+            "sensor_data": {
+                "rainfall": "excessive_rain",
+            }
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 422
+
+    def test_run_alluvial_soil_without_texture_withheld(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0},
+            "soil_type": "Alluvial",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["soil"]["type"] == "Alluvial"
+        assert d["fertilizer"]["fertilizer"] == "Reliable recommendation unavailable"
+        assert d["fertilizer"]["status"] == "unsupported"
+
+    def test_run_alluvial_soil_with_confirmed_texture(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0},
+            "soil_type": "Alluvial",
+            "confirmed_soil_texture": "Clayey",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["soil"]["type"] == "Alluvial"
+        assert d["soil"]["confirmed_soil_texture"] == "Clayey"
+
+    def test_run_with_missing_image_file_handled_gracefully(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0},
+            "image_path": "uploads/nonexistent_sample_img.jpg",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["soil"]["cnn_status"] == "not_found"
+        assert d["soil"]["type"] is not None
 
     def test_history_returns_200(self, client):
         client.post("/api/analysis/run")
@@ -324,3 +447,24 @@ class TestImageEndpoints:
     def test_path_traversal_blocked(self, client):
         r = client.get("/api/images/../.env")
         assert r.status_code == 404
+
+    def test_upload_with_run_analysis_true(self, client):
+        r = client.post(
+            "/api/images/upload",
+            data={
+                "image": (io.BytesIO(make_png()), "soil.png", "image/png"),
+                "run_analysis": "true",
+            },
+            content_type="multipart/form-data",
+        )
+        assert r.status_code == 200
+        d = r.get_json()
+        assert "filename" in d
+        assert "analysis" in d
+        analysis = d["analysis"]
+        assert "analysis_id" in analysis
+        assert "crops" in analysis
+        assert "fertilizer" in analysis
+        assert "irrigation" in analysis
+        assert "soil" in analysis
+        assert analysis["soil"]["type"] is not None

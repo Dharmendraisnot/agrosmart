@@ -56,6 +56,24 @@ def upload_image():
 
     try:
         result = classify_image(file)
+
+        # Check if caller requested full software analysis pipeline
+        run_analysis_param = request.form.get("run_analysis", "").strip().lower()
+        if run_analysis_param in ("true", "1", "yes"):
+            from app.services.analysis_service import run_analysis
+            confirmed_texture = (
+                request.form.get("confirmed_soil_texture")
+                or request.form.get("confirmed_texture")
+                or request.form.get("soil_texture")
+            )
+            # Pass pre-computed cnn_result so CNN inference is run only once
+            analysis_data = run_analysis(
+                cnn_result=result,
+                image_path=result.get("filename"),
+                confirmed_soil_texture=confirmed_texture,
+            )
+            result["analysis"] = analysis_data
+
         return jsonify(result), 200
 
     except ValueError as exc:

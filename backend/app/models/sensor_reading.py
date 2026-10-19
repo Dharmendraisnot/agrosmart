@@ -16,7 +16,8 @@ class SensorReading(db.Model):
     source           = db.Column(db.String(20), nullable=False, default="simulator")
 
     # ── Soil sensors ────────────────────────────────────────────────────────
-    moisture         = db.Column(db.Float, nullable=True)   # % (0–100)
+    moisture         = db.Column(db.Float, nullable=True)   # % (0–100) volumetric/gravimetric water content
+    rainfall         = db.Column(db.Float, nullable=True)   # mm precipitation (meteorological)
     ph               = db.Column(db.Float, nullable=True)   # pH (0–14)
     soil_temperature = db.Column(db.Float, nullable=True)   # °C
 
@@ -39,6 +40,7 @@ class SensorReading(db.Model):
             "timestamp":        self.timestamp.isoformat(),
             "source":           self.source,
             "moisture":         self.moisture,
+            "rainfall":         self.rainfall,
             "ph":               self.ph,
             "soil_temperature": self.soil_temperature,
             "air_temperature":  self.air_temperature,

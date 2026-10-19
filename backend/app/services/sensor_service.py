@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 # ── Acceptable value ranges for validation ────────────────────────────────────
 _VALID_RANGES: dict[str, tuple[float, float]] = {
     "moisture":         (0.0,   100.0),
+    "rainfall":         (0.0,  5000.0),  # mm
     "ph":               (0.0,    14.0),
     "soil_temperature": (-10.0,  80.0),
     "air_temperature":  (-20.0,  80.0),
@@ -66,6 +67,7 @@ def capture_reading() -> SensorReading:
         timestamp        = datetime.now(timezone.utc),
         source           = mode,
         moisture         = _clamp_or_none(raw.get("moisture"),         "moisture"),
+        rainfall         = _clamp_or_none(raw.get("rainfall"),         "rainfall"),
         ph               = _clamp_or_none(raw.get("ph"),               "ph"),
         soil_temperature = _clamp_or_none(raw.get("soil_temperature"), "soil_temperature"),
         air_temperature  = _clamp_or_none(raw.get("air_temperature"),  "air_temperature"),

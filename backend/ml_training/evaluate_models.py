@@ -181,8 +181,10 @@ def evaluate_cnn_model() -> None:
     classes = joblib.load(classes_path)
     model   = tf.keras.models.load_model(str(model_path))
 
+    from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+
     datagen = ImageDataGenerator(
-        rescale=1.0 / 255.0,
+        preprocessing_function=preprocess_input,
         validation_split=0.2,
     )
     val_gen = datagen.flow_from_directory(

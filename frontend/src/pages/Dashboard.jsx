@@ -9,7 +9,7 @@ import StatusBadge from '../components/shared/StatusBadge'
 import LoadingSpinner from '../components/shared/LoadingSpinner'
 import ErrorAlert from '../components/shared/ErrorAlert'
 import { fmtDate } from '../utils/formatters'
-import { RefreshCw, Wifi, WifiOff } from 'lucide-react'
+import { RefreshCw, Cpu, Activity, Sliders } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export default function Dashboard() {
@@ -22,32 +22,37 @@ export default function Dashboard() {
 
       {/* ── Status banner ──────────────────────────────────────────── */}
       {status === 'error' && (
-        <ErrorAlert message={`Sensor connection error: ${errorMessage}`} />
+        <ErrorAlert message={`Backend connection error: ${errorMessage}`} />
       )}
 
       {/* ── Header row ────────────────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-gray-800">Live Sensor Dashboard</h2>
+          <h2 className="text-gray-800">Software Simulation & Parameter Feed</h2>
           <p className="text-xs text-gray-400 mt-0.5">
             {status === 'live'
-              ? `Last updated ${fmtDate(lastUpdated)}`
+              ? `Simulation updated ${fmtDate(lastUpdated)} · Standalone software mode`
               : status === 'connecting'
-              ? 'Connecting to sensors…'
-              : 'Sensor offline'}
+              ? 'Connecting to backend software pipeline…'
+              : 'Backend service offline'}
           </p>
         </div>
         <div className="flex items-center gap-2">
-          {status === 'live'
-            ? <Wifi size={16} className="text-green-500" />
-            : <WifiOff size={16} className="text-red-400" />}
-          <span className="text-xs text-gray-500 capitalize">{status}</span>
+          {status === 'live' ? (
+            <span className="flex items-center gap-1.5 text-xs text-agro-green font-medium bg-agro-green-pale px-2.5 py-1 rounded-full border border-agro-green/30">
+              <Cpu size={14} /> Software Active
+            </span>
+          ) : (
+            <span className="flex items-center gap-1.5 text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+              <Activity size={14} /> {status}
+            </span>
+          )}
         </div>
       </div>
 
       {/* ── Sensor grid ───────────────────────────────────────────── */}
       {status === 'connecting' && !reading
-        ? <LoadingSpinner message="Waiting for first sensor reading…" />
+        ? <LoadingSpinner message="Loading software parameter reading…" />
         : <SensorGrid reading={reading} />
       }
 
@@ -56,10 +61,10 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="card">
             <p className="text-xs text-gray-400 font-medium uppercase tracking-wide mb-1">
-              Sensor Mode
+              Data Source Mode
             </p>
             <p className="text-lg font-bold text-agro-green capitalize">
-              {reading.source || 'simulator'}
+              {reading.source === 'manual' ? 'Manual Input' : 'Software Simulator'}
             </p>
           </div>
           <div className="card">

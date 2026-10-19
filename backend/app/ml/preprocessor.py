@@ -81,7 +81,7 @@ class CropInferencePreprocessor:
             _get("temperature",  "soil_temperature"),
             _get("humidity",     "air_humidity"),
             _get("ph"),
-            _get("rainfall",     "moisture"),   # moisture is our rainfall proxy
+            _get("rainfall"),   # meteorological rainfall (mm) - preserved distinctly from soil moisture
         ]])
         return self._scaler.transform(row)
 
@@ -105,8 +105,12 @@ class FertilizerInferencePreprocessor:
         classes = list(encoder.classes_)
         if value in classes:
             return int(encoder.transform([value])[0])
-        logger.warning("Unseen label '%s' for encoder (classes: %s) — using index %d",
-                       value, classes, default_idx)
+        for preferred in ("Wheat", "Loamy"):
+            if preferred in classes:
+                default_idx = classes.index(preferred)
+                break
+        logger.warning("Unseen label '%s' for encoder (classes: %s) — using fallback %s (index %d)",
+                       value, classes, classes[default_idx] if default_idx < len(classes) else "?", default_idx)
         return default_idx
 
     def transform(self, sensor: dict, soil_type: str = "Loamy",

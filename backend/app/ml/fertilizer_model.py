@@ -63,46 +63,165 @@ _FERTILIZER_ADVICE = {
 }
 
 
+# ── Scientifically justified mapping from crop names to fertilizer dataset classes ──
+# Only crops with genuine botanical or agronomic equivalence to the 12 Kaggle classes are mapped.
+SCIENTIFIC_CROP_MAP = {
+    # Direct species matches & agricultural synonyms
+    "rice":        "Paddy",
+    "paddy":       "Paddy",
+    "wheat":       "Wheat",
+    "barley":      "Barley",
+    "maize":       "Maize",
+    "millets":     "Millets",
+    "cotton":      "Cotton",
+    "kidneybeans": "Kidneybeans",
+    "sugarcane":   "Sugarcane",
+    "tobacco":     "Tobacco",
+    "ground nuts": "Ground Nuts",
+    "groundnut":   "Ground Nuts",
+    "pulses":      "Pulses",
+    "oil seeds":   "Oil seeds",
+    "oilseeds":    "Oil seeds",
+
+    # True leguminous grain pulses (Fabaceae family, biological nitrogen fixation)
+    "chickpea":    "Pulses",
+    "lentil":      "Pulses",
+    "blackgram":   "Pulses",
+    "mungbean":    "Pulses",
+    "mothbeans":   "Pulses",
+    "pigeonpeas":  "Pulses",
+}
+
+
+# Supported soil types in the fertilizer dataset
+VALID_FERTILIZER_SOIL_TEXTURES = {
+    "black":  "Black",
+    "clayey": "Clayey",
+    "clay":   "Clayey",
+    "loamy":  "Loamy",
+    "red":    "Red",
+    "sandy":  "Sandy",
+}
+
+
 def predict_fertilizer(sensor: dict, soil_type: str,
-                       top_crop: str, config: dict) -> dict:
+                       top_crop: str, config: dict,
+                       confirmed_texture: str | None = None) -> dict:
     """
     Predict the recommended fertilizer for the given soil + crop combination.
 
+    If the crop is not scientifically supported by the 12-class fertilizer dataset,
+    it returns an explicit 'Reliable recommendation unavailable' response rather
+    than fabricating a recommendation by forcing an unrelated crop category.
+
+    If the soil is Alluvial, fertilizer recommendations are withheld unless the
+    user explicitly supplies a confirmed physical soil texture (e.g. Sandy, Clayey, Loamy).
+
     Args:
-        sensor:    sensor reading dict
-        soil_type: CNN-predicted soil type (e.g. "Loamy")
-        top_crop:  top-1 crop recommendation (e.g. "wheat")
-        config:    Flask app.config dict
+        sensor:            sensor reading dict
+        soil_type:         CNN-predicted soil type (e.g. "Loamy", "Alluvial")
+        top_crop:          top-1 crop recommendation (e.g. "wheat")
+        config:            Flask app.config dict
+        confirmed_texture: optional user-confirmed physical soil texture
 
     Returns:
-        {
-          "fertilizer":   "17-17-17",
-          "advice":       "Apply 50 kg/acre...",
-          "model_label":  "prototype_kaggle_v1.0",
-          "soil_type":    "Loamy",
-          "crop":         "wheat",
-        }
+        dict with fertilizer, advice, model_label, soil_type, crop, mapped_crop_category, status
     """
     global _model, _preprocessor, _model_label
     if _model is None:
         _load(config)
 
-    # Normalise crop name for the encoder (title-case matches training data)
-    crop_norm = top_crop.title()
+    crop_lower = (top_crop or "").strip().lower()
+    soil_lower = (soil_type or "").strip().lower()
 
-    X = _preprocessor.transform(sensor, soil_type=soil_type, crop_type=crop_norm)
+    # Check if the soil type is Alluvial
+    if soil_lower == "alluvial":
+        if confirmed_texture:
+            conf_norm = confirmed_texture.strip().lower()
+            if conf_norm in VALID_FERTILIZER_SOIL_TEXTURES:
+                mapped_soil = VALID_FERTILIZER_SOIL_TEXTURES[conf_norm]
+                logger.info(
+                    "Alluvial soil recommendation proceeding with user-confirmed texture '%s' -> '%s'",
+                    confirmed_texture, mapped_soil,
+                )
+            else:
+                valid_list = sorted(list(set(VALID_FERTILIZER_SOIL_TEXTURES.values())))
+                logger.warning("Invalid confirmed texture '%s' for Alluvial soil. Supported: %s",
+                               confirmed_texture, valid_list)
+                return {
+                    "fertilizer":           "Reliable recommendation unavailable",
+                    "advice": (
+                        f"The confirmed texture '{confirmed_texture}' is not among the supported "
+                        f"fertilizer categories: {valid_list}. Recommendation withheld."
+                    ),
+                    "model_label":          _model_label,
+                    "soil_type":            soil_type,
+                    "crop":                 top_crop,
+                    "mapped_crop_category": None,
+                    "status":               "unsupported",
+                }
+        else:
+            logger.info(
+                "Fertilizer prediction withheld for soil type 'Alluvial' (physical texture confirmation required)"
+            )
+            return {
+                "fertilizer":           "Reliable recommendation unavailable",
+                "advice": (
+                    "The soil was classified as Alluvial. Because alluvial deposits vary widely in "
+                    "physical texture (ranging from coarse sandy alluvium to heavy clayey alluvium), "
+                    "automated fertilizer recommendations are withheld until soil texture is confirmed "
+                    "by laboratory testing or user input."
+                ),
+                "model_label":          _model_label,
+                "soil_type":            soil_type,
+                "crop":                 top_crop,
+                "mapped_crop_category": None,
+                "status":               "unsupported",
+            }
+    else:
+        mapped_soil = VALID_FERTILIZER_SOIL_TEXTURES.get(soil_lower, soil_type)
+
+    # Check if the crop has a scientifically justified counterpart in the training data
+    if crop_lower not in SCIENTIFIC_CROP_MAP:
+        logger.info(
+            "Fertilizer prediction withheld for unsupported crop '%s' (no valid dataset counterpart)",
+            top_crop,
+        )
+        return {
+            "fertilizer":           "Reliable recommendation unavailable",
+            "advice": (
+                f"The fertilizer training dataset does not contain experimental data for "
+                f"'{top_crop.title()}'. Automated fertilizer recommendations are withheld "
+                f"to preserve scientific accuracy. Please consult local agricultural extension "
+                f"guidelines for this crop."
+            ),
+            "model_label":          _model_label,
+            "soil_type":            soil_type,
+            "crop":                 top_crop,
+            "mapped_crop_category": None,
+            "status":               "unsupported",
+        }
+
+    mapped_crop = SCIENTIFIC_CROP_MAP[crop_lower]
+    X = _preprocessor.transform(sensor, soil_type=mapped_soil, crop_type=mapped_crop)
     prediction   = _model.predict(X)[0]
     fertilizer   = str(prediction)
-    advice       = _FERTILIZER_ADVICE.get(
+    base_advice  = _FERTILIZER_ADVICE.get(
         fertilizer, f"Apply {fertilizer} as directed on the product label."
     )
+    if soil_lower == "alluvial" and confirmed_texture:
+        advice = f"{base_advice} (Note: Alluvial soil recommendation based on confirmed physical texture: '{mapped_soil}')"
+    else:
+        advice = base_advice
 
     result = {
-        "fertilizer":  fertilizer,
-        "advice":      advice,
-        "model_label": _model_label,
-        "soil_type":   soil_type,
-        "crop":        top_crop,
+        "fertilizer":           fertilizer,
+        "advice":               advice,
+        "model_label":          _model_label,
+        "soil_type":            soil_type,
+        "crop":                 top_crop,
+        "mapped_crop_category": mapped_crop,
+        "status":               "supported",
     }
     logger.debug("Fertilizer prediction: %s", result)
     return result

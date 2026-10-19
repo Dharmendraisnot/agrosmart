@@ -9,6 +9,7 @@
 // Value > high  → green (good)
 export const SENSOR_THRESHOLDS = {
   moisture:         { low: 25,  high: 65,  unit: '%',     label: 'Soil Moisture'     },
+  rainfall:         { low: 20,  high: 250, unit: ' mm',   label: 'Rainfall (Precipitation)' },
   ph:               { low: 5.5, high: 7.5, unit: '',      label: 'Soil pH'           },
   soil_temperature: { low: 10,  high: 35,  unit: '°C',    label: 'Soil Temperature'  },
   air_temperature:  { low: 10,  high: 38,  unit: '°C',    label: 'Air Temperature'   },
@@ -19,6 +20,47 @@ export const SENSOR_THRESHOLDS = {
 }
 
 export const SENSOR_KEYS = Object.keys(SENSOR_THRESHOLDS)
+
+// Valid physical soil texture categories supported by the fertilizer model
+// Note: Genetic soil classification (e.g. Alluvial) is distinct from physical particle texture.
+export const VALID_SOIL_TEXTURES = [
+  { value: 'Loamy',  label: 'Loamy (Medium / Silt-Loam alluvium)' },
+  { value: 'Clayey', label: 'Clayey (Fine / Heavy clay alluvium)' },
+  { value: 'Sandy',  label: 'Sandy (Coarse / Sandy alluvium)' },
+  { value: 'Black',  label: 'Black (Deep Vertisol-like alluvium)' },
+  { value: 'Red',    label: 'Red (Ferruginous / Red alluvium)' },
+]
+
+// Educational soil parameter presets for testing and learning
+export const SOIL_PRESETS = [
+  {
+    name: 'Balanced Loam (Optimal)',
+    description: 'Good NPK balance, neutral pH, moderate moisture',
+    values: {
+      nitrogen: 65, phosphorus: 35, potassium: 180, ph: 6.8,
+      soil_temperature: 24, air_temperature: 26, air_humidity: 60,
+      rainfall: 120, moisture: 50,
+    },
+  },
+  {
+    name: 'Acidic High-Moisture Clay',
+    description: 'Low pH, heavy soil moisture, high organic matter',
+    values: {
+      nitrogen: 80, phosphorus: 20, potassium: 120, ph: 5.2,
+      soil_temperature: 20, air_temperature: 22, air_humidity: 80,
+      rainfall: 220, moisture: 75,
+    },
+  },
+  {
+    name: 'Arid Sandy Field',
+    description: 'Low moisture, alkaline pH, deficient NPK',
+    values: {
+      nitrogen: 20, phosphorus: 12, potassium: 90, ph: 7.9,
+      soil_temperature: 34, air_temperature: 36, air_humidity: 35,
+      rainfall: 25, moisture: 20,
+    },
+  },
+]
 
 // Map health_status to Tailwind badge class
 export const HEALTH_BADGE = {

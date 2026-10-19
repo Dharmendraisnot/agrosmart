@@ -9,15 +9,15 @@ export function useAnalysis() {
   const [loading,  setLoading]  = useState(false)
   const [error,    setError]    = useState(null)
 
-  const trigger = async (readingId = null) => {
+  const trigger = async (params = {}) => {
     setLoading(true)
     setError(null)
     try {
-      const { data } = await runAnalysis(readingId)
+      const { data } = await runAnalysis(params)
       setResult(data)
       return data
     } catch (err) {
-      const msg = err?.response?.data?.error || err.message || 'Analysis failed'
+      const msg = err?.response?.data?.error || err?.response?.data?.detail || err.message || 'Analysis failed'
       setError(msg)
       return null
     } finally {
@@ -25,5 +25,11 @@ export function useAnalysis() {
     }
   }
 
-  return { result, loading, error, trigger }
+  const reset = () => {
+    setResult(null)
+    setError(null)
+    setLoading(false)
+  }
+
+  return { result, setResult, loading, error, trigger, reset }
 }

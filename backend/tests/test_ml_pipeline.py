@@ -50,6 +50,18 @@ class TestCropInferencePreprocessor:
         result = self.preprocessor.transform(sensor)
         assert result.shape == (1, 7)
 
+    def test_transform_uses_rainfall_distinctly(self):
+        s1 = {"rainfall": 100.0, "moisture": 20.0}
+        s2 = {"rainfall": 200.0, "moisture": 20.0}
+        r1 = self.preprocessor.transform(s1)
+        r2 = self.preprocessor.transform(s2)
+        # feature 6 is rainfall: changing rainfall changes feature 6
+        assert r1[0, 6] != r2[0, 6]
+        # changing moisture does not change feature 6 when rainfall is set
+        s3 = {"rainfall": 100.0, "moisture": 80.0}
+        r3 = self.preprocessor.transform(s3)
+        assert np.isclose(r1[0, 6], r3[0, 6])
+
 
 class TestFertilizerInferencePreprocessor:
 
@@ -71,6 +83,18 @@ class TestFertilizerInferencePreprocessor:
         }
         result = self.preprocessor.transform(sensor, soil_type="Loamy", crop_type="Wheat")
         assert result.shape == (1, 8)
+
+    def test_transform_uses_moisture_distinctly(self):
+        s1 = {"moisture": 30.0, "rainfall": 100.0}
+        s2 = {"moisture": 60.0, "rainfall": 100.0}
+        r1 = self.preprocessor.transform(s1)
+        r2 = self.preprocessor.transform(s2)
+        # feature 2 is moisture: changing moisture changes feature 2
+        assert r1[0, 2] != r2[0, 2]
+        # changing rainfall does not affect fertilizer features
+        s3 = {"moisture": 30.0, "rainfall": 500.0}
+        r3 = self.preprocessor.transform(s3)
+        assert np.allclose(r1, r3)
 
     def test_unseen_soil_type_uses_fallback(self):
         """Unseen soil type label should not raise — falls back to index 0."""
@@ -165,6 +189,117 @@ class TestFertilizerModel:
             result = predict_fertilizer(sensor, "Sandy", "maize", dict(app.config))
             assert result["model_label"] != ""
             assert result["model_label"] is not None
+
+    def test_predict_fertilizer_supported_crops(self, app):
+        """Verify that crops with scientifically justified classes produce valid recommendations."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model, _FERTILIZER_ADVICE
+            reload_model()
+
+            supported_crops = [
+                # Exact matches / synonyms
+                "rice", "maize", "cotton", "kidneybeans", "wheat", "barley", "millets", "sugarcane", "tobacco",
+                # True leguminous grain pulses
+                "chickpea", "lentil", "blackgram", "mungbean", "mothbeans", "pigeonpeas",
+            ]
+            sensor = {"air_temperature": 28, "air_humidity": 65, "moisture": 50,
+                      "nitrogen": 45, "potassium": 160, "phosphorus": 25}
+
+            for crop in supported_crops:
+                result = predict_fertilizer(sensor, "Loamy", crop, dict(app.config))
+                assert result["crop"] == crop
+                assert result["status"] == "supported"
+                assert result["fertilizer"] in _FERTILIZER_ADVICE
+                assert result["mapped_crop_category"] is not None
+                assert len(result["advice"]) > 10
+
+    def test_predict_fertilizer_unsupported_crops(self, app):
+        """Verify that crops lacking experimental data return explicit unavailable responses."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model
+            reload_model()
+
+            unsupported_crops = [
+                "apple", "banana", "coconut", "coffee", "grapes", "jute",
+                "mango", "muskmelon", "orange", "papaya", "pomegranate", "watermelon",
+            ]
+            sensor = {"air_temperature": 28, "air_humidity": 65, "moisture": 50,
+                      "nitrogen": 45, "potassium": 160, "phosphorus": 25}
+
+            for crop in unsupported_crops:
+                result = predict_fertilizer(sensor, "Loamy", crop, dict(app.config))
+                assert result["crop"] == crop
+                assert result["status"] == "unsupported"
+                assert result["fertilizer"] == "Reliable recommendation unavailable"
+                assert result["mapped_crop_category"] is None
+                assert "does not contain experimental data" in result["advice"]
+
+    def test_predict_fertilizer_unrecognized_custom_crop(self, app):
+        """Verify that arbitrary user-typed crops return explicit unavailable responses."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model
+            reload_model()
+
+            sensor = {"air_temperature": 28, "air_humidity": 65, "moisture": 50,
+                      "nitrogen": 45, "potassium": 160, "phosphorus": 25}
+
+            result = predict_fertilizer(sensor, "Loamy", "AlienFruit", dict(app.config))
+            assert result["status"] == "unsupported"
+            assert result["fertilizer"] == "Reliable recommendation unavailable"
+            assert result["mapped_crop_category"] is None
+
+    def test_predict_fertilizer_alluvial_soil_withheld_without_texture(self, app):
+        """Alluvial soil must withhold fertilizer advice unless confirmed texture is supplied."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model
+            reload_model()
+            sensor = {"moisture": 50, "nitrogen": 40, "phosphorus": 20, "potassium": 160,
+                      "air_temperature": 28, "air_humidity": 65}
+            result = predict_fertilizer(sensor, "Alluvial", "wheat", dict(app.config), confirmed_texture=None)
+            assert result["status"] == "unsupported"
+            assert result["fertilizer"] == "Reliable recommendation unavailable"
+            assert "Alluvial" in result["advice"]
+
+    def test_predict_fertilizer_alluvial_soil_with_valid_confirmed_texture(self, app):
+        """Alluvial soil with valid confirmed texture produces a recommendation for supported crops."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model, _FERTILIZER_ADVICE
+            reload_model()
+            sensor = {"moisture": 50, "nitrogen": 40, "phosphorus": 20, "potassium": 160,
+                      "air_temperature": 28, "air_humidity": 65}
+            result = predict_fertilizer(sensor, "Alluvial", "wheat", dict(app.config), confirmed_texture="Clayey")
+            assert result["status"] == "supported"
+            assert result["fertilizer"] in _FERTILIZER_ADVICE
+
+    def test_predict_fertilizer_alluvial_soil_with_invalid_confirmed_texture(self, app):
+        """Alluvial soil with invalid confirmed texture is explicitly rejected."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model
+            reload_model()
+            sensor = {"moisture": 50, "nitrogen": 40, "phosphorus": 20, "potassium": 160,
+                      "air_temperature": 28, "air_humidity": 65}
+            result = predict_fertilizer(sensor, "Alluvial", "wheat", dict(app.config), confirmed_texture="Gravelly")
+            assert result["status"] == "unsupported"
+            assert result["fertilizer"] == "Reliable recommendation unavailable"
+            assert "Gravelly" in result["advice"]
 
 
 # ── Irrigation rule engine tests ──────────────────────────────────────────────

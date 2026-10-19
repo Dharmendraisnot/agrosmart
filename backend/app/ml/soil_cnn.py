@@ -70,7 +70,7 @@ def _load(config: dict) -> bool:
         return False
 
     _model   = tf.keras.models.load_model(str(model_path))
-    _classes = joblib.load(classes_path) if classes_path.exists() else ["Sandy", "Clay", "Loamy", "Silty"]
+    _classes = joblib.load(classes_path) if classes_path.exists() else ["Alluvial", "Black", "Clay", "Red"]
     logger.info("CNN soil model loaded from %s  classes=%s", model_path, _classes)
     return True
 
@@ -80,7 +80,7 @@ def predict_soil_type(image_array: np.ndarray, config: dict) -> dict:
     Classify a preprocessed 224×224×3 float32 image array.
 
     Args:
-        image_array: numpy array, shape (224, 224, 3), values in [0, 1]
+        image_array: numpy array, shape (224, 224, 3), values in [-1, 1]
         config:      Flask app.config dict
 
     Returns:

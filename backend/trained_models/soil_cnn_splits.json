@@ -1,0 +1,3395 @@
+{
+  "summary": {
+    "train": 469,
+    "val": 101,
+    "test": 101,
+    "total": 671
+  },
+  "class_counts": {
+    "Alluvial": {
+      "train": 196,
+      "val": 42,
+      "test": 43,
+      "total": 281
+    },
+    "Black": {
+      "train": 85,
+      "val": 19,
+      "test": 18,
+      "total": 122
+    },
+    "Clay": {
+      "train": 80,
+      "val": 17,
+      "test": 17,
+      "total": 114
+    },
+    "Red": {
+      "train": 108,
+      "val": 23,
+      "test": 23,
+      "total": 154
+    }
+  },
+  "train_files": [
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0055.jpg",
+      "label": "Red",
+      "md5_hash": "14fe0b33edb550eb3b6ef5d7ef560480"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0043.jpg",
+      "label": "Black",
+      "md5_hash": "f7fc8a4ffc597ae93536c29513a4f8be"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0071.jpg",
+      "label": "Red",
+      "md5_hash": "ae7d45734505ce2393d8c643c311cc6e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0218.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b80ecfe4d2ecad16be71d96a63f7c524"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0036.jpg",
+      "label": "Black",
+      "md5_hash": "ffafd60106fe5c4bfa8391ca884a7f81"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0074.jpg",
+      "label": "Clay",
+      "md5_hash": "29d19707569a4ebbeb890a8724c2d735"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0259.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d274ddcf4c98397848638ef1cf677b91"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0116.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f79f4a211dd1551313724a85985581f4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0217.jpg",
+      "label": "Alluvial",
+      "md5_hash": "7a25397b9b8b6f4b5ca0c1f2346b707e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0142.jpg",
+      "label": "Alluvial",
+      "md5_hash": "2ae6a9489e2cf8c8f6e99e8db370c135"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0108.jpg",
+      "label": "Red",
+      "md5_hash": "cd166595675a737b4d17b966041e680e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0037.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "ea510013e0c35db3ef8167db7dd943be"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0279.jpg",
+      "label": "Alluvial",
+      "md5_hash": "01e647fbe2fa61ced98c922a3056c63e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0129.jpg",
+      "label": "Alluvial",
+      "md5_hash": "91f1b4c3fc364fed68d67e2d210ab7c2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0251.jpg",
+      "label": "Alluvial",
+      "md5_hash": "33712246f9966333ead1e69324a2ee1c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0041.jpg",
+      "label": "Red",
+      "md5_hash": "9f4f77c88f65a6cd99523e23909dac8b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0247.jpg",
+      "label": "Alluvial",
+      "md5_hash": "629b1f2b76c90d8081a37fd2c94ca16c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0020.jpg",
+      "label": "Clay",
+      "md5_hash": "5a551b3b2159f331a47b4868f73bcf6c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0007.jpg",
+      "label": "Red",
+      "md5_hash": "3ad488ab5a324fc8c39af3a85f21499f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0089.jpeg",
+      "label": "Clay",
+      "md5_hash": "5c67e7fea887f28fd489c88671ed435d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0001.jpg",
+      "label": "Clay",
+      "md5_hash": "cd5ab07e4e8be0c5d30a2358bf41fbdb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0091.jpg",
+      "label": "Clay",
+      "md5_hash": "d6bc31fe93dadc700c0c8838d438784e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0234.jpg",
+      "label": "Alluvial",
+      "md5_hash": "cd2e99eda29259bd81008064fc37f307"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0126.jpg",
+      "label": "Red",
+      "md5_hash": "4887eaef5774b8cd47787aa610ac0bcb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0114.jpg",
+      "label": "Clay",
+      "md5_hash": "3935566b3e30e077a9cbe109732abe0e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0117.jpg",
+      "label": "Black",
+      "md5_hash": "c192e71e13ddb4cee69ce4a8776d3b3b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0082.jpg",
+      "label": "Clay",
+      "md5_hash": "fb37fbf89db4d7772e0844d272c753b7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0228.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6286f7b9de24facdbe3d4165c0897df9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0173.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b09c1fa29291fa4a3ab09ff376d7d926"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0076.jpg",
+      "label": "Clay",
+      "md5_hash": "da1237d191dc23b091ab6e4d7222e42a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0074.jpg",
+      "label": "Red",
+      "md5_hash": "b27b159ebd4bf2c0dc9a2b4ef3fbcd75"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0157.jpg",
+      "label": "Alluvial",
+      "md5_hash": "780afd4861c5632eb45695a7c573d5e1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0056.jpg",
+      "label": "Black",
+      "md5_hash": "40ee4c1be076ed0e43560ec6c430662e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0153.jpg",
+      "label": "Alluvial",
+      "md5_hash": "560d7e65c9bc98b762dff3b7968f0e7c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0141.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ffa3f3be5df34d7b27354bac088be20c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0139.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ce2d6304eeeb2108544d8d4c2ca1a708"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0141.jpg",
+      "label": "Red",
+      "md5_hash": "6138b95ba82099c46b7d085146f1045c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0118.jpg",
+      "label": "Alluvial",
+      "md5_hash": "bb89590e410327557f88211027eb0afc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0046.jpg",
+      "label": "Clay",
+      "md5_hash": "4a80b3e42bc8b79db73ef3bce21b4327"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0197.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d5088f806b97e8c7cc39e334cd96bb4f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0094.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "5487a61c7ed8b4ce123d1cfc785cde5b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0016.jpeg",
+      "label": "Red",
+      "md5_hash": "d8c3bfb628f34f39be2d56e1fa613a0d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0159.jpg",
+      "label": "Alluvial",
+      "md5_hash": "2526b267649c1d405011779e28eb68d0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0037.jpg",
+      "label": "Clay",
+      "md5_hash": "d06a1f09d50ffa96cc2162116ea8fad3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0073.jpg",
+      "label": "Black",
+      "md5_hash": "3e9ae54573d1fa2428c371ae8b56e15f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0274.jpg",
+      "label": "Alluvial",
+      "md5_hash": "06d4c40765c96c9a16bd00556980f4ce"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0018.jpg",
+      "label": "Clay",
+      "md5_hash": "2ec971048c8d8095fc4bafc2f9f442c8"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0102.jpg",
+      "label": "Clay",
+      "md5_hash": "7fdb17668cb9235472efb1236d52edd3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0087.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "2ca75ee61466c3fe996b4cd845da26af"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0277.jpg",
+      "label": "Alluvial",
+      "md5_hash": "8b06423e94ad928503fcec0425de7b37"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0140.jpg",
+      "label": "Alluvial",
+      "md5_hash": "35a7ad41d8f309385178a2e37eed8592"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0064.jpg",
+      "label": "Red",
+      "md5_hash": "f3e1b8ef13d08356ea66d57f63599403"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0069.jpg",
+      "label": "Alluvial",
+      "md5_hash": "80a517f6eb7f5db4b5556e6eacf83eae"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0101.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c14557efc27ebd471f47df6c886f6032"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0186.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a3e5661f1720c11046a000d9ef602220"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0081.jpg",
+      "label": "Clay",
+      "md5_hash": "67c2b5533735900d2da2dd05565770e5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0087.jpg",
+      "label": "Clay",
+      "md5_hash": "019cdbf85826dd11fbb88cc8e9d7faef"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0220.jpg",
+      "label": "Alluvial",
+      "md5_hash": "399a263d82621930210413d32a5d4edc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0163.jpg",
+      "label": "Alluvial",
+      "md5_hash": "7a43827d983e2aaa9e6928bec1840e21"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0109.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a35c0947ff55aaa0c1f44704f3e85f03"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0057.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5e2c76bcf1cacc2d456ea0908196235b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0009.jpg",
+      "label": "Red",
+      "md5_hash": "eff0e796de727eac6d185aad8e9be8b0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0070.jpg",
+      "label": "Black",
+      "md5_hash": "5da52c3540aab8291025310ef82bf21f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0081.jpg",
+      "label": "Black",
+      "md5_hash": "82cd52bd176cd10163dfdecce9dc07c4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0048.jpg",
+      "label": "Clay",
+      "md5_hash": "bc26a0792622e972862bf325e05e6e27"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0176.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a39b69df1d22a6cb3b9532b90dea97b3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0224.jpg",
+      "label": "Alluvial",
+      "md5_hash": "30fc4fa0597482cf60a735be9c8526dd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0039.jpg",
+      "label": "Clay",
+      "md5_hash": "49363b99f25518aae1a67c4146380259"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0039.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a7dd6627fe39eeaa73438c84d98e3029"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0075.jpg",
+      "label": "Clay",
+      "md5_hash": "867a6dc0dcd9d51cf9181cb22819f8ab"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0033.jpg",
+      "label": "Alluvial",
+      "md5_hash": "39f8723c5b03ae1c3620eb1db48cab93"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0252.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4daabda1d8b657a1798e4dd466ffb287"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0061.jpg",
+      "label": "Clay",
+      "md5_hash": "9d8978c130f5ae85f1dc2e381e4bf8e5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0045.jpg",
+      "label": "Black",
+      "md5_hash": "a4651aa0e015732fbfaf02251ed1a3c7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0166.jpg",
+      "label": "Alluvial",
+      "md5_hash": "de0d0411f96ecb1f3540135feafbc31b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0056.jpg",
+      "label": "Red",
+      "md5_hash": "7cdec822a03e63718a13c4c88157f3a4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0075.jpg",
+      "label": "Alluvial",
+      "md5_hash": "db36006dfdcd8f0a852b9b113970cd5b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0035.jpg",
+      "label": "Clay",
+      "md5_hash": "56b7beb7fb9c8fa484b68ee39e400887"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0113.jpg",
+      "label": "Alluvial",
+      "md5_hash": "7ab4adb3fe0ac794d7328002d73911f7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0032.webp",
+      "label": "Alluvial",
+      "md5_hash": "ca676fe598830074cfaba3d2eb230a03"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0026.jpg",
+      "label": "Black",
+      "md5_hash": "f01eb9ca367214098576f453d83e18ad"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0027.jpg",
+      "label": "Red",
+      "md5_hash": "3b96eb82390866fed37628919acb6511"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0098.jpg",
+      "label": "Red",
+      "md5_hash": "758d03998e7f68d99aab686da259fab2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0042.jpg",
+      "label": "Black",
+      "md5_hash": "7cf46d7df8eb9b5a2e7a846309aae743"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0044.jpg",
+      "label": "Black",
+      "md5_hash": "53be88cb2c9a482967126002076bf174"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0005.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f177d01faa00737f38a295e940743c8a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0097.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ed744a5b3f8cb2bdf01e26108db0d533"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0151.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a1edac5afad8211eb76a08c37cbbc268"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0219.jpg",
+      "label": "Alluvial",
+      "md5_hash": "07f43c6c1db388ab7ae1c60c4638b92f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0039.jpg",
+      "label": "Black",
+      "md5_hash": "0778c887c5696c9fb2f5e0e8352f2470"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0103.jpeg",
+      "label": "Red",
+      "md5_hash": "1085ca5a82d00785f0c0aa0a0a08e200"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0066.jpg",
+      "label": "Clay",
+      "md5_hash": "20ee2b9764708a61d43c1b9e491ec870"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0065.jpg",
+      "label": "Red",
+      "md5_hash": "fb8695c1c16b3edcae790c86b2881f81"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0003.jpg",
+      "label": "Black",
+      "md5_hash": "2d7d4130cf3f2c42f5a68ee2a6b6c9b3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0025.jpg",
+      "label": "Red",
+      "md5_hash": "aa868fc3e3633aa38ec991ed3cd26f4a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0246.jpg",
+      "label": "Alluvial",
+      "md5_hash": "56cedcaa9346945755b5b25fbf6a7560"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0004.jpg",
+      "label": "Black",
+      "md5_hash": "409210e65fcc0412382402d96f5d0111"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0138.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e07b6ccef52a641cc2c8418f1e978249"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0070.jpg",
+      "label": "Red",
+      "md5_hash": "01aaf50fc6674f64f1d966d8925fdf76"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0050.jpg",
+      "label": "Clay",
+      "md5_hash": "0d437828567c172a28abf5be15a956df"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0265.jpg",
+      "label": "Alluvial",
+      "md5_hash": "06dadcf227d023974ea14d7cfc3ecd58"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0155.jpg",
+      "label": "Alluvial",
+      "md5_hash": "88cd3bebebd39e642b8d4beace56ce2b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0105.jpg",
+      "label": "Clay",
+      "md5_hash": "8f8d1ef9222e33141b1e986c1a4f4e87"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0235.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3b46aeaf1625ecd744e86ba4ffe0c6a4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0139.jpg",
+      "label": "Red",
+      "md5_hash": "b2b9de50c300ebe75688fc8bb06d3188"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0012.jpg",
+      "label": "Clay",
+      "md5_hash": "e2f818076997d7da0e8de0ce5c3565b5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0043.jpg",
+      "label": "Clay",
+      "md5_hash": "ba441f12d16bb49abcac884633c4769b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0038.jpg",
+      "label": "Red",
+      "md5_hash": "33663e2dab55c58ff6bc63de63a0a37e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0201.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3881bec4476d0e12fffe2b388fe0102c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0095.jpg",
+      "label": "Black",
+      "md5_hash": "1b1935386fc1d3f6612023c5d830624d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0209.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dbecce06afbce4c3dd9be26e0cf7a13b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0116.jpg",
+      "label": "Black",
+      "md5_hash": "b094fc03a20e05f8256ba12350e37047"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0033.jpg",
+      "label": "Red",
+      "md5_hash": "a9b23a9a8c5fdbc8b8b30e820e4fba10"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0074.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5c2ec82e20a86186b3e22d13c4c23d37"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0168.jpg",
+      "label": "Alluvial",
+      "md5_hash": "9699f18c699fb9302978a6acbaefcf32"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0006.jpg",
+      "label": "Alluvial",
+      "md5_hash": "bc4f68fd955faaeff960dee3472af2b9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0079.jpg",
+      "label": "Clay",
+      "md5_hash": "95b53271873f550189082134f17672db"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0010.jpg",
+      "label": "Clay",
+      "md5_hash": "b7598ffcfdb9d7d87513bb98865bf593"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0243.jpg",
+      "label": "Alluvial",
+      "md5_hash": "18ae76860bfac6f911ab2598022db781"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0034.jpg",
+      "label": "Black",
+      "md5_hash": "c02d4fed9e13ec92f8cc113398e28e19"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0012.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dbc0e2cdfaccf7bf05eb7c4ad7b36c4e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0029.jpg",
+      "label": "Red",
+      "md5_hash": "4136004ff19b55a31a944446c72338e1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0093.jpg",
+      "label": "Clay",
+      "md5_hash": "3fc591061bac1c662bb64d648f48e600"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0042.jpg",
+      "label": "Alluvial",
+      "md5_hash": "45c13a99e0ee1940ef0c42b1516123d5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0268.jpg",
+      "label": "Alluvial",
+      "md5_hash": "58fdd551eccb8a1954f2cbcc0ef0054b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0065.jpg",
+      "label": "Black",
+      "md5_hash": "da6f7ff3febef8ae0a19d0a86ba99ae8"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0068.jpg",
+      "label": "Red",
+      "md5_hash": "c96d0d761ef7c501a84baa57b1cda590"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0147.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f727b89e17e3dedfe9f69e20502eaf64"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0078.jpg",
+      "label": "Black",
+      "md5_hash": "da9a407efe3565add0048581f35ed4dc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0003.jpg",
+      "label": "Red",
+      "md5_hash": "51ebb12ef809e6bfd2826ae819f0c4c4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0150.jpg",
+      "label": "Red",
+      "md5_hash": "71afa18f4dfcc166e9e316a4341ad660"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0072.jpg",
+      "label": "Red",
+      "md5_hash": "3e2115c43d441c25b13a124465639b57"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0044.jpg",
+      "label": "Red",
+      "md5_hash": "5652cfe15eb5d09310a89f3ade9ee254"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0098.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d342841a3780acbf6d8e3c217d9d3775"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0154.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4ae086e7c778ea99a246eb2c9cda0ec2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0067.jpg",
+      "label": "Red",
+      "md5_hash": "8dcd5c15b5311e2103ee535e4501da61"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0156.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e126e006d887ffe69e39c7c1a0226327"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0095.jpg",
+      "label": "Clay",
+      "md5_hash": "8d755399c4b78cca04c92be2e364c7e4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0102.jpg",
+      "label": "Red",
+      "md5_hash": "c247e1bc4402f05e1f6588246faeb550"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0011.jpg",
+      "label": "Clay",
+      "md5_hash": "8821dab9a95fb8c4ad9f0214f3d07289"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0028.jpg",
+      "label": "Clay",
+      "md5_hash": "d78177f4523e2df111904fea1b5d12be"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0196.jpg",
+      "label": "Alluvial",
+      "md5_hash": "24e6a62b0406d3cd36cf64b671c3114a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0195.jpg",
+      "label": "Alluvial",
+      "md5_hash": "edcc04a86e21694c02d2fba0c6351335"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0036.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "808cda81aede946bb05899e48bf744dd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0117.jpg",
+      "label": "Red",
+      "md5_hash": "c080602297c315ca79f7ac0e6445c22b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0023.jpg",
+      "label": "Alluvial",
+      "md5_hash": "9379beae4ee990e5104b070120017d9a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0060.jpg",
+      "label": "Black",
+      "md5_hash": "322e585c8b0cea148c7e29dff93dd0fc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0116.jpg",
+      "label": "Red",
+      "md5_hash": "280cd01d87e1c3f7a6b7bfad8170b843"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0144.jpg",
+      "label": "Alluvial",
+      "md5_hash": "eeb6aab2c27e99d5cfbc2ed3d100ea4e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0118.jpg",
+      "label": "Red",
+      "md5_hash": "6cb6e9fbb287f1d3f8a6ac491c09994c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0025.jpg",
+      "label": "Clay",
+      "md5_hash": "839488cb5718e6c267aa768b325ef7c2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0086.jpg",
+      "label": "Black",
+      "md5_hash": "2e443ba01b01601a9f4dcc50836b7d33"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0029.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "bbd1a4b2915958da4c378c7edff9394c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0062.jpg",
+      "label": "Black",
+      "md5_hash": "d4a98b1237d3435fe8d6a975657c9e08"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0145.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b8f6c71d34f1d809451b8a0778e06453"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0121.jpg",
+      "label": "Alluvial",
+      "md5_hash": "2fe73311454b550c1dcc16d841603796"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0079.jpeg",
+      "label": "Black",
+      "md5_hash": "e7708cddc1655564f1b4db3b56304f4d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0115.jpg",
+      "label": "Black",
+      "md5_hash": "27a33f743002d2d47707a2c40e16c19b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0107.jpg",
+      "label": "Black",
+      "md5_hash": "30580f6b4af0c54be4333516606573c9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0041.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d8d6cbb2e97e3df53971b00263e0f833"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0128.jpg",
+      "label": "Red",
+      "md5_hash": "eacfdb7a1dc966f80c2dd22f6a9c0ed4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0057.jpg",
+      "label": "Black",
+      "md5_hash": "67c8dd17f1fb60854f2e90cb68be784d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0085.jpg",
+      "label": "Clay",
+      "md5_hash": "d16b93938a7ec432c1cde4f9b6b16ef4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0014.jpeg",
+      "label": "Red",
+      "md5_hash": "f5d76e391d4a8daaf442a89ff759acac"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0211.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3f3035816891464429d063559bb641e3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0005.jpg",
+      "label": "Red",
+      "md5_hash": "14795ba69bf84f8513f4349b26039a92"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0124.jpg",
+      "label": "Red",
+      "md5_hash": "906cda1f896e389881ff23729401de9b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0077.jpg",
+      "label": "Black",
+      "md5_hash": "2e579d8dbdec1a740a3bd5006da57da1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0144.jpg",
+      "label": "Red",
+      "md5_hash": "c659c508e67cd8504d197007f59b58bb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0066.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c78ae9f814814a12626cf7fef65e124a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0019.jpg",
+      "label": "Alluvial",
+      "md5_hash": "25b508755e19bc09b2e17aafac07fd0f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0207.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6f551d1c38844dbab7c838e30483d793"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0119.jpg",
+      "label": "Black",
+      "md5_hash": "eb2069857b4c372f343749d29afa43d3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0099.jpg",
+      "label": "Clay",
+      "md5_hash": "7960fc76e439ef3516925162a71a6583"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0015.jpg",
+      "label": "Black",
+      "md5_hash": "e84fc6e6dc39496588df2833cf6f1c0f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0092.jpg",
+      "label": "Clay",
+      "md5_hash": "23b4fc9559051fb5fd3bfc17653126d5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0031.jpg",
+      "label": "Alluvial",
+      "md5_hash": "0a69ef6373f2ca3f014c93dab57fddf7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0216.jpg",
+      "label": "Alluvial",
+      "md5_hash": "88a0adb24ef46fd5e9a557ec234ebac6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0046.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4d2c641ff1145e0faf0aa99d6662e3fc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0169.jpg",
+      "label": "Alluvial",
+      "md5_hash": "242b322905da042ac95fdbf1842ea36d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0185.jpg",
+      "label": "Alluvial",
+      "md5_hash": "141576f2c98aadf25d04a4905b179f9d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0179.jpg",
+      "label": "Alluvial",
+      "md5_hash": "fdf793fbc4e357d3703c821f6b5cd1dd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0275.jpg",
+      "label": "Alluvial",
+      "md5_hash": "17d350b8875f4ccb58fae7e653f03368"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0083.jpg",
+      "label": "Clay",
+      "md5_hash": "4ca86312d1cb889e482578e3df8e98e3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0045.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c378604714818336193f9a22f3c15b82"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0238.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d193bb0975410541ee1ddd0637c7c27f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0020.jpeg",
+      "label": "Red",
+      "md5_hash": "b7cfb5b54fcc09102fb2808382b25043"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0143.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6cd37b71c7931ff4bfa05c0ac92cb42e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0261.jpg",
+      "label": "Alluvial",
+      "md5_hash": "7a70512f0ab3eff195804de91230a981"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0022.jpg",
+      "label": "Clay",
+      "md5_hash": "9f54411dc8fb5bc79958a5e690ddc407"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0177.jpg",
+      "label": "Alluvial",
+      "md5_hash": "49cd8aaf2af1175f5aff4c4071f425f7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0264.jpg",
+      "label": "Alluvial",
+      "md5_hash": "808e803aea8986dcb40cecad719f04fd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0137.jpg",
+      "label": "Alluvial",
+      "md5_hash": "8c204c6341506af31700913bbaa55386"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0136.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dcf90b295e15efd7fdaf415d74e94d7b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0061.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e7f3c085caad71c1e58e1be6b1bbd572"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0104.jpg",
+      "label": "Black",
+      "md5_hash": "147ede3db20f03bff505b93051cc15ef"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0120.jpg",
+      "label": "Black",
+      "md5_hash": "fa8d585d928bca2c0fdd015b322ba171"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0187.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c715e561e52a79166d705f0879dbc693"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0140.jpg",
+      "label": "Red",
+      "md5_hash": "e4cbc1e0cd427df97ba60f165219def0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0048.jpg",
+      "label": "Red",
+      "md5_hash": "526072ab584f3f0ebdb94b8149024388"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0165.jpg",
+      "label": "Alluvial",
+      "md5_hash": "433b7c7708a55da130565e34b7ad17f9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0085.jpg",
+      "label": "Red",
+      "md5_hash": "d0a36b9bd53ee9d027d0c72696f73279"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0073.jpg",
+      "label": "Red",
+      "md5_hash": "80494cdf1cd8f4749fc372cbfdd855fa"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0063.jpg",
+      "label": "Red",
+      "md5_hash": "8a8965bf535210e871346d858f9fe6dd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0128.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6066ea5b8849bbc0872de76f4583d3d4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0245.jpg",
+      "label": "Alluvial",
+      "md5_hash": "68075e5e2d7daf648fac8653ae66f1f5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0133.jpg",
+      "label": "Alluvial",
+      "md5_hash": "00bdc9b03bd9eb4549a6c49a0349772a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0024.jpeg",
+      "label": "Red",
+      "md5_hash": "5070d794b572bbc98b072d2a179f4081"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0112.jpg",
+      "label": "Black",
+      "md5_hash": "edfd4135ee99b405fde3ce4b6bde57b5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0278.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3756cd15f0e25495e22434077c5ab398"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0123.jpg",
+      "label": "Black",
+      "md5_hash": "2da6f89c7eecca6b45303c35bbf00eef"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0105.jpg",
+      "label": "Black",
+      "md5_hash": "fc7393a670cc208282f823d454593e21"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0033.jpg",
+      "label": "Clay",
+      "md5_hash": "02c5e469af868dd5660c60424be42284"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0006.jpg",
+      "label": "Black",
+      "md5_hash": "08dfe9f7f5d2f84d6ccb16a3dddb4123"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0106.jpg",
+      "label": "Red",
+      "md5_hash": "521db7629eba06b7de2a5145d83f4b29"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0145.jpg",
+      "label": "Red",
+      "md5_hash": "4b29466132a3151bac94af7c73a50c45"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0094.jpg",
+      "label": "Red",
+      "md5_hash": "030026a0e3564a10e539b810d2bb0fc5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0070.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3ab1fb6788b5f9ce14c2ed75cc395c41"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0280.jpg",
+      "label": "Alluvial",
+      "md5_hash": "05b05dd50685d1f75b35f0b3a7c61f06"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0108.jpg",
+      "label": "Clay",
+      "md5_hash": "eaab76b21603a757dd82adaa8d3634bd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0038.jpg",
+      "label": "Alluvial",
+      "md5_hash": "47483692fbb65c5ff1cca40c27d6a737"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0100.jpg",
+      "label": "Clay",
+      "md5_hash": "89e7f8976fa4cba62a066f646d0b0682"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0087.jpg",
+      "label": "Red",
+      "md5_hash": "ae770a87a1e4fa9661a447b828ce3d40"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0226.jpg",
+      "label": "Alluvial",
+      "md5_hash": "9b12097f2ab43d0a83f5ae3850112bf5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0015.jpeg",
+      "label": "Red",
+      "md5_hash": "4061ad183489af5800db9ceff3ec9118"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0047.jpg",
+      "label": "Alluvial",
+      "md5_hash": "58ada5511df9d1c41765bb3343adf5ae"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0120.jpg",
+      "label": "Alluvial",
+      "md5_hash": "07681a56c12c72d967c08a95e0189d83"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0122.jpg",
+      "label": "Red",
+      "md5_hash": "1b219ebf3314f83cebf5ad96c080a4ce"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0060.jpg",
+      "label": "Red",
+      "md5_hash": "1bd70d6243b60cd5490d9951151eb7a7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0056.jpg",
+      "label": "Alluvial",
+      "md5_hash": "85b0e0723a76dfd0fc0d9b0c23d5f74d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0009.jpg",
+      "label": "Black",
+      "md5_hash": "c053ef2b80800f656d11682355cb89f4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0067.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e94be22a56d6333dd96ddad3f76146c5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0071.jpg",
+      "label": "Alluvial",
+      "md5_hash": "823bf71567a40043d8e3f3b315a0e173"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0091.jpg",
+      "label": "Red",
+      "md5_hash": "7c2929c7e6688c584cd2dcbe5e086b77"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0080.jpg",
+      "label": "Red",
+      "md5_hash": "b7bbbb9aba4b64b0132c5610822f071c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0024.jpg",
+      "label": "Black",
+      "md5_hash": "b5661913b5c0d25c1b59ff0761a37f63"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0051.jpg",
+      "label": "Clay",
+      "md5_hash": "1fb430dbcf8ffc3cf919a2e63cb31f4f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0040.jpg",
+      "label": "Red",
+      "md5_hash": "40790f42818a1c85edc59838239b6a03"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0066.jpg",
+      "label": "Red",
+      "md5_hash": "bf8359b66bb14ebfb9cfa8133d1fb718"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0014.jpg",
+      "label": "Clay",
+      "md5_hash": "b58d13bc51a41cc397e31b2a982835e3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0043.jpg",
+      "label": "Alluvial",
+      "md5_hash": "70385dcaa1fedaad8a552bd26e653b2d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0097.jpg",
+      "label": "Black",
+      "md5_hash": "80cbfe70881d48730f7a87e0c2cec323"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0089.jpg",
+      "label": "Black",
+      "md5_hash": "4bfc882c773c2783c383edcb89a1b5b8"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0025.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e1c973164e59f82c0e38d3061523cc6f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0091.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "1a0dcd138ea9b97487d5b869f6c220ff"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0002.jpg",
+      "label": "Black",
+      "md5_hash": "4e175465f9d44558ec68b61f57778b4a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0109.jpg",
+      "label": "Clay",
+      "md5_hash": "b3289bb793a95a9c80de3f556ee0b135"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0069.jpg",
+      "label": "Black",
+      "md5_hash": "bf11e6cbb53ed4825aa5313143ae35f1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0088.jpg",
+      "label": "Black",
+      "md5_hash": "bbe3f12ea7ebacc7c6778755de4b70a6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0090.jpeg",
+      "label": "Clay",
+      "md5_hash": "bdb36d4fa1918bd0903923502911eec2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0121.jpg",
+      "label": "Red",
+      "md5_hash": "f7675f463818c8af7e39024356121aec"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0250.jpg",
+      "label": "Alluvial",
+      "md5_hash": "bab9031a74545b70db776b96e03b6eab"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0149.jpg",
+      "label": "Alluvial",
+      "md5_hash": "93b70b87646ca5b83d9e97ef7cdb3508"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0225.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3ab37254855f841b60726cc164460995"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0046.jpg",
+      "label": "Black",
+      "md5_hash": "b7f0db93d7b688f454c705f33d1fbe33"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0065.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dbcaec56adf06102ef1d016090cced8e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0044.jpg",
+      "label": "Clay",
+      "md5_hash": "8d5b25782c914893eae37c0abd8403c0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0009.jpg",
+      "label": "Clay",
+      "md5_hash": "c524a24714c1d5338ec219195e13d35a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0093.jpg",
+      "label": "Black",
+      "md5_hash": "20be7352ebc6b538c377a3207df29f2c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0007.jpg",
+      "label": "Clay",
+      "md5_hash": "ab7a6c8c9ff946eae00bf5e2b01ef895"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0069.jpg",
+      "label": "Red",
+      "md5_hash": "0f26faba659de0a2440a642191160a32"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0076.jpg",
+      "label": "Red",
+      "md5_hash": "7f8b57e2ddd0d6b48bbc849af412ead6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0091.jpg",
+      "label": "Black",
+      "md5_hash": "0782c19cf4668cb4a472225263d91090"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0064.jpg",
+      "label": "Black",
+      "md5_hash": "99464ce307ee2df44c0ab84c7d5edf68"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0232.jpg",
+      "label": "Alluvial",
+      "md5_hash": "cb9e46cb92eff817ab9321363aa9a7cf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0072.jpg",
+      "label": "Clay",
+      "md5_hash": "48375606f2ce54bdf73f1eb8ffc5996e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0063.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4277a9657e70ce5d5da0e95ddf6218b6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0132.jpg",
+      "label": "Red",
+      "md5_hash": "c9bc31c16c1013d67735ef31c513f270"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0077.jpg",
+      "label": "Alluvial",
+      "md5_hash": "296a854e43d9a02d8c3091b4dc1c251c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0113.jpg",
+      "label": "Clay",
+      "md5_hash": "7ac137bb7dcd82f03f0515af2bf66fd8"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0053.jpg",
+      "label": "Black",
+      "md5_hash": "be26a1e4db836b08d8094513747d7df2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0078.jpg",
+      "label": "Alluvial",
+      "md5_hash": "1a4af7398a284db94684ece0a0fe9ab7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0003.jpg",
+      "label": "Clay",
+      "md5_hash": "f51686736814768afd9a179d74b3bdaa"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0007.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c305f459ccf9c40fce434e578b914d01"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0115.jpg",
+      "label": "Alluvial",
+      "md5_hash": "2c7887174c9f810cc4c9c55061546c92"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0020.jpg",
+      "label": "Alluvial",
+      "md5_hash": "0f7bd0cc509a1b9ecaa1b968354c2a50"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0010.jpeg",
+      "label": "Red",
+      "md5_hash": "910e874446b24c17b08a5cba4f26466d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0016.jpg",
+      "label": "Black",
+      "md5_hash": "d4b66707a2cddebdff5aaa1acd6f5d1c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0231.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c14cc747b5748ae56bb48240e53f9353"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0171.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c4d91fc7b396f6d3988a7add7001dfa0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0038.jpg",
+      "label": "Clay",
+      "md5_hash": "98f6536790600c1231567abc68472fa6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0210.jpg",
+      "label": "Alluvial",
+      "md5_hash": "99f26013bfe888446d8e6eea2b4c11b6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0102.jpg",
+      "label": "Black",
+      "md5_hash": "8543fb7053f44f0a34b526a77d992f19"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0110.jpg",
+      "label": "Red",
+      "md5_hash": "59516aee254ce5cae32a4924abec7512"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0110.jpg",
+      "label": "Clay",
+      "md5_hash": "55645e94585c4e3a4a7aa3d164a31b9d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0119.jpg",
+      "label": "Red",
+      "md5_hash": "22b7b659d07e7ca330ddf784166a2df4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0111.jpg",
+      "label": "Red",
+      "md5_hash": "9457ca4dc9ef38802a8b691eaa176f09"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0071.jpg",
+      "label": "Black",
+      "md5_hash": "afcdd437e69632472e868e8db89038f0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0036.jpg",
+      "label": "Clay",
+      "md5_hash": "d005f04fb76dcf78f68ba39528549499"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0011.jpeg",
+      "label": "Red",
+      "md5_hash": "f43d580b81f2f1fe189ea2427788cd83"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0194.jpg",
+      "label": "Alluvial",
+      "md5_hash": "850063a893765db32f03711c799280a5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0028.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "6ce4423888b9b37a2161e0505ee59bbd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0058.png",
+      "label": "Alluvial",
+      "md5_hash": "7d186af451d22a060a4bdfc074d01b82"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0134.jpg",
+      "label": "Red",
+      "md5_hash": "a0a2215fcd93d9221787f538eac4724e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0028.jpg",
+      "label": "Black",
+      "md5_hash": "53a22cf8227f933938d1d24cd6bf012d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0021.jpg",
+      "label": "Clay",
+      "md5_hash": "84f666903de177b9945e2de0001fd64c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0146.jpg",
+      "label": "Red",
+      "md5_hash": "a103dd841e0e01ffdec437ef30433c2a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0127.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c239352e756d2a58f4afd03b3f588198"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0099.jpg",
+      "label": "Alluvial",
+      "md5_hash": "03df504b1f62152b4ba5244978469b47"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0112.jpg",
+      "label": "Alluvial",
+      "md5_hash": "0d00e6d841e1c964365d9ca87e7f749f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0001.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f2c2bf74611ef87d44e7705666cbcccd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0026.jpg",
+      "label": "Clay",
+      "md5_hash": "7d3c8a265f6c3379afaeab96d74150f1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0024.jpg",
+      "label": "Alluvial",
+      "md5_hash": "42350aad51e58df7fbbddb7a414e29b5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0027.jpg",
+      "label": "Black",
+      "md5_hash": "6d1a8a416bf6912c6263567eb12d5f0e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0069.jpg",
+      "label": "Clay",
+      "md5_hash": "b755091cb5be0dc2df0a5f75cc34ba90"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0039.jpg",
+      "label": "Red",
+      "md5_hash": "fa4cc1d60a63ad5b73be3cf3b286760d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0032.jpg",
+      "label": "Red",
+      "md5_hash": "72f47f279423fb16689a9300ea442155"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0272.jpg",
+      "label": "Alluvial",
+      "md5_hash": "31d02d52383ce8d8ad671d8817e841b2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0027.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "656f5024d04a29d4ef623f09e0061b8c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0071.jpg",
+      "label": "Clay",
+      "md5_hash": "cb97b97196015966d2c61fc98d1eebbc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0003.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6fd2bcb0bbefcb8cdb13909db5a87e39"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0050.jpg",
+      "label": "Red",
+      "md5_hash": "c928bb1f6da484312b17bb8abae165a7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0241.jpg",
+      "label": "Alluvial",
+      "md5_hash": "67ea91e6efcc55c37e78320b4eb81c68"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0110.jpg",
+      "label": "Black",
+      "md5_hash": "48c3b009b4074fe6b2f59d1009f068d1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0030.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "c61285f9282990e0068bbecda6d1c541"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0043.jpg",
+      "label": "Red",
+      "md5_hash": "f4679e7487ee15c539d0ca78cb6a2d64"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0097.jpg",
+      "label": "Red",
+      "md5_hash": "5aaa316a967d511820db9552ea7c2a5f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0037.jpg",
+      "label": "Black",
+      "md5_hash": "4754ee25084509de38e60558f80fbef9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0057.jpg",
+      "label": "Red",
+      "md5_hash": "6679b37b16f692de5cdd99852ac4e0a2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0017.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a5c5e138da5a72a091d23f1163abb522"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0096.jpg",
+      "label": "Black",
+      "md5_hash": "fa009c5bb5c11fa0a2a14843c3468bc4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0262.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b4d82c308af9f18b0cecbbd52ac6382f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0013.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f5f55e9dcf10c0f93aa87c96103c1619"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0027.jpg",
+      "label": "Clay",
+      "md5_hash": "bd0d032dc6308a78bf3da095da2d8b7a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0034.jpg",
+      "label": "Red",
+      "md5_hash": "f42d1e60d23b8e7c93a0e250871de26c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0212.jpg",
+      "label": "Alluvial",
+      "md5_hash": "125185dc903bf5f4c555bf10e7513459"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0147.jpg",
+      "label": "Red",
+      "md5_hash": "125efe34c213c87d23cfd004bfe9e01d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0184.jpg",
+      "label": "Alluvial",
+      "md5_hash": "07556321e435fd4de521b26b32b1461e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0118.jpg",
+      "label": "Black",
+      "md5_hash": "ca259be980a3a2010cf0bd295b853294"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0182.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5979947ed31b499fcf778e2a1805f982"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0208.jpg",
+      "label": "Alluvial",
+      "md5_hash": "383ab5e95682cad7a86386b79c573e14"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0058.jpg",
+      "label": "Black",
+      "md5_hash": "c920af7f579ef48de2a1c140cbb090be"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0004.jpg",
+      "label": "Clay",
+      "md5_hash": "8877cd7a85bdac583fb2a12672c15718"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0077.jpg",
+      "label": "Red",
+      "md5_hash": "42f56a07f550b8e88842c6dade17bf86"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0047.jpg",
+      "label": "Red",
+      "md5_hash": "f7c8754d607285d912d371e7c93654ff"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0034.jpg",
+      "label": "Clay",
+      "md5_hash": "7b72e407c5fe1fefb941f7daf6792f9f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0077.jpg",
+      "label": "Clay",
+      "md5_hash": "4d7a73492544a28e9b7db4876d3efc9a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0050.jpg",
+      "label": "Black",
+      "md5_hash": "d2d35225a190d44ae439ae0d54c135a4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0083.jpg",
+      "label": "Black",
+      "md5_hash": "a6d5bbb6113cc94366381902a17f40b4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0123.jpg",
+      "label": "Red",
+      "md5_hash": "64d87643b38c745a0ac3eb62560fd891"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0117.jpg",
+      "label": "Alluvial",
+      "md5_hash": "810fb5f5a0b61aedab79a0219099c155"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0110.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6353bd2ecef26c37313a55d931d0d04f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0011.jpg",
+      "label": "Alluvial",
+      "md5_hash": "8c44c5b2715f85e112df34e8142e5f80"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0051.jpg",
+      "label": "Red",
+      "md5_hash": "153fafca898665e0cee0f46915a2c109"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0122.jpg",
+      "label": "Black",
+      "md5_hash": "cb662300bb552da05bb8535656cdb1db"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0063.jpg",
+      "label": "Black",
+      "md5_hash": "3eaa7c7bf9116a4fa273f1e76557e9da"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0001.jpg",
+      "label": "Red",
+      "md5_hash": "b0fabb856e3055495d3fe93b069bc2a3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0074.jpg",
+      "label": "Black",
+      "md5_hash": "8b418dc584ed6b7f30cab0399534a4ef"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0105.jpg",
+      "label": "Alluvial",
+      "md5_hash": "0de164dcd2a69c4037de43d803e74606"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0056.jpg",
+      "label": "Clay",
+      "md5_hash": "6a3cc3b9bf4a83cfa99c49fbca2c8fb2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0079.jpg",
+      "label": "Red",
+      "md5_hash": "9977ca4a4a3d6c4d9117d2f244ce85b0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0121.jpg",
+      "label": "Black",
+      "md5_hash": "c9ae8ea1829eb62d659bfe22af13c4f6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0085.jpg",
+      "label": "Black",
+      "md5_hash": "d94f2c83d2766612978a23416a53b649"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0153.jpg",
+      "label": "Red",
+      "md5_hash": "d2f0c43bf2456fc06eb55574b9946669"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0049.jpg",
+      "label": "Black",
+      "md5_hash": "6d60cb23ba8c1dc1853d4776a18de935"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0111.jpg",
+      "label": "Clay",
+      "md5_hash": "0d21806f6dcdec9a8a6907ea66271243"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0137.jpg",
+      "label": "Red",
+      "md5_hash": "427faf358005e87da59788b175bf2152"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0125.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e7d3f7a9577036b08871186ab16e9627"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0062.jpg",
+      "label": "Alluvial",
+      "md5_hash": "0576ad56fd2999c50255b8ce96861981"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0023.jpg",
+      "label": "Black",
+      "md5_hash": "08e93c91b90a4a3218b098e58f7169cf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0227.jpg",
+      "label": "Alluvial",
+      "md5_hash": "fa176b519946066478468c810afedec5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0233.jpg",
+      "label": "Alluvial",
+      "md5_hash": "04bed607582eb0d2aec314d3b99649d4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0068.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f671a0a6aa698cfff09731a98d3eeb0a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0183.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b4cb0a93379339d54651a9a5fd32ac6e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0042.jpg",
+      "label": "Red",
+      "md5_hash": "56975b9c2923de44e2db381f0e433a50"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0221.jpg",
+      "label": "Alluvial",
+      "md5_hash": "0ab945aeea76db73a41c3686708d263d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0103.jpg",
+      "label": "Clay",
+      "md5_hash": "63dfd138be2ca5159c500b5229e6248c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0029.jpg",
+      "label": "Black",
+      "md5_hash": "29af56bbb4c923320d42806ca3a02425"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0099.jpg",
+      "label": "Black",
+      "md5_hash": "2cce4143448385cf762160c6dc1bc495"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0123.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4eb0fa6a18252c5b033b16d36854f868"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0085.jpg",
+      "label": "Alluvial",
+      "md5_hash": "1e3354994a455791eb76565880b1edf4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0028.jpg",
+      "label": "Red",
+      "md5_hash": "e16652ae47fbc39fa9d02ab1ee00804c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0092.jpg",
+      "label": "Red",
+      "md5_hash": "08f6f766cf98760eea05e9d5803827c9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0198.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b16a8f1a3f5c0dfb9ebc19c488954396"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0178.jpg",
+      "label": "Alluvial",
+      "md5_hash": "145ff186dc418301e6938e2b9dcf6900"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0152.jpg",
+      "label": "Red",
+      "md5_hash": "00171c5ea9d49c1032794602c7b54bda"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0204.jpg",
+      "label": "Alluvial",
+      "md5_hash": "36a2108392c065167f1fc85785561dc2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0011.jpg",
+      "label": "Black",
+      "md5_hash": "4f704d68e9a53049d15528979d2218f1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0174.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5d872346f6bc7cca89d2c04c6c2b5297"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0026.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c3481d0ca49a35462885d2f573d02ac9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0148.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ebfa30336cd6148951b779c3412928af"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0083.jpg",
+      "label": "Red",
+      "md5_hash": "ecd06fd6de6028700db4f36b1119c452"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0053.jpg",
+      "label": "Red",
+      "md5_hash": "f574ed47bae3704bb3a3fbbc2e3f4edb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0193.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b25c7388c190c9ce4d0efc9b21640508"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0064.jpg",
+      "label": "Clay",
+      "md5_hash": "1db66d975f7f678825e302efccdd952a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0045.jpg",
+      "label": "Red",
+      "md5_hash": "52509cad917f9cf49643515da7d00229"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0010.jpg",
+      "label": "Alluvial",
+      "md5_hash": "32cff40986cfc87dcb9f11e43b0c4ea6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0024.jpg",
+      "label": "Clay",
+      "md5_hash": "498a979ac882636deff6783c7dd5b026"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0054.jpg",
+      "label": "Red",
+      "md5_hash": "fcd68a990d6ae3011b714edd8da217ba"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0079.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4ab1760e23be26cb9f89ad6b465474cf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0114.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a06d2fc1a0c07ae58e68b365fbd2064b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0260.jpg",
+      "label": "Alluvial",
+      "md5_hash": "96adb748251edee742970c1a3b83f985"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0026.jpg",
+      "label": "Red",
+      "md5_hash": "2e4b2ed671c460d8b8ac27d4756154ca"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0041.jpg",
+      "label": "Clay",
+      "md5_hash": "f223087dcb3517e30824966a59548ab4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0045.jpg",
+      "label": "Clay",
+      "md5_hash": "037f59d530819a2126e4ae0ce7ec624f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0057.jpg",
+      "label": "Clay",
+      "md5_hash": "2703d5cb70341a1aea050f6689384a28"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0001.jpg",
+      "label": "Black",
+      "md5_hash": "de4e948ba6e9d82b3b1e11a3ba4029fb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0214.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dca8fe9d035c1b23d0dff8371166c52a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0098.jpg",
+      "label": "Clay",
+      "md5_hash": "64434f513b635206b01e469c297f22e5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0029.png",
+      "label": "Clay",
+      "md5_hash": "88a9334b3dae6ff5daa35fe42999500d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0098.jpg",
+      "label": "Black",
+      "md5_hash": "fb9c03ea72163b0551ad82cde6238e2e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0181.jpg",
+      "label": "Alluvial",
+      "md5_hash": "84aeefbbe10e541bd8e5b51f4391d610"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0092.webp",
+      "label": "Black",
+      "md5_hash": "7005e29befd5136d8ddd930e8aa04587"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0136.jpg",
+      "label": "Red",
+      "md5_hash": "b0a2c90913f71e5a604371f30c0d7f9c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0266.jpg",
+      "label": "Alluvial",
+      "md5_hash": "cf68f4d682c233f14938b433a1fb182a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0016.jpg",
+      "label": "Alluvial",
+      "md5_hash": "2ffca47c0942067af45d794fdac7978f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0052.jpg",
+      "label": "Red",
+      "md5_hash": "94494f842af4c3808328a5d1fbb51f7d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0059.jpg",
+      "label": "Clay",
+      "md5_hash": "00f8a71211e66193bc76b4561a3391f6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0270.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ead03da141750715a4655e829f2a61d8"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0102.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ef89519545056a3d74983724fded3845"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0002.jpg",
+      "label": "Red",
+      "md5_hash": "bf4fd4e791f7065f6f337bb5329ef81a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0032.jpg",
+      "label": "Black",
+      "md5_hash": "ee263ac596d97ed6e56af0c07fc9c24d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0040.jpg",
+      "label": "Black",
+      "md5_hash": "0becf9b135e61addd0c4d177227abf72"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0080.jpg",
+      "label": "Clay",
+      "md5_hash": "efef21704d09ec758ba21e92215ea27a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0073.jpg",
+      "label": "Clay",
+      "md5_hash": "4a63833283ff114e5f2f61b1aa08c660"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0158.jpg",
+      "label": "Alluvial",
+      "md5_hash": "24f9166a827a774dd4b399a5f0f8b15a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0006.jpg",
+      "label": "Red",
+      "md5_hash": "74992158db91cc3ff54081edc595cf88"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0002.jpg",
+      "label": "Clay",
+      "md5_hash": "8984584f35638621f0d418c3a615c378"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0010.jpg",
+      "label": "Black",
+      "md5_hash": "960c47ab0d304e42faabe0ef7b5834d3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0031.jpg",
+      "label": "Black",
+      "md5_hash": "4a66da95d388dc17e8c2eb36b8ef80ab"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0109.jpg",
+      "label": "Red",
+      "md5_hash": "d27016387be4b21269cec98f190a4de1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0083.jpg",
+      "label": "Alluvial",
+      "md5_hash": "16a53aaece0a6f7bf0f11cea52aa068e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0088.jpg",
+      "label": "Red",
+      "md5_hash": "a472e55d74d1fe68dda10111e41c8935"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0052.jpg",
+      "label": "Black",
+      "md5_hash": "a46772d40d9f69acdf42fb9ccf6be87f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0126.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c4eab08275ecbf8c439224c29c7a8e1b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0249.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3f378c55ec1b0b31e95970a3466bc1cc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0104.jpg",
+      "label": "Red",
+      "md5_hash": "faf0fdeef4e648507d1edee66af140db"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0133.jpg",
+      "label": "Red",
+      "md5_hash": "5bb8dd2d64d05106394b80d75d43e86c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0055.jpg",
+      "label": "Black",
+      "md5_hash": "5484ef5831ba6c7d0b733399fc38da67"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0107.jpg",
+      "label": "Red",
+      "md5_hash": "7c4d7115330570851fb5dbc2d81a2912"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0012.jpg",
+      "label": "Black",
+      "md5_hash": "e20ab1ffab70181ab96969e9714488c3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0022.jpeg",
+      "label": "Red",
+      "md5_hash": "c9afe96f87c382a674480d24edf8eb15"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0005.jpg",
+      "label": "Black",
+      "md5_hash": "3ea50d69d3816f02bcb783f0855dc27b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0180.jpg",
+      "label": "Alluvial",
+      "md5_hash": "ac1f8b50714e4d4da3bcce588aecb0ff"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0004.jpg",
+      "label": "Red",
+      "md5_hash": "95424d278d0b71fa4b398f406303a4a9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0124.jpg",
+      "label": "Alluvial",
+      "md5_hash": "75f949b922acc6c2601db6d60e48b913"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0047.jpg",
+      "label": "Black",
+      "md5_hash": "00600abafe1bf3a70e10970b372005b6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0080.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5a3561f9405ddbcc38d057d0a7385f6a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0078.jpg",
+      "label": "Clay",
+      "md5_hash": "b04e7c36f79442e9b4f5843955cb45cc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0075.jpg",
+      "label": "Black",
+      "md5_hash": "ac12863ab08fecab17cf94f7b256b012"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0076.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c87c5d44016b18e9cf938ce99b9626c4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0222.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f7677504bf844fdec4423b7f68f9ebc1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0031.jpg",
+      "label": "Clay",
+      "md5_hash": "249b7b4cf7a227fcc3e6bd7be17a5d17"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0239.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3577ccca0989655c9c122df6600e90dc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0086.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "23f8ac25a916a4b4dc23f960194ac355"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0242.jpg",
+      "label": "Alluvial",
+      "md5_hash": "51a1f021d00f4977ecdf2a69d5e307c5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0203.jpg",
+      "label": "Alluvial",
+      "md5_hash": "25b124509b9b94d44d5da1b0fa34e3c2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0067.jpg",
+      "label": "Clay",
+      "md5_hash": "a4b0d63ad30210393efe5abbee803be7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0119.jpg",
+      "label": "Alluvial",
+      "md5_hash": "38a9312379e043ca2c57fffa0e784fee"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0205.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b21b1dd7bf10149293c7dfc82989c7c3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0078.jpg",
+      "label": "Red",
+      "md5_hash": "0db2ab7102467f39f602b8210fec2dd1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0248.jpg",
+      "label": "Alluvial",
+      "md5_hash": "fbae27d16db6317b234d17ac24ffc731"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0031.jpg",
+      "label": "Red",
+      "md5_hash": "2e5d3fd25c4e764a750dba8439ee1a3e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0084.jpg",
+      "label": "Clay",
+      "md5_hash": "eb8bc41943abdd0c08d975da4f57c7b9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0019.jpg",
+      "label": "Black",
+      "md5_hash": "bab44fa94eb0856399922f30ea3e5e53"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0013.jpg",
+      "label": "Black",
+      "md5_hash": "7c1d2587f57f24cad15536762fc0b27f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0065.jpg",
+      "label": "Clay",
+      "md5_hash": "2d52e6441e1ea781952c235c4fb13f8e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0093.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "6def30f858102ce163a520c49a94f429"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0018.jpeg",
+      "label": "Red",
+      "md5_hash": "698d8d0136739a113750f41df97e8f76"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0096.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f6cb72eb61149e9f90dfcbf02844f889"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0072.jpg",
+      "label": "Black",
+      "md5_hash": "93b7d0ca6db7a8256dd11912504042fa"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0082.jpg",
+      "label": "Red",
+      "md5_hash": "9679acd3ad664b6a6c03fea6f38d915b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0160.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a65f17ca9072449a7e1b94e20d69d3ba"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0138.jpg",
+      "label": "Red",
+      "md5_hash": "2b0b0421bb54b4cb693385ac47f73e5f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0034.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "b6679fdc6338e6d373cf3d92f09dbe37"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0149.jpg",
+      "label": "Red",
+      "md5_hash": "4b5ed5e0f8545fed6616d2f8e7eb24c4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0052.jpg",
+      "label": "Alluvial",
+      "md5_hash": "1f14771e6166103b51c2fe3dc4d6bab4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0213.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3abc71b6fbfaa8478fee4cfd9334aa2b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0032.jpg",
+      "label": "Clay",
+      "md5_hash": "248e6d0a4db51654f79fca354fd0649c"
+    }
+  ],
+  "val_files": [
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0059.jpg",
+      "label": "Black",
+      "md5_hash": "ed37fca3acee123b84042f8077322819"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0190.jpg",
+      "label": "Alluvial",
+      "md5_hash": "43d85396c43d676704f6b704037c91db"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0046.jpg",
+      "label": "Red",
+      "md5_hash": "7ad32cd53d5b5f088dd62d2264127c42"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0081.jpg",
+      "label": "Red",
+      "md5_hash": "99fab9750d8cc01c23cbdc986396edae"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0122.jpg",
+      "label": "Alluvial",
+      "md5_hash": "cb99eb40face042800cfd6028951ce5e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0053.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "5b2786f6f43bc38254754e64ef56791a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0038.jpg",
+      "label": "Black",
+      "md5_hash": "e7643650f519de5ffb050f6f7debafe1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0084.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b1902f0f1e9a0cf42f428689622ee09b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0107.jpg",
+      "label": "Clay",
+      "md5_hash": "f4bbac047542c34a4b71353f5bf41e1d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0035.jpg",
+      "label": "Red",
+      "md5_hash": "203021a55e846eb4be6733e07464a97a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0017.jpg",
+      "label": "Black",
+      "md5_hash": "80bee78570222c20695dfebb1c96b05c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0191.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5a726e9001241de6ef30012d21a1a58b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0111.jpg",
+      "label": "Black",
+      "md5_hash": "7b349635d009c2794716e21233538cd1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0161.jpg",
+      "label": "Alluvial",
+      "md5_hash": "9aad8a2f7d58914a1f3d9bbd34133c10"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0035.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "e268f8151ee5f19b5abffab382873ad0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0087.jpg",
+      "label": "Black",
+      "md5_hash": "62093fb38db765efc05329094437ecaf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0109.jpg",
+      "label": "Black",
+      "md5_hash": "0d9ef8d196b4be231fd6e48a49768e44"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0236.jpg",
+      "label": "Alluvial",
+      "md5_hash": "cf3b603feceb1bccdae81d242c20243e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0170.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3142ec3d0c21651a67dc1da61a2c456d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0063.jpg",
+      "label": "Clay",
+      "md5_hash": "8662c92cc6e28b08febe7bdf8a96dc38"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0100.jpg",
+      "label": "Black",
+      "md5_hash": "3e01703ac92d74d56c826a3005df547c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0014.jpg",
+      "label": "Black",
+      "md5_hash": "4b755dba5ef90d0b6e6a10cbde148ac6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0101.jpg",
+      "label": "Clay",
+      "md5_hash": "cd3f18cc79cb9e2ae4f1df48014b423b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0037.jpg",
+      "label": "Red",
+      "md5_hash": "0ac357330b92755afe03fbf493be9a99"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0076.jpg",
+      "label": "Black",
+      "md5_hash": "d4f25fd40cf0842ca50fc1916fdef7fb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0150.jpg",
+      "label": "Alluvial",
+      "md5_hash": "31f6c7478a405d65273863bb6ddb15aa"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0237.jpg",
+      "label": "Alluvial",
+      "md5_hash": "1b9e6d9cdea4a58f2b48773e0998d550"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0089.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "59c8266c4d7d52225eea74a1a87e89fd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0023.jpeg",
+      "label": "Red",
+      "md5_hash": "1d0f80bdae0207412921b5d9dd1ddca9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0053.jpg",
+      "label": "Clay",
+      "md5_hash": "9d67deeaba7a3f65e35449e0a232e490"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0097.jpg",
+      "label": "Clay",
+      "md5_hash": "dea21a9d70b6bc9ecaf2be13f5b643db"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0004.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c17f143172721006ca849f6240dc2862"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0008.jpg",
+      "label": "Clay",
+      "md5_hash": "f641d2793968494893f7da7ec32cd1dd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0099.jpg",
+      "label": "Red",
+      "md5_hash": "547bc918bbbc40bf57ce106a2fc828eb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0135.jpg",
+      "label": "Red",
+      "md5_hash": "c373176b096f993b79e9763992e2afd1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0093.jpg",
+      "label": "Red",
+      "md5_hash": "951db7a8f7c1a150e464132da586d46f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0033.jpg",
+      "label": "Black",
+      "md5_hash": "6bb0c715d3d04e7c4ef7b71512e5f683"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0013.jpeg",
+      "label": "Red",
+      "md5_hash": "17d7ee4f2ecf9e983370e1ccb8937107"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0113.jpg",
+      "label": "Red",
+      "md5_hash": "ff5cf5adf5923b85a0a5724d0d4f56ec"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0059.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5a7cbefef804923a4a637026e3403cbf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0017.jpeg",
+      "label": "Red",
+      "md5_hash": "710e8da49b2c729719d97f4d1074d3c6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0106.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b3920091648ad815a6f84126455f317a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0206.jpg",
+      "label": "Alluvial",
+      "md5_hash": "7b4d60d0f2bc7e49ec3c1a4e6b6daef6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0107.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f0ff1a4403b0a025ba76daf907a8a260"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0007.jpg",
+      "label": "Black",
+      "md5_hash": "caec149c460d8d27e16ad0edd46e4363"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0012.jpeg",
+      "label": "Red",
+      "md5_hash": "83e23ba842fa63b63d9f88d6b2ee4d66"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0135.jpg",
+      "label": "Alluvial",
+      "md5_hash": "075466f701cfe919d842805b40437adf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0112.jpg",
+      "label": "Red",
+      "md5_hash": "d83158504f92695456ecba1bb4db19eb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0132.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dc0e79bf6209b85068b29331c3e2a984"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0015.jpg",
+      "label": "Alluvial",
+      "md5_hash": "1bcf44d1bdef93c8fee9edad49bf0e19"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0044.jpg",
+      "label": "Alluvial",
+      "md5_hash": "67adf3928788ebc62887a5c171aa3b38"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0267.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4d15fab8036e7cbd4e0303d483a3cd61"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0048.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3d52ac775cca10f49a0d5393ad8365ba"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0273.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6d7c73af6d2601f2bcde2fa9f68b8e4c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0101.jpg",
+      "label": "Black",
+      "md5_hash": "f3694c190724520113948b5f2c198244"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0215.jpg",
+      "label": "Alluvial",
+      "md5_hash": "00b7b7a717dd0e300c1da3fc811e177d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0020.jpg",
+      "label": "Black",
+      "md5_hash": "785ba958acb2abe920b40212e8aa3f7f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0263.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d63ad7b8270699366165d92b185e32c5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0019.jpeg",
+      "label": "Red",
+      "md5_hash": "dc773e0e720235fe9240b3a06b445f3f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0096.jpg",
+      "label": "Red",
+      "md5_hash": "8cb99b27e08fd7d46a37b0d76f9ba6c5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0015.jpg",
+      "label": "Clay",
+      "md5_hash": "81edb831ba25afd478353d83aa0a0587"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0014.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4dd7c633881f58433f44aab976926d71"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0064.jpg",
+      "label": "Alluvial",
+      "md5_hash": "9ab9357c87bb14b6b53834f7967b2a6c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0052.jpg",
+      "label": "Clay",
+      "md5_hash": "f844e907f02502d60c50f906886da676"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0256.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c235f0194cbdee98722580410cf9cd71"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0018.jpg",
+      "label": "Alluvial",
+      "md5_hash": "06843b2a5a09a175080fc9a260d37bdd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0090.jpg",
+      "label": "Black",
+      "md5_hash": "df0c75954ef329adb6d117c0cf884d11"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0006.jpg",
+      "label": "Clay",
+      "md5_hash": "39d179391b0f8344331d77fd0ae0bacd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0023.jpg",
+      "label": "Clay",
+      "md5_hash": "aeaa3df80e6cf7de2f48edb84aaba82f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0042.jpg",
+      "label": "Clay",
+      "md5_hash": "871de09d815209775707968dcd1ad68d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0105.jpg",
+      "label": "Red",
+      "md5_hash": "44124b5ed5a3bb1ccbb438ecd5bd2c79"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0092.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "e0447b47e562b4f3a0d30bb13176a0d4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0019.jpg",
+      "label": "Clay",
+      "md5_hash": "b08faf4ee3360011a00e5ca14e839274"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0254.jpg",
+      "label": "Alluvial",
+      "md5_hash": "496163c7c9677074533aac8092b096d5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0164.jpg",
+      "label": "Alluvial",
+      "md5_hash": "7eebc55a1bee8b58097af0935ee19e15"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0021.jpeg",
+      "label": "Red",
+      "md5_hash": "8a6e1083cfc9a7b1b3657db53bb2953a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0113.jpg",
+      "label": "Black",
+      "md5_hash": "d8b9d3220d8034cec91bc28bf838af9b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0017.jpg",
+      "label": "Clay",
+      "md5_hash": "450ae70d9372e52075ac86a656dc4e5e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0073.jpg",
+      "label": "Alluvial",
+      "md5_hash": "245ff275ca442e7f420a65b4e9d14de0"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0244.jpg",
+      "label": "Alluvial",
+      "md5_hash": "8be607483754462c93089dd07bbd0db2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0151.jpg",
+      "label": "Red",
+      "md5_hash": "6319c03a39a0a80b09407865bb81dfc7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0030.jpg",
+      "label": "Clay",
+      "md5_hash": "ba5d48f1d2a7c11df36c10fea556f90e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0200.jpg",
+      "label": "Alluvial",
+      "md5_hash": "23966f881bb769009230aacd16142bfe"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0050.jpg",
+      "label": "Alluvial",
+      "md5_hash": "81a4d898317ccda8f7d50e481d466b1d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0104.jpg",
+      "label": "Alluvial",
+      "md5_hash": "2e0af491722b91f14cac68524cfd812b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0008.jpg",
+      "label": "Black",
+      "md5_hash": "2ed43102d1bb7500995a274ad73cc9fd"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0094.jpg",
+      "label": "Clay",
+      "md5_hash": "3cc9e625f5566b01bd74238ad3121550"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0022.jpg",
+      "label": "Black",
+      "md5_hash": "10e1bdea8f3fc39409702de717dc7754"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0058.jpg",
+      "label": "Clay",
+      "md5_hash": "365e2df2e7a8bdfe3bef4560fd85f29d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0114.jpg",
+      "label": "Red",
+      "md5_hash": "8cd5a758611c5f7c910f228585729881"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0047.jpg",
+      "label": "Clay",
+      "md5_hash": "e1e3432f9f174da2a679fccb9452d4f6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0022.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3dd92c23edde8adc8f2b1a9d9eaad605"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0089.jpg",
+      "label": "Red",
+      "md5_hash": "1f9d93dae3c336b7cfa999d3f0e7417a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0041.jpg",
+      "label": "Black",
+      "md5_hash": "e410a7e8e97c1b127ca83546dd744d84"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0108.jpg",
+      "label": "Black",
+      "md5_hash": "b9f561653cca2e40b5ecf0c90771fbda"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0088.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "68d044f06abfbde51bb85b0dc87f34d3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0253.jpg",
+      "label": "Alluvial",
+      "md5_hash": "9eaabb84907dd4a571d8e69132a2ab13"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0009.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b6a611b6fe8aac7058dbb81b2edbd240"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0036.jpg",
+      "label": "Red",
+      "md5_hash": "b00cbd05c33ce8169b2dcd5ecfd4dee4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0125.jpg",
+      "label": "Red",
+      "md5_hash": "6c2c532af814923c334338dccedf240f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0095.jpg",
+      "label": "Red",
+      "md5_hash": "0ded92c87c142ad9a7dfd7709b504911"
+    }
+  ],
+  "test_files": [
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0090.jpg",
+      "label": "Red",
+      "md5_hash": "acf9614f254bd0181ff52fd627e2987e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0129.jpg",
+      "label": "Red",
+      "md5_hash": "18c5a8a1b3b88d0b1d9de77ac9acd82f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0067.jpg",
+      "label": "Black",
+      "md5_hash": "c11dfa1bbbcd9fdabf44f938764fd83c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0095.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a779c0c68824cbb4de58d68d24d42220"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0062.jpg",
+      "label": "Red",
+      "md5_hash": "fb43cb1dd748503f6e2ef2bc00589edc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0054.jpeg",
+      "label": "Clay",
+      "md5_hash": "f64f288cc7b17e5a3cae35c19d546065"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0127.jpg",
+      "label": "Red",
+      "md5_hash": "c0bd5f35acf7cfe8cc12f3fbd9266d1b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0021.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c99bea23e413bd4895cd41b03775f75f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0154.jpg",
+      "label": "Red",
+      "md5_hash": "bcd31cefc5e55bfdaf51ee2023b4ff60"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0120.jpg",
+      "label": "Red",
+      "md5_hash": "f3a08c3cdf704133d3d214fb56328625"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0005.jpg",
+      "label": "Clay",
+      "md5_hash": "e9092395a9ba25c6724e92dbe9b44155"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0030.jpg",
+      "label": "Red",
+      "md5_hash": "7bd402e5ba2c8ced111d527b7c9fea19"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0002.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4f76cd87e42015692462b18c66c2b037"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0008.jpg",
+      "label": "Red",
+      "md5_hash": "18d50d7a8b462306c79c39da7aefb0fb"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0040.jpg",
+      "label": "Alluvial",
+      "md5_hash": "dcb6bb944ec8db6a00635339010c7d1e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0104.jpg",
+      "label": "Clay",
+      "md5_hash": "699fb34275f41439b16c0445cd77660a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0131.jpg",
+      "label": "Alluvial",
+      "md5_hash": "8e57bb4b1f3eef5023bf1e649e3c7fad"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0112.jpg",
+      "label": "Clay",
+      "md5_hash": "ba3b3b028c66f9ac3d5bf5877568a6a4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0271.jpg",
+      "label": "Alluvial",
+      "md5_hash": "59a6a091f989a8d88854ea963a5c6d52"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0094.jpg",
+      "label": "Black",
+      "md5_hash": "64880fc07797bb8f5913aab092a737d2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0055.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "26b92858855205328521e60065b4fdf3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0040.jpg",
+      "label": "Clay",
+      "md5_hash": "0ab928cbe11c71776664ec9c70f83450"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0049.jpg",
+      "label": "Clay",
+      "md5_hash": "45ad945588e28845493ceefdd64a8a42"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0134.jpg",
+      "label": "Alluvial",
+      "md5_hash": "22127124bf6c54427501371082644d5b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0084.jpg",
+      "label": "Red",
+      "md5_hash": "147677b208fc0f405f7c57471dfeb607"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0058.jpg",
+      "label": "Red",
+      "md5_hash": "c66b605fa45bb88526d356c83a8d53b2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0111.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e0794f9aa7919059c2381c92c54cf220"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0100.png",
+      "label": "Red",
+      "md5_hash": "d01a18ce58a12d5f24e7e9c71b506814"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0175.jpg",
+      "label": "Alluvial",
+      "md5_hash": "09ee2827d75dc63a3ff2dfea3651f8cf"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0269.jpg",
+      "label": "Alluvial",
+      "md5_hash": "74b4a5366bb28d7b8a3ecb9dfe957d28"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0143.jpg",
+      "label": "Red",
+      "md5_hash": "a066e8490432438bc40abb118f1eb68c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0258.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f0cbdca56d7a2e24b14639d03cf29406"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0162.jpg",
+      "label": "Alluvial",
+      "md5_hash": "823e43f7f25a33f4e25b0f4788175c59"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0257.jpg",
+      "label": "Alluvial",
+      "md5_hash": "1487b2ffa95722c0eac31ac5159a0eb6"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0130.jpg",
+      "label": "Alluvial",
+      "md5_hash": "8fea38c67d42d8f0d7e9d40a8ac3c331"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0103.jpg",
+      "label": "Black",
+      "md5_hash": "cd3d2d646b249a68d02580c3f9ba71ab"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0086.jpg",
+      "label": "Red",
+      "md5_hash": "54dd5e610351a623e7a2b2ab45381efc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0115.jpg",
+      "label": "Red",
+      "md5_hash": "31e0449e9b7b49009471de4e8051e20b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0035.jpg",
+      "label": "Black",
+      "md5_hash": "dd7d4e4ead89fd76a038545982aeaaff"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0051.jpg",
+      "label": "Alluvial",
+      "md5_hash": "f7002cc4c0b545a6043899b94d2034de"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0240.jpg",
+      "label": "Alluvial",
+      "md5_hash": "6d9d61add599d6003f6e51691a36955a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0202.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d3cc4af4572b87354fdfc74fc8e66c88"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0062.jpg",
+      "label": "Clay",
+      "md5_hash": "c8a7797d2c52d5aed7d70ed4373d8bb5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0101.jpg",
+      "label": "Red",
+      "md5_hash": "0e99b4083433847e5a6222ea5729f74e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0086.jpg",
+      "label": "Clay",
+      "md5_hash": "04c87ef1f62542e72c0b61ba80cf609c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0229.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a33f37537add05dd27bd3a40b88d1810"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0066.jpg",
+      "label": "Black",
+      "md5_hash": "f716d40f0dcecf16a28d348f507cbb1f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0013.jpg",
+      "label": "Clay",
+      "md5_hash": "30e9cbc489c6d293c0e1838bf849eaaa"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0142.jpg",
+      "label": "Red",
+      "md5_hash": "eeb693c10a6d6dc00953afb29437eb7a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0081.jpg",
+      "label": "Alluvial",
+      "md5_hash": "20ddb3c47a1949fca5a96e81e7141d75"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0230.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a4defa725436ac470c1416b89e52fba3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0049.jpg",
+      "label": "Red",
+      "md5_hash": "334dd0ed93073e84405c38528da11236"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0018.jpg",
+      "label": "Black",
+      "md5_hash": "6d87e7a166ab804b21456bff62392f04"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0070.jpg",
+      "label": "Clay",
+      "md5_hash": "86c7a97037ede7e69f8de364ca3a0c6a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0048.jpg",
+      "label": "Black",
+      "md5_hash": "e1e93e9c533effe92067e05102704386"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0060.jpg",
+      "label": "Clay",
+      "md5_hash": "10997c707925a71afd29a9557aff699b"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0088.jpg",
+      "label": "Clay",
+      "md5_hash": "cbab876288b3381d2ac8db0709a64255"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0188.jpg",
+      "label": "Alluvial",
+      "md5_hash": "40287a7e0dab72149834bd26512b2ad7"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0281.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c37d3bc587c6eda4325a3e645247bed5"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0051.jpg",
+      "label": "Black",
+      "md5_hash": "df99aba368c8d9062d085309cf06c0c3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0130.jpg",
+      "label": "Red",
+      "md5_hash": "539639386b63e47b923d7ecacf0c4fd9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0082.jpg",
+      "label": "Alluvial",
+      "md5_hash": "3e7d04c7d2eee4d2cdf319f464223d73"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0072.jpg",
+      "label": "Alluvial",
+      "md5_hash": "4eced23d5e889b7231bc63964fa0bb05"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0192.jpg",
+      "label": "Alluvial",
+      "md5_hash": "250a5611ffd97d99fb2d94fc5316f903"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0060.jpg",
+      "label": "Alluvial",
+      "md5_hash": "799348a3b6780b328f0750d0c02750a4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0223.jpg",
+      "label": "Alluvial",
+      "md5_hash": "fd4d88696eecf9292ea2ab34d90f9816"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0090.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "7fb4ea1c78b24c36351e37842856f880"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0106.jpg",
+      "label": "Clay",
+      "md5_hash": "e94c6e39b641af5ded2b4f98275eb284"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0114.jpg",
+      "label": "Black",
+      "md5_hash": "83e747a5cf203aac5a47c3a3302918a2"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0080.jpg",
+      "label": "Black",
+      "md5_hash": "18c1a54cb9678655d8938b42c0fe55dc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0016.jpg",
+      "label": "Clay",
+      "md5_hash": "46b415e9598ed0185e13ab10965e52d4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0054.jpeg",
+      "label": "Alluvial",
+      "md5_hash": "195fe541b67c20f88335474dd681cbdc"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0255.jpg",
+      "label": "Alluvial",
+      "md5_hash": "302320a7b7423e8ab662781f11f5cd0c"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0100.jpg",
+      "label": "Alluvial",
+      "md5_hash": "b54f323a0f70562fe313ca3c26d80e9f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0025.jpg",
+      "label": "Black",
+      "md5_hash": "dec7a9e4352a0ae4915983c7dfa3cb06"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0075.jpg",
+      "label": "Red",
+      "md5_hash": "05b9328a9904dc857ac2806b9ea4f116"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0061.jpg",
+      "label": "Black",
+      "md5_hash": "cb434ef2fcfb394bb9bdd015a4804444"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0008.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c8b04417bb646e01e4055a31424fba10"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0054.jpg",
+      "label": "Black",
+      "md5_hash": "a458f76e2d01edf16bd821c74484dc84"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0061.jpg",
+      "label": "Red",
+      "md5_hash": "7e24ffdd67b0579e48e04111af82ca9d"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0108.jpg",
+      "label": "Alluvial",
+      "md5_hash": "97354ca8a2164351381c6511e08d3329"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0103.jpg",
+      "label": "Alluvial",
+      "md5_hash": "454a927d541bead2b12ea1e16588d4a8"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0152.jpg",
+      "label": "Alluvial",
+      "md5_hash": "d35b845cc4f762f2b0df3e7873724114"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0021.jpg",
+      "label": "Black",
+      "md5_hash": "dafec3f107c50e60135cf4124e073bf4"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0082.jpg",
+      "label": "Black",
+      "md5_hash": "5ddd17e4e0541c24b9bebce1167dfd64"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0096.jpg",
+      "label": "Clay",
+      "md5_hash": "789a67499b113eb02810212d9917ebf3"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0055.jpeg",
+      "label": "Clay",
+      "md5_hash": "1b73462455b63c313893ce618f79a498"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0189.jpg",
+      "label": "Alluvial",
+      "md5_hash": "a9fcd5acffc78acf75993dd7749d8d6a"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0131.jpg",
+      "label": "Red",
+      "md5_hash": "75047d2ad4f97cfcdbc6e99653a4580e"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0049.jpg",
+      "label": "Alluvial",
+      "md5_hash": "c9f905f2f979245674eef912d31edc75"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0148.jpg",
+      "label": "Red",
+      "md5_hash": "5c7fd080e63280d92f14fc3e0c396f98"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0199.jpg",
+      "label": "Alluvial",
+      "md5_hash": "79253a81634791261983716319c6cd51"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0276.jpg",
+      "label": "Alluvial",
+      "md5_hash": "5288d7673c25e7002b90dff3bd45f7a1"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0068.jpg",
+      "label": "Black",
+      "md5_hash": "ecffb07da071038979ec568995ace024"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0030.jpg",
+      "label": "Black",
+      "md5_hash": "199595b4da1a5165237df2d6e6268183"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0167.jpg",
+      "label": "Alluvial",
+      "md5_hash": "714430ff274bd9f38941c2609ea3c04f"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0146.jpg",
+      "label": "Alluvial",
+      "md5_hash": "e0e789eebd05231a27bfa8ebd9be8365"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Alluvial\\alluvial_0172.jpg",
+      "label": "Alluvial",
+      "md5_hash": "68de26d018e2e5ce964a13ee20735527"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Red\\red_0059.jpg",
+      "label": "Red",
+      "md5_hash": "1d05f86d69c3347b506d73d294c730b9"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Black\\black_0106.jpg",
+      "label": "Black",
+      "md5_hash": "6093305b8e65d0052ef5f2033d31f246"
+    },
+    {
+      "filepath": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images\\Clay\\clay_0068.jpg",
+      "label": "Clay",
+      "md5_hash": "51f411ce25c8f67ccb0bd918383c9443"
+    }
+  ]
+}

@@ -14,7 +14,7 @@ export default function Navbar({ onMenuClick, title }) {
   }[status] || 'bg-gray-400'
 
   const label = {
-    live:       'Live',
+    live:       'Software Ready',
     connecting: 'Connecting…',
     error:      'Offline',
   }[status] || '—'

@@ -110,22 +110,22 @@ def save_upload(file: FileStorage) -> Path:
 # ── Preprocessing ───────────────────────────────────────────────────────────────
 
 def _load_and_preprocess_opencv(path: Path) -> np.ndarray:
-    """Use OpenCV to load + resize + normalise."""
+    """Use OpenCV to load + resize + normalise to MobileNetV2 [-1, 1] range."""
     import cv2
     img = cv2.imread(str(path))
     if img is None:
         raise ValueError(f"OpenCV could not decode image: {path}")
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     img = cv2.resize(img, _CNN_SIZE, interpolation=cv2.INTER_AREA)
-    return img.astype(np.float32) / 255.0
+    return (img.astype(np.float32) / 127.5) - 1.0
 
 
 def _load_and_preprocess_pillow(path: Path) -> np.ndarray:
-    """Pillow fallback — used when OpenCV is not installed."""
+    """Pillow fallback — normalises to MobileNetV2 [-1, 1] range."""
     from PIL import Image
     img = Image.open(path).convert("RGB")
     img = img.resize(_CNN_SIZE, Image.LANCZOS)
-    return np.array(img, dtype=np.float32) / 255.0
+    return (np.array(img, dtype=np.float32) / 127.5) - 1.0
 
 
 def preprocess_image(path: Path) -> np.ndarray:
@@ -133,7 +133,7 @@ def preprocess_image(path: Path) -> np.ndarray:
     Load an image file and preprocess it for CNN inference.
 
     Returns:
-        numpy array of shape (224, 224, 3), dtype float32, values in [0, 1]
+        numpy array of shape (224, 224, 3), dtype float32, values in [-1, 1]
     """
     try:
         import cv2  # noqa: F401

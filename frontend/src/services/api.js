@@ -29,8 +29,46 @@ export const getSensorHistory = (page = 1, perPage = 50) =>
 export const postManualReading = (data) => api.post('/sensors/reading', data)
 
 // ── Analysis ──────────────────────────────────────────────────────────────────
-export const runAnalysis = (readingId = null) =>
-  api.post('/analysis/run', readingId ? { reading_id: readingId } : {})
+// ── Analysis ──────────────────────────────────────────────────────────────────
+export const runAnalysis = (params = {}) => {
+  // Support legacy signature runAnalysis(123)
+  if (typeof params === 'number') {
+    return api.post('/analysis/run', { reading_id: params })
+  }
+  const {
+    reading_id = null,
+    readingId = null,
+    sensor_data = null,
+    sensorData = null,
+    soil_type = null,
+    soilType = null,
+    confirmed_soil_texture = null,
+    confirmedSoilTexture = null,
+    image_path = null,
+    imagePath = null,
+    notes = null,
+  } = params || {}
+
+  const payload = {}
+  const rid = reading_id ?? readingId
+  if (rid) payload.reading_id = rid
+
+  const sdata = sensor_data ?? sensorData
+  if (sdata) payload.sensor_data = sdata
+
+  const stype = soil_type ?? soilType
+  if (stype) payload.soil_type = stype
+
+  const ctexture = confirmed_soil_texture ?? confirmedSoilTexture
+  if (ctexture) payload.confirmed_soil_texture = ctexture
+
+  const ipath = image_path ?? imagePath
+  if (ipath) payload.image_path = ipath
+
+  if (notes) payload.notes = notes
+
+  return api.post('/analysis/run', payload)
+}
 
 export const getAnalysis = (id) => api.get(`/analysis/${id}`)
 
@@ -48,9 +86,16 @@ export const getPredictionHistory = (page = 1, perPage = 20, type = null) =>
   })
 
 // ── Images ────────────────────────────────────────────────────────────────────
-export const uploadImage = (file) => {
+export const uploadImage = (file, options = {}) => {
   const form = new FormData()
   form.append('image', file)
+  if (options.runAnalysis || options.run_analysis) {
+    form.append('run_analysis', 'true')
+  }
+  const texture = options.confirmedSoilTexture || options.confirmed_soil_texture
+  if (texture) {
+    form.append('confirmed_soil_texture', texture)
+  }
   return api.post('/images/upload', form, {
     headers: { 'Content-Type': 'multipart/form-data' },
   })

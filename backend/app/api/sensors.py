@@ -91,7 +91,7 @@ def submit_reading():
 
     # Validate that all provided numeric fields are actually numbers
     numeric_fields = [
-        "moisture", "ph", "soil_temperature",
+        "moisture", "rainfall", "ph", "soil_temperature",
         "air_temperature", "air_humidity",
         "nitrogen", "phosphorus", "potassium",
     ]
@@ -103,6 +103,7 @@ def submit_reading():
     reading = SensorReading(
         source           = str(data.get("source", "manual"))[:20],
         moisture         = data.get("moisture"),
+        rainfall         = data.get("rainfall"),
         ph               = data.get("ph"),
         soil_temperature = data.get("soil_temperature"),
         air_temperature  = data.get("air_temperature"),

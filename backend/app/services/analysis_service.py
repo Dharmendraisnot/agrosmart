@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 import logging
 from datetime import datetime, timezone
+from pathlib import Path
 
 from flask import current_app
 
@@ -26,9 +27,11 @@ from app.extensions import db
 from app.models.sensor_reading import SensorReading
 from app.models.soil_analysis  import SoilAnalysis
 from app.models.prediction     import Prediction
-from app.services.sensor_service import capture_reading
-from app.ml.crop_model        import predict_crops
-from app.ml.fertilizer_model  import predict_fertilizer
+from app.services.sensor_service import capture_reading, _clamp_or_none
+from app.services.image_service  import preprocess_image, get_upload_path
+from app.ml.soil_cnn             import predict_soil_type
+from app.ml.crop_model           import predict_crops
+from app.ml.fertilizer_model     import predict_fertilizer
 from app.services.recommendation_service import generate_irrigation_advice
 
 logger = logging.getLogger(__name__)
@@ -103,23 +106,51 @@ def _compute_health_score(sensor: dict, soil_type: str | None) -> tuple[float, s
 # ── Main orchestrator ─────────────────────────────────────────────────────────
 
 def run_analysis(reading_id: int | None = None,
+                 sensor_data: dict | None = None,
                  image_path: str | None = None,
-                 cnn_result: dict | None = None) -> dict:
+                 cnn_result: dict | None = None,
+                 soil_type: str | None = None,
+                 confirmed_soil_texture: str | None = None,
+                 notes: str | None = None) -> dict:
     """
     Run the full analysis pipeline and persist results to DB.
 
     Args:
-        reading_id: use an existing SensorReading (if None, captures a fresh one)
-        image_path: relative path of an uploaded soil image (optional)
-        cnn_result: pre-computed CNN result dict from image_service (optional)
+        reading_id:             use an existing SensorReading (if None and sensor_data is None, captures fresh)
+        sensor_data:            manual soil and climate values (creates a manual SensorReading)
+        image_path:             relative or absolute path of a soil image (optional)
+        cnn_result:             pre-computed CNN result dict from image_service (optional)
+        soil_type:              explicitly provided soil type (optional)
+        confirmed_soil_texture: user-confirmed physical soil texture (required for Alluvial fertilizer advice)
+        notes:                  optional notes text
 
     Returns:
         Consolidated analysis result dict suitable for the API response.
     """
     config = current_app.config
 
-    # ── Step 1: get sensor reading ────────────────────────────────────────────
-    if reading_id is not None:
+    # ── Step 1: get or create sensor reading ──────────────────────────────────
+    if sensor_data is not None:
+        soil_temp = sensor_data.get("soil_temperature", sensor_data.get("temp", sensor_data.get("temperature")))
+        air_temp  = sensor_data.get("air_temperature",  sensor_data.get("temp", sensor_data.get("temperature")))
+        humidity  = sensor_data.get("air_humidity",     sensor_data.get("humidity"))
+
+        reading = SensorReading(
+            timestamp        = datetime.now(timezone.utc),
+            source           = str(sensor_data.get("source", "manual"))[:20],
+            moisture         = _clamp_or_none(sensor_data.get("moisture"),         "moisture"),
+            rainfall         = _clamp_or_none(sensor_data.get("rainfall"),         "rainfall"),
+            ph               = _clamp_or_none(sensor_data.get("ph"),               "ph"),
+            soil_temperature = _clamp_or_none(soil_temp,                           "soil_temperature"),
+            air_temperature  = _clamp_or_none(air_temp,                            "air_temperature"),
+            air_humidity     = _clamp_or_none(humidity,                            "air_humidity"),
+            nitrogen         = _clamp_or_none(sensor_data.get("nitrogen"),         "nitrogen"),
+            phosphorus       = _clamp_or_none(sensor_data.get("phosphorus"),       "phosphorus"),
+            potassium        = _clamp_or_none(sensor_data.get("potassium"),        "potassium"),
+        )
+        db.session.add(reading)
+        db.session.commit()
+    elif reading_id is not None:
         reading = db.session.get(SensorReading, reading_id)
         if reading is None:
             raise ValueError(f"SensorReading id={reading_id} not found")
@@ -128,17 +159,41 @@ def run_analysis(reading_id: int | None = None,
 
     sensor = reading.to_dict()
 
-    # ── Step 2: soil type from CNN (or fallback) ──────────────────────────────
-    if cnn_result and cnn_result.get("status") == "ok":
-        soil_type  = cnn_result["soil_type"]
-        cnn_conf   = cnn_result["confidence"]
+    # ── Step 2: CNN soil classification (if image supplied and cnn_result not precomputed) ──
+    if cnn_result is None and image_path:
+        resolved_img = get_upload_path(image_path)
+        if resolved_img is None:
+            p = Path(image_path)
+            if p.is_file():
+                resolved_img = p
+            elif (Path(config.get("UPLOAD_FOLDER", "uploads")) / p.name).is_file():
+                resolved_img = Path(config.get("UPLOAD_FOLDER", "uploads")) / p.name
+
+        if resolved_img and resolved_img.is_file():
+            try:
+                img_array = preprocess_image(resolved_img)
+                cnn_result = predict_soil_type(img_array, config)
+            except Exception as exc:
+                logger.error("CNN inference error for image '%s': %s", image_path, exc)
+                cnn_result = {"status": "error", "error": str(exc), "soil_type": None, "confidence": None}
+        else:
+            logger.warning("Image '%s' not found for CNN classification", image_path)
+            cnn_result = {"status": "not_found", "error": f"Image '{image_path}' not found", "soil_type": None, "confidence": None}
+
+    # Determine soil type
+    if soil_type:
+        chosen_soil_type = soil_type
+        cnn_conf = cnn_result.get("confidence") if cnn_result else None
+    elif cnn_result and cnn_result.get("status") == "ok" and cnn_result.get("soil_type"):
+        chosen_soil_type = cnn_result["soil_type"]
+        cnn_conf = cnn_result["confidence"]
     else:
-        # CNN unavailable — use a heuristic from sensor data as fallback
-        soil_type = _heuristic_soil_type(sensor)
-        cnn_conf  = None
+        # CNN unavailable — use agronomic heuristic from sensor data as fallback
+        chosen_soil_type = _heuristic_soil_type(sensor)
+        cnn_conf = None
 
     # ── Step 3: health score ──────────────────────────────────────────────────
-    health_score, health_status = _compute_health_score(sensor, soil_type)
+    health_score, health_status = _compute_health_score(sensor, chosen_soil_type)
 
     # ── Step 4: crop prediction ───────────────────────────────────────────────
     try:
@@ -151,9 +206,14 @@ def run_analysis(reading_id: int | None = None,
         top_crop     = "wheat"
         crop_version = "error"
 
+    # Resolve confirmed physical soil texture for Alluvial soil if provided
+    resolved_texture = confirmed_soil_texture
+    if not resolved_texture and sensor_data:
+        resolved_texture = sensor_data.get("confirmed_soil_texture") or sensor_data.get("soil_texture")
+
     # ── Step 5: fertilizer recommendation ────────────────────────────────────
     try:
-        fert_result  = predict_fertilizer(sensor, soil_type, top_crop, config)
+        fert_result  = predict_fertilizer(sensor, chosen_soil_type, top_crop, config, confirmed_texture=resolved_texture)
         fert_version = fert_result.get("model_label", "unknown")
     except Exception as exc:
         logger.error("Fertilizer prediction failed: %s", exc)
@@ -161,17 +221,18 @@ def run_analysis(reading_id: int | None = None,
         fert_version = "error"
 
     # ── Step 6: irrigation advice ─────────────────────────────────────────────
-    irrigation_result = generate_irrigation_advice(sensor, soil_type, top_crop)
+    irrigation_result = generate_irrigation_advice(sensor, chosen_soil_type, top_crop)
 
     # ── Step 7: persist SoilAnalysis ─────────────────────────────────────────
     analysis = SoilAnalysis(
         timestamp            = datetime.now(timezone.utc),
         sensor_reading_id    = reading.id,
         soil_image_path      = image_path,
-        soil_type            = soil_type,
+        soil_type            = chosen_soil_type,
         soil_type_confidence = cnn_conf,
         soil_health_status   = health_status,
         health_score         = health_score,
+        notes                = notes,
     )
     db.session.add(analysis)
     db.session.flush()   # populate analysis.id without committing yet
@@ -209,7 +270,7 @@ def run_analysis(reading_id: int | None = None,
 
     logger.info(
         "Analysis id=%d complete | soil=%s | health=%s (%.1f) | crop=%s | fert=%s",
-        analysis.id, soil_type, health_status, health_score,
+        analysis.id, chosen_soil_type, health_status, health_score,
         top_crop, fert_result.get("fertilizer"),
     )
 
@@ -219,10 +280,12 @@ def run_analysis(reading_id: int | None = None,
         "timestamp":      analysis.timestamp.isoformat(),
         "sensor_reading": sensor,
         "soil": {
-            "type":            soil_type,
-            "type_confidence": cnn_conf,
-            "health_status":   health_status,
-            "health_score":    health_score,
+            "type":                   chosen_soil_type,
+            "type_confidence":        cnn_conf,
+            "health_status":          health_status,
+            "health_score":           health_score,
+            "confirmed_soil_texture": resolved_texture,
+            "cnn_status":             cnn_result.get("status") if cnn_result else None,
         },
         "crops":       crop_results,
         "fertilizer":  fert_result,

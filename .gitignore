@@ -29,8 +29,6 @@ backend/logs/*
 !backend/logs/.gitkeep
 
 # -- Trained model binaries ----------------------------------------------------
-backend/trained_models/*.pkl
-backend/trained_models/*.h5
 backend/trained_models/*.joblib
 !backend/trained_models/.gitkeep
 

@@ -134,6 +134,19 @@ def predict_fertilizer(sensor: dict, soil_type: str,
     crop_lower = (top_crop or "").strip().lower()
     soil_lower = (soil_type or "").strip().lower()
 
+    # Guard: if crop recommendation is missing or empty, fertilizer advice cannot be determined
+    if not crop_lower:
+        logger.info("Fertilizer prediction withheld: no crop recommendation available")
+        return {
+            "fertilizer":           "Reliable recommendation unavailable",
+            "advice":               "Crop recommendation is unavailable. Fertilizer advice requires a confirmed crop.",
+            "model_label":          _model_label or config.get("FERTILIZER_MODEL_LABEL", "unknown"),
+            "soil_type":            soil_type,
+            "crop":                 None,
+            "mapped_crop_category": None,
+            "status":               "unsupported",
+        }
+
     # Check if the soil type is Alluvial
     if soil_lower == "alluvial":
         if confirmed_texture:

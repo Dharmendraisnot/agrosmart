@@ -77,8 +77,13 @@ def capture_reading() -> SensorReading:
         potassium        = _clamp_or_none(raw.get("potassium"),        "potassium"),
     )
 
-    db.session.add(reading)
-    db.session.commit()
+    try:
+        db.session.add(reading)
+        db.session.commit()
+    except Exception as exc:
+        db.session.rollback()
+        logger.error("Failed to persist SensorReading: %s", exc)
+        raise
 
     logger.info("SensorReading id=%d saved (source=%s)", reading.id, reading.source)
     return reading

@@ -301,6 +301,24 @@ class TestFertilizerModel:
             assert result["fertilizer"] == "Reliable recommendation unavailable"
             assert "Gravelly" in result["advice"]
 
+    def test_predict_fertilizer_when_crop_is_none_or_empty(self, app):
+        """Fertilizer prediction must be cleanly withheld if top_crop is None or empty."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model
+            reload_model()
+            sensor = {"moisture": 50, "nitrogen": 40, "phosphorus": 20, "potassium": 160,
+                      "air_temperature": 28, "air_humidity": 65}
+            for empty_crop in [None, "", "   "]:
+                result = predict_fertilizer(sensor, "Loamy", empty_crop, dict(app.config))
+                assert result["status"] == "unsupported"
+                assert result["fertilizer"] == "Reliable recommendation unavailable"
+                assert result["crop"] is None
+                assert result["mapped_crop_category"] is None
+                assert "Crop recommendation is unavailable" in result["advice"]
+
 
 # ── Irrigation rule engine tests ──────────────────────────────────────────────
 

@@ -148,8 +148,13 @@ def run_analysis(reading_id: int | None = None,
             phosphorus       = _clamp_or_none(sensor_data.get("phosphorus"),       "phosphorus"),
             potassium        = _clamp_or_none(sensor_data.get("potassium"),        "potassium"),
         )
-        db.session.add(reading)
-        db.session.commit()
+        try:
+            db.session.add(reading)
+            db.session.commit()
+        except Exception as exc:
+            db.session.rollback()
+            logger.error("Failed to persist manual SensorReading in analysis: %s", exc)
+            raise
     elif reading_id is not None:
         reading = db.session.get(SensorReading, reading_id)
         if reading is None:
@@ -198,12 +203,12 @@ def run_analysis(reading_id: int | None = None,
     # ── Step 4: crop prediction ───────────────────────────────────────────────
     try:
         crop_results = predict_crops(sensor, config, top_n=3)
-        top_crop     = crop_results[0]["crop"] if crop_results else "wheat"
+        top_crop     = crop_results[0]["crop"] if crop_results else None
         crop_version = f"rf_v{_model_version(config['CROP_MODEL_PATH'])}"
     except Exception as exc:
         logger.error("Crop prediction failed: %s", exc)
         crop_results = []
-        top_crop     = "wheat"
+        top_crop     = None
         crop_version = "error"
 
     # Resolve confirmed physical soil texture for Alluvial soil if provided
@@ -212,13 +217,26 @@ def run_analysis(reading_id: int | None = None,
         resolved_texture = sensor_data.get("confirmed_soil_texture") or sensor_data.get("soil_texture")
 
     # ── Step 5: fertilizer recommendation ────────────────────────────────────
-    try:
-        fert_result  = predict_fertilizer(sensor, chosen_soil_type, top_crop, config, confirmed_texture=resolved_texture)
-        fert_version = fert_result.get("model_label", "unknown")
-    except Exception as exc:
-        logger.error("Fertilizer prediction failed: %s", exc)
-        fert_result  = {"fertilizer": "N/A", "advice": "Model unavailable", "model_label": "error"}
-        fert_version = "error"
+    if not top_crop:
+        logger.info("Crop unavailable — withholding fertilizer recommendation")
+        fert_result = {
+            "fertilizer":           "Reliable recommendation unavailable",
+            "advice":               "Crop recommendation is unavailable. Fertilizer advice requires a confirmed crop.",
+            "model_label":          config.get("FERTILIZER_MODEL_LABEL", "prototype_kaggle_v1.0"),
+            "soil_type":            chosen_soil_type,
+            "crop":                 None,
+            "mapped_crop_category": None,
+            "status":               "unsupported",
+        }
+        fert_version = fert_result["model_label"]
+    else:
+        try:
+            fert_result  = predict_fertilizer(sensor, chosen_soil_type, top_crop, config, confirmed_texture=resolved_texture)
+            fert_version = fert_result.get("model_label", "unknown")
+        except Exception as exc:
+            logger.error("Fertilizer prediction failed: %s", exc)
+            fert_result  = {"fertilizer": "N/A", "advice": "Model unavailable", "model_label": "error"}
+            fert_version = "error"
 
     # ── Step 6: irrigation advice ─────────────────────────────────────────────
     irrigation_result = generate_irrigation_advice(sensor, chosen_soil_type, top_crop)
@@ -234,39 +252,44 @@ def run_analysis(reading_id: int | None = None,
         health_score         = health_score,
         notes                = notes,
     )
-    db.session.add(analysis)
-    db.session.flush()   # populate analysis.id without committing yet
+    try:
+        db.session.add(analysis)
+        db.session.flush()   # populate analysis.id without committing yet
 
-    # ── Step 8: persist three Prediction rows ────────────────────────────────
-    pred_crop = Prediction(
-        analysis_id       = analysis.id,
-        prediction_type   = "crop",
-        top_recommendation= top_crop,
-        model_version     = crop_version,
-    )
-    pred_crop.result = {
-        "crops":          crop_results,
-        "sensor_reading": reading.id,
-    }
+        # ── Step 8: persist three Prediction rows ────────────────────────────────
+        pred_crop = Prediction(
+            analysis_id       = analysis.id,
+            prediction_type   = "crop",
+            top_recommendation= top_crop,
+            model_version     = crop_version,
+        )
+        pred_crop.result = {
+            "crops":          crop_results,
+            "sensor_reading": reading.id,
+        }
 
-    pred_fert = Prediction(
-        analysis_id       = analysis.id,
-        prediction_type   = "fertilizer",
-        top_recommendation= fert_result.get("fertilizer", "N/A"),
-        model_version     = fert_version,
-    )
-    pred_fert.result = fert_result
+        pred_fert = Prediction(
+            analysis_id       = analysis.id,
+            prediction_type   = "fertilizer",
+            top_recommendation= fert_result.get("fertilizer", "N/A"),
+            model_version     = fert_version,
+        )
+        pred_fert.result = fert_result
 
-    pred_irr = Prediction(
-        analysis_id       = analysis.id,
-        prediction_type   = "irrigation",
-        top_recommendation= irrigation_result.get("action", ""),
-        model_version     = "rule_v1.0",
-    )
-    pred_irr.result = irrigation_result
+        pred_irr = Prediction(
+            analysis_id       = analysis.id,
+            prediction_type   = "irrigation",
+            top_recommendation= irrigation_result.get("action", ""),
+            model_version     = "rule_v1.0",
+        )
+        pred_irr.result = irrigation_result
 
-    db.session.add_all([pred_crop, pred_fert, pred_irr])
-    db.session.commit()
+        db.session.add_all([pred_crop, pred_fert, pred_irr])
+        db.session.commit()
+    except Exception as exc:
+        db.session.rollback()
+        logger.error("Failed to persist SoilAnalysis and predictions: %s", exc)
+        raise
 
     logger.info(
         "Analysis id=%d complete | soil=%s | health=%s (%.1f) | crop=%s | fert=%s",

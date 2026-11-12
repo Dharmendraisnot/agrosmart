@@ -113,8 +113,14 @@ def submit_reading():
         potassium        = data.get("potassium"),
     )
 
-    db.session.add(reading)
-    db.session.commit()
+    try:
+        db.session.add(reading)
+        db.session.commit()
+    except Exception as exc:
+        db.session.rollback()
+        logger.error("Failed to save manual SensorReading: %s", exc)
+        return jsonify({"error": "Failed to save reading", "detail": str(exc)}), 500
+
     logger.info("Manual SensorReading id=%d submitted", reading.id)
 
     return jsonify(reading.to_dict()), 201

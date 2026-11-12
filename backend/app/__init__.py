@@ -10,7 +10,7 @@ import logging
 import logging.handlers
 from pathlib import Path
 
-from flask import Flask
+from flask import Flask, jsonify
 
 from .config import get_config, BaseConfig
 from .extensions import db, cors
@@ -32,6 +32,9 @@ def create_app(config_name: str | None = None) -> Flask:
 
     # ── Register blueprints ───────────────────────────────────────────────
     _register_blueprints(app)
+
+    # ── Register global error handlers ────────────────────────────────────
+    _register_error_handlers(app)
 
     # ── Create database tables ────────────────────────────────────────────
     with app.app_context():
@@ -88,6 +91,67 @@ def _register_blueprints(app: Flask) -> None:
     app.register_blueprint(analysis_bp,    url_prefix="/api")
     app.register_blueprint(predictions_bp, url_prefix="/api")
     app.register_blueprint(images_bp,      url_prefix="/api")
+
+
+def _register_error_handlers(app: Flask) -> None:
+    """Register global JSON error handlers for HTTP and unexpected exceptions."""
+    from werkzeug.exceptions import HTTPException
+
+    @app.errorhandler(404)
+    def handle_not_found(e):
+        return jsonify({
+            "success": False,
+            "error": {
+                "code": "NOT_FOUND",
+                "message": "The requested resource was not found.",
+            },
+        }), 404
+
+    @app.errorhandler(405)
+    def handle_method_not_allowed(e):
+        return jsonify({
+            "success": False,
+            "error": {
+                "code": "METHOD_NOT_ALLOWED",
+                "message": "The method is not allowed for the requested URL.",
+            },
+        }), 405
+
+    @app.errorhandler(413)
+    def handle_payload_too_large(e):
+        return jsonify({
+            "success": False,
+            "error": {
+                "code": "PAYLOAD_TOO_LARGE",
+                "message": "The uploaded file or request payload exceeds the allowed limit.",
+            },
+        }), 413
+
+    @app.errorhandler(Exception)
+    def handle_unhandled_exception(e):
+        # Preserve Werkzeug HTTPExceptions with their specific status code and safe message
+        if isinstance(e, HTTPException):
+            code = e.code or 500
+            code_str = (e.name or "HTTP_ERROR").upper().replace(" ", "_")
+            if code >= 500:
+                app.logger.error("HTTP server error %s: %s", code, e, exc_info=True)
+            return jsonify({
+                "success": False,
+                "error": {
+                    "code": code_str,
+                    "message": e.description or str(e),
+                },
+            }), code
+
+        # Log unexpected internal exceptions server-side with full traceback
+        app.logger.error("Unhandled server exception: %s", e, exc_info=True)
+        return jsonify({
+            "success": False,
+            "error": {
+                "code": "INTERNAL_SERVER_ERROR",
+                "message": "An unexpected internal server error occurred.",
+            },
+        }), 500
 
 
 def _configure_logging(app: Flask) -> None:

@@ -166,7 +166,7 @@ cd agrosmart/backend
 python -m pytest tests/ -v
 ```
 
-Expected: **93 tests, 0 failures**
+Expected: **111 tests, 0 failures**
 
 ---
 

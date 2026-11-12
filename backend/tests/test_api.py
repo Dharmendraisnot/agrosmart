@@ -122,6 +122,63 @@ class TestSensorEndpoints:
                         content_type="text/plain")
         assert r.status_code == 400
 
+    def test_manual_submit_commit_failure_triggers_rollback(self, client, monkeypatch):
+        """Database commit failure during manual reading submit must trigger session rollback."""
+        from app.extensions import db
+        import sqlalchemy.exc
+
+        rollback_called = False
+        orig_rollback = db.session.rollback
+        def spy_rollback(*args, **kwargs):
+            nonlocal rollback_called
+            rollback_called = True
+            return orig_rollback(*args, **kwargs)
+
+        def failing_commit(*args, **kwargs):
+            raise sqlalchemy.exc.OperationalError("INSERT INTO sensor_readings", {}, Exception("simulated DB disk failure"))
+
+        monkeypatch.setattr(db.session, "rollback", spy_rollback)
+        monkeypatch.setattr(db.session, "commit", failing_commit)
+
+        r = client.post("/api/sensors/reading", json={"moisture": 45.0, "ph": 6.5})
+        assert r.status_code == 500
+        assert "Failed to save reading" in r.get_json()["error"]
+        assert rollback_called is True
+
+        # Confirm that session is healthy and subsequent request succeeds
+        monkeypatch.undo()
+        r2 = client.post("/api/sensors/reading", json={"moisture": 45.0, "ph": 6.5})
+        assert r2.status_code == 201
+
+    def test_latest_sensor_commit_failure_triggers_rollback(self, client, monkeypatch):
+        """Database commit failure during latest sensor capture must trigger session rollback."""
+        from app.extensions import db
+        import sqlalchemy.exc
+
+        rollback_called = False
+        orig_rollback = db.session.rollback
+        def spy_rollback(*args, **kwargs):
+            nonlocal rollback_called
+            rollback_called = True
+            return orig_rollback(*args, **kwargs)
+
+        def failing_commit(*args, **kwargs):
+            raise sqlalchemy.exc.OperationalError("INSERT INTO sensor_readings", {}, Exception("simulated DB lock"))
+
+        monkeypatch.setattr(db.session, "rollback", spy_rollback)
+        monkeypatch.setattr(db.session, "commit", failing_commit)
+
+        r = client.get("/api/sensors/latest")
+        assert r.status_code == 500
+        assert "Failed to read sensors" in r.get_json()["error"]
+        assert rollback_called is True
+
+        # Confirm that session is healthy and subsequent request succeeds
+        monkeypatch.undo()
+        r2 = client.get("/api/sensors/latest")
+        assert r2.status_code == 200
+        assert "moisture" in r2.get_json()
+
 
 # ── Analysis ──────────────────────────────────────────────────────────────────
 
@@ -302,6 +359,122 @@ class TestAnalysisEndpoints:
         assert d["soil"]["cnn_status"] == "not_found"
         assert d["soil"]["type"] is not None
 
+    def test_run_analysis_when_crop_model_fails_withholds_fertilizer(self, client, monkeypatch):
+        """When crop model fails, fertilizer advice must be withheld rather than defaulting to wheat."""
+        import app.services.analysis_service as analysis_module
+
+        def mock_predict_crops(sensor, config, top_n=3):
+            raise RuntimeError("Simulated crop model loading/inference failure")
+
+        monkeypatch.setattr(analysis_module, "predict_crops", mock_predict_crops)
+
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["crops"] == []
+        assert d["fertilizer"]["status"] == "unsupported"
+        assert d["fertilizer"]["fertilizer"] == "Reliable recommendation unavailable"
+        assert d["fertilizer"]["crop"] is None
+        assert "Crop recommendation is unavailable" in d["fertilizer"]["advice"]
+        assert d["fertilizer"]["crop"] != "wheat"
+        assert d["irrigation"]["urgency"] in ("critical", "high", "medium", "low", "none")
+        assert 0 <= d["soil"]["health_score"] <= 100
+
+    def test_run_analysis_when_crop_model_returns_empty_withholds_fertilizer(self, client, monkeypatch):
+        """When crop model returns no crops, fertilizer advice must be withheld rather than defaulting to wheat."""
+        import app.services.analysis_service as analysis_module
+
+        monkeypatch.setattr(analysis_module, "predict_crops", lambda sensor, config, top_n=3: [])
+
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["crops"] == []
+        assert d["fertilizer"]["status"] == "unsupported"
+        assert d["fertilizer"]["fertilizer"] == "Reliable recommendation unavailable"
+        assert d["fertilizer"]["crop"] is None
+        assert "Crop recommendation is unavailable" in d["fertilizer"]["advice"]
+
+    def test_run_analysis_manual_reading_commit_failure_triggers_rollback(self, client, monkeypatch):
+        """Failure to commit manual sensor reading inside run_analysis must trigger rollback."""
+        from app.extensions import db
+        import sqlalchemy.exc
+
+        rollback_called = False
+        orig_rollback = db.session.rollback
+        def spy_rollback(*args, **kwargs):
+            nonlocal rollback_called
+            rollback_called = True
+            return orig_rollback(*args, **kwargs)
+
+        def failing_commit(*args, **kwargs):
+            raise sqlalchemy.exc.OperationalError("INSERT INTO sensor_readings", {}, Exception("disk full"))
+
+        monkeypatch.setattr(db.session, "rollback", spy_rollback)
+        monkeypatch.setattr(db.session, "commit", failing_commit)
+
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 500
+        assert "Analysis failed" in r.get_json()["error"]
+        assert rollback_called is True
+
+        # Confirm session recovers and subsequent analysis request succeeds
+        monkeypatch.undo()
+        r2 = client.post("/api/analysis/run", json=payload)
+        assert r2.status_code == 200
+        assert "analysis_id" in r2.get_json()
+
+    def test_run_analysis_analysis_commit_failure_triggers_rollback(self, client, monkeypatch):
+        """Failure to commit SoilAnalysis / predictions must trigger rollback."""
+        from app.extensions import db
+        import sqlalchemy.exc
+
+        rollback_called = False
+        orig_rollback = db.session.rollback
+        def spy_rollback(*args, **kwargs):
+            nonlocal rollback_called
+            rollback_called = True
+            return orig_rollback(*args, **kwargs)
+
+        orig_commit = db.session.commit
+        commit_count = 0
+        def fail_on_second_commit(*args, **kwargs):
+            nonlocal commit_count
+            commit_count += 1
+            if commit_count >= 2:
+                raise sqlalchemy.exc.OperationalError("INSERT INTO soil_analyses", {}, Exception("database lock error"))
+            return orig_commit(*args, **kwargs)
+
+        monkeypatch.setattr(db.session, "rollback", spy_rollback)
+        monkeypatch.setattr(db.session, "commit", fail_on_second_commit)
+
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 500
+        assert "Analysis failed" in r.get_json()["error"]
+        assert rollback_called is True
+
+        # Confirm session recovers and subsequent analysis request succeeds
+        monkeypatch.undo()
+        r2 = client.post("/api/analysis/run", json=payload)
+        assert r2.status_code == 200
+        assert "analysis_id" in r2.get_json()
+
     def test_history_returns_200(self, client):
         client.post("/api/analysis/run")
         r = client.get("/api/analysis/history")
@@ -468,3 +641,91 @@ class TestImageEndpoints:
         assert "irrigation" in analysis
         assert "soil" in analysis
         assert analysis["soil"]["type"] is not None
+
+
+# ── Global Error Handlers (Finding S2) ────────────────────────────────────────
+
+class TestGlobalErrorHandlers:
+    """
+    Focused regression tests for global JSON error handlers (Finding S2).
+    Verifies consistent JSON error schemas for 404, 405, 413, HTTP exceptions,
+    and unexpected 500 server crashes without leaking sensitive internal details.
+    """
+
+    def test_global_404_not_found_returns_json(self, client):
+        r = client.get("/api/nonexistent_route_xyz")
+        assert r.status_code == 404
+        assert r.is_json
+        d = r.get_json()
+        assert d["success"] is False
+        assert d["error"]["code"] == "NOT_FOUND"
+        assert "message" in d["error"]
+        assert len(d["error"]["message"]) > 0
+
+    def test_global_405_method_not_allowed_returns_json(self, client):
+        r = client.delete("/api/health")
+        assert r.status_code == 405
+        assert r.is_json
+        d = r.get_json()
+        assert d["success"] is False
+        assert d["error"]["code"] == "METHOD_NOT_ALLOWED"
+        assert "message" in d["error"]
+        assert len(d["error"]["message"]) > 0
+
+    def test_global_413_payload_too_large_returns_json(self, client, app, monkeypatch):
+        # Configure a small max content limit for this test
+        monkeypatch.setitem(app.config, "MAX_CONTENT_LENGTH", 300)
+
+        r = client.post(
+            "/api/images/upload",
+            data={"image": (io.BytesIO(b"X" * 1000), "oversized.png", "image/png")},
+            content_type="multipart/form-data",
+        )
+        assert r.status_code == 413
+        assert r.is_json
+        d = r.get_json()
+        assert d["success"] is False
+        assert d["error"]["code"] == "PAYLOAD_TOO_LARGE"
+        assert "message" in d["error"]
+        assert len(d["error"]["message"]) > 0
+
+    def test_global_500_unexpected_exception_returns_safe_json(self, client, app, monkeypatch):
+        """Unexpected internal exceptions must return safe 500 JSON without leaking stack traces or secrets."""
+        secret_trace_info = "SuperSecretDbPassword_12345"
+
+        def crashing_view():
+            raise RuntimeError(f"Database connection crashed with secret: {secret_trace_info}")
+
+        monkeypatch.setitem(app.view_functions, "health.health_check", crashing_view)
+
+        r = client.get("/api/health")
+        assert r.status_code == 500
+        assert r.is_json
+        d = r.get_json()
+        assert d["success"] is False
+        assert d["error"]["code"] == "INTERNAL_SERVER_ERROR"
+        assert d["error"]["message"] == "An unexpected internal server error occurred."
+
+        # Verify no sensitive stack trace or internal message leaked in response body
+        body_text = r.get_data(as_text=True)
+        assert secret_trace_info not in body_text
+        assert "RuntimeError" not in body_text
+        assert "Traceback" not in body_text
+
+    def test_http_exception_returns_json_and_preserves_status_code(self, client, app, monkeypatch):
+        """Custom HTTP exceptions (e.g. abort(403)) return JSON with corresponding code and message."""
+        from flask import abort
+
+        def forbidden_view():
+            abort(403, description="Access to this resource is forbidden.")
+
+        monkeypatch.setitem(app.view_functions, "health.health_check", forbidden_view)
+
+        r = client.get("/api/health")
+        assert r.status_code == 403
+        assert r.is_json
+        d = r.get_json()
+        assert d["success"] is False
+        assert d["error"]["code"] == "FORBIDDEN"
+        assert d["error"]["message"] == "Access to this resource is forbidden."
+

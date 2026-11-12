@@ -1,0 +1,75 @@
+@startuml use_case_diagram
+' AgroSmart - Use Case Diagram
+' System Mode: Software Simulation (Standalone Software Workstation)
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam monochrome true
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam roundCorner 8
+
+actor "Farmer / User" as Farmer <<Human>>
+actor "Sensor Simulator" as Simulator <<Internal System>>
+
+rectangle "AgroSmart — AI Soil Analysis & Crop Recommendation System" as AgroSmartSystem {
+
+    package "Dashboard & Telemetry" {
+        usecase "UC1: View Live Parameter Dashboard" as UC1
+        usecase "UC2: Generate Simulated Sensor Feed" as UC2
+        usecase "UC3: View Real-Time Telemetry Trends" as UC3
+    }
+
+    package "Soil & Environmental Input" {
+        usecase "UC4: Enter Soil & Climate Parameters Manually" as UC4
+        usecase "UC5: Select Parameter Preset" as UC5
+        usecase "UC6: Upload Soil Image" as UC6
+        usecase "UC7: Classify Soil Type via CNN" as UC7
+    }
+
+    package "Analysis & Advisory Pipeline" {
+        usecase "UC8: Run Comprehensive Soil Analysis" as UC8
+        usecase "UC9: Calculate Soil Health Score" as UC9
+        usecase "UC10: Predict Top-3 Recommended Crops" as UC10
+        usecase "UC11: Generate Fertilizer Advice" as UC11
+        usecase "UC12: Specify Confirmed Texture\n(for Alluvial Soil)" as UC12
+        usecase "UC13: Generate Irrigation Advisory" as UC13
+    }
+
+    package "Historical Records" {
+        usecase "UC14: View Analysis History" as UC14
+        usecase "UC15: View Historical Analysis Details" as UC15
+    }
+}
+
+' Farmer interactions
+Farmer --> UC1
+Farmer --> UC3
+Farmer --> UC4
+Farmer --> UC6
+Farmer --> UC8
+Farmer --> UC14
+
+' Simulator interactions
+Simulator --> UC2
+UC2 ..> UC1 : <<include>>
+
+' Relationships within Input
+UC5 ..> UC4 : <<extend>>
+UC6 ..> UC7 : <<include>>
+UC7 ..> UC8 : <<extend>>\n(when image provided)
+
+' Relationships within Analysis Pipeline
+UC8 ..> UC9 : <<include>>
+UC8 ..> UC10 : <<include>>
+UC8 ..> UC11 : <<include>>
+UC8 ..> UC13 : <<include>>
+
+' Alluvial Texture requirement
+UC12 ..> UC11 : <<extend>>\n(conditional on Alluvial)
+
+' Historical Records relationships
+UC15 ..> UC14 : <<extend>>
+
+@enduml

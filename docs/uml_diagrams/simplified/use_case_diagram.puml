@@ -1,0 +1,33 @@
+@startuml use_case_diagram
+' AgroSmart - Simplified Use Case Diagram (16:9 Presentation View)
+left to right direction
+skinparam packageStyle rectangle
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam roundCorner 8
+skinparam arrowThickness 1.5
+
+actor "Farmer / User" as Farmer
+
+rectangle "AgroSmart" {
+  usecase "View Analysis History" as UC8
+  usecase "View Irrigation Advice" as UC7
+  usecase "View Fertilizer Advice" as UC6
+  usecase "View Crop Recommendations" as UC5
+  usecase "Run Soil Analysis" as UC4
+  usecase "Upload Soil Image (Optional)" as UC3
+  usecase "Enter Soil Parameters" as UC2
+  usecase "View Dashboard" as UC1
+}
+
+Farmer --> UC1
+Farmer --> UC2
+Farmer --> UC3
+Farmer --> UC4
+Farmer --> UC5
+Farmer --> UC6
+Farmer --> UC7
+Farmer --> UC8
+@enduml

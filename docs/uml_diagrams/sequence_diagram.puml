@@ -1,0 +1,125 @@
+@startuml sequence_diagram
+' AgroSmart - UML Sequence Diagram
+' Workflow: End-to-End Soil Analysis & Crop Recommendation Pipeline
+
+autonumber
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam roundCorner 6
+
+actor "Farmer / User" as User
+participant "React Frontend\n(SoilAnalysis / Dashboard)" as UI
+participant "API Client\n(api.js / Axios)" as API
+participant "Flask API\n(analysis.py / images.py)" as Controller
+participant "ImageService\n(image_service.py)" as ImgService
+participant "SoilCNN\n(MobileNetV2)" as CNN
+participant "AnalysisService\n(analysis_service.py)" as Pipeline
+participant "CropModel\n(Random Forest)" as CropML
+participant "FertilizerModel\n(Decision Tree)" as FertML
+participant "RecommendationService\n(Irrigation Rules)" as IrrigEngine
+database "SQLite Database\n(SQLAlchemy ORM)" as DB
+
+== Phase A: Dashboard Telemetry & Parameter Input ==
+
+User -> UI: Open Dashboard
+UI -> API: getLatestReading()
+API -> Controller: GET /api/sensors/latest
+Controller -> DB: Query or generate via HAL (SimulatedSensor)
+DB --> Controller: SensorReading snapshot
+Controller --> API: 200 OK (JSON telemetry)
+API --> UI: Populate live parameters (Moisture, NPK, pH, Temp)
+UI --> User: Display live sensor metrics & trends
+
+== Phase B: Optional Soil Image Upload & Classification ==
+
+opt User uploads soil photograph
+    User -> UI: Select soil photo (JPEG/PNG)
+    UI -> API: uploadImage(file)
+    API -> Controller: POST /api/images/upload (multipart/form-data)
+    Controller -> ImgService: classify_image(file)
+    ImgService -> ImgService: Validate extension & MIME header
+    ImgService -> ImgService: Save to uploads/ with UUID prefix
+    ImgService -> ImgService: Preprocess image (224x224, [-1, 1])
+    ImgService -> CNN: predict_soil_type(img_array)
+    CNN --> ImgService: {"soil_type": "Alluvial", "confidence": 0.91, "all_classes": [...]}
+    ImgService --> Controller: Image classification result
+    Controller --> API: 200 OK (JSON with soil_type & confidence)
+    API --> UI: Update UI with detected soil type & class probabilities
+    UI --> User: Show detected "Alluvial" soil (91% confidence)
+end
+
+== Phase C: Parameter Submission & Pipeline Execution ==
+
+User -> UI: Enter manual soil parameters (N, P, K, pH, Moisture, Rainfall, Temp, Humidity)\n[Specify Confirmed Texture if Alluvial]
+User -> UI: Click "Run Analysis"
+UI -> API: runAnalysis({ sensor_data, soil_type, confirmed_soil_texture, image_path })
+API -> Controller: POST /api/analysis/run (JSON body)
+
+Controller -> Controller: Validate payload (types, numeric bounds)
+alt Validation fails (e.g. invalid numeric range or bad types)
+    Controller --> API: 422 Unprocessable Entity {"error": "Validation failed"}
+    API --> UI: Display validation error alert
+    UI --> User: Prompt user to correct invalid fields
+else Validation succeeds
+    Controller -> Pipeline: run_analysis(sensor_data, soil_type, confirmed_soil_texture, image_path)
+
+    ' 1. Persist sensor reading
+    Pipeline -> DB: Create & commit SensorReading (source="manual" or "simulator")
+    DB --> Pipeline: SensorReading saved (id=101)
+
+    ' 2. Determine soil type
+    alt Image provided & CNN result available
+        Pipeline -> Pipeline: Use CNN-derived soil type ("Alluvial")
+    else Image not provided
+        Pipeline -> Pipeline: Fallback to _heuristic_soil_type(sensor) based on pH & moisture
+    end
+
+    ' 3. Compute Soil Health Score
+    Pipeline -> Pipeline: _compute_health_score(sensor, soil_type)\n(pH 25pts + Moisture 25pts + NPK 25pts + Temp 25pts)
+
+    ' 4. Crop Recommendation
+    Pipeline -> CropML: predict_crops(sensor, config, top_n=3)
+    CropML -> CropML: CropInferencePreprocessor.transform(sensor)
+    CropML -> CropML: RandomForestClassifier.predict_proba()
+    CropML --> Pipeline: [{"crop": "wheat", "confidence": 0.84}, {"crop": "maize", ...}, ...]
+
+    ' 5. Fertilizer Recommendation
+    Pipeline -> FertML: predict_fertilizer(sensor, soil_type, top_crop="wheat", confirmed_texture)
+    alt Soil is Alluvial AND confirmed_texture is missing
+        FertML --> Pipeline: {"fertilizer": "N/A", "advice": "Texture confirmation required for Alluvial soil"}
+    else Valid soil & crop mapping
+        FertML -> FertML: FertilizerInferencePreprocessor.transform()
+        FertML -> FertML: DecisionTreeClassifier.predict()
+        FertML --> Pipeline: {"fertilizer": "DAP", "advice": "Apply 50 kg/acre...", "model_label": "prototype_v1.0"}
+    end
+
+    ' 6. Irrigation Advisory
+    Pipeline -> IrrigEngine: generate_irrigation_advice(sensor, soil_type, top_crop="wheat")
+    IrrigEngine -> IrrigEngine: Calculate effective moisture (drainage & crop water tier)
+    IrrigEngine --> Pipeline: {"action": "Monitor", "urgency": "low", "frequency": "Every 3 days", "water": "15 L/m²"}
+
+    ' 7. Persistence
+    Pipeline -> DB: Insert SoilAnalysis record (linked to SensorReading id=101)
+    Pipeline -> DB: Insert 3 Prediction records (crop, fertilizer, irrigation)
+    Pipeline -> DB: Commit transaction
+    DB --> Pipeline: Transaction committed (analysis_id=45)
+
+    Pipeline --> Controller: Consolidated result JSON
+    Controller --> API: 200 OK (Full Analysis Payload)
+    API --> UI: Deliver analysis data to state
+    UI --> User: Render Soil Classification, Health Score, Top Crops, Fertilizer Advice, & Irrigation Plan
+end
+
+== Phase D: History Update ==
+
+UI -> API: getAnalysisHistory(page=1, per_page=20)
+API -> Controller: GET /api/analysis/history
+Controller -> DB: Query SoilAnalysis joined with Predictions (newest first)
+DB --> Controller: Paginated records
+Controller --> API: 200 OK (History list)
+API --> UI: Update History table
+UI --> User: View past analyses with expandable prediction breakdowns
+
+@enduml

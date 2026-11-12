@@ -1,0 +1,46 @@
+@startuml sequence_diagram
+' AgroSmart - Simplified Sequence Diagram (16:9 Presentation View)
+autonumber
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam roundCorner 6
+skinparam arrowThickness 1.5
+
+actor "Farmer" as User
+participant "React Frontend" as UI
+participant "Flask REST API" as API
+participant "AnalysisService" as Pipeline
+participant "ML Models & Rules" as ML
+database "SQLite Database" as DB
+
+User -> UI: Enter soil parameters / upload photo
+activate UI
+UI -> API: POST /api/analysis/run
+activate API
+
+API -> API: Validate request data
+API -> Pipeline: run_analysis(parameters)
+activate Pipeline
+
+Pipeline -> ML: Execute CNN, Crop RF, Fertilizer DT & Irrigation Rules
+activate ML
+ML --> Pipeline: Return predictions & advisories
+deactivate ML
+
+Pipeline -> DB: Save SensorReading & SoilAnalysis records
+activate DB
+DB --> Pipeline: Confirm saved
+deactivate DB
+
+Pipeline --> API: Consolidated analysis result
+deactivate Pipeline
+
+API --> UI: 200 OK (JSON response)
+deactivate API
+
+UI --> User: Display recommendations & soil health
+deactivate UI
+
+@enduml

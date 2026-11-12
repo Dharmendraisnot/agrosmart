@@ -2,3 +2,14 @@ git push file format
 git add .
 git commit -m "Your new update description"
 git push origin main
+
+
+
+cd "D:\minor 1\Agrosmart\backend"
+.\.venv\Scripts\Activate.ps1
+python run.py
+
+
+
+cd "D:\minor 1\Agrosmart\frontend"
+npm run dev

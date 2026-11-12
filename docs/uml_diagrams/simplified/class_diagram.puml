@@ -1,0 +1,71 @@
+@startuml class_diagram
+' AgroSmart - Simplified Class Diagram (16:9 Presentation View)
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 13
+skinparam roundCorner 6
+skinparam arrowThickness 1.5
+skinparam linetype ortho
+
+package "Data Persistence" {
+    class SensorReading {
+        + id: Integer
+        + moisture, rainfall, ph: Float
+        + nitrogen, phosphorus, potassium: Float
+        + soil_temp, air_temp, humidity: Float
+        --
+        + to_dict(): dict
+    }
+
+    class SoilAnalysis {
+        + id: Integer
+        + soil_type: String
+        + health_score: Float
+        --
+        + to_dict(): dict
+    }
+}
+
+package "Service Orchestration" {
+    class SensorService {
+        + capture_reading(): SensorReading
+        + get_latest_reading(): SensorReading
+    }
+
+    class AnalysisService {
+        + run_analysis(params: dict): dict
+        + get_analysis(id: int): dict
+    }
+}
+
+package "ML & Rule Engines" {
+    class SoilCNNModel {
+        + predict_soil_type(img): dict
+    }
+
+    class CropModel {
+        + predict_crops(sensor): list
+    }
+
+    class FertilizerModel {
+        + predict_fertilizer(sensor, soil, crop): dict
+    }
+
+    class RecommendationService {
+        + generate_irrigation_advice(sensor, crop): dict
+    }
+}
+
+SensorReading "1" o-- "0..*" SoilAnalysis : stores
+SensorService ..> SensorReading : captures
+AnalysisService --> SensorService : fetches telemetry
+AnalysisService --> SoilAnalysis : persists results
+
+AnalysisService --> SoilCNNModel : classifies soil
+AnalysisService --> CropModel : recommends crops
+AnalysisService --> FertilizerModel : recommends fertilizer
+AnalysisService --> RecommendationService : advises irrigation
+@enduml

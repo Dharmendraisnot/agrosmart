@@ -1,0 +1,41 @@
+@startuml component_diagram
+' AgroSmart - Simplified Component Diagram (16:9 Presentation View)
+left to right direction
+skinparam componentStyle rectangle
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam roundCorner 6
+skinparam arrowThickness 1.5
+
+package "Presentation Tier" {
+    [React Frontend] as UI
+}
+
+package "Application Tier" {
+    [Flask REST API] as API
+    [Analysis Service] as Service
+    [Sensor Simulator] as Simulator
+    note bottom of Simulator: Software simulation active (Hardware sensors planned)
+}
+
+package "Intelligence & ML Tier" {
+    [ML Models] as ML
+    [Irrigation Rule Engine] as Irrigation
+}
+
+package "Persistence Tier" {
+    database "SQLite Database" as DB
+}
+
+UI --> API : HTTP / REST Calls
+API --> Simulator : Reads simulated parameters
+API --> Service : Triggers analysis pipeline
+API --> DB : Queries history records
+
+Service --> ML : Executes model inference
+Service --> Irrigation : Evaluates moisture rules
+Service --> DB : Persists analysis records
+
+@enduml

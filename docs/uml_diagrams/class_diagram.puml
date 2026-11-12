@@ -1,0 +1,233 @@
+@startuml class_diagram
+' AgroSmart - UML Class Diagram
+' Primary source of truth: Existing source code in backend/app and frontend/src
+
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam roundCorner 6
+skinparam linetype ortho
+
+package "app.models (SQLAlchemy ORM Layer)" {
+
+    class SensorReading <<db.Model>> {
+        + id: Integer [PK]
+        + timestamp: DateTime
+        + source: String
+        + moisture: Float
+        + rainfall: Float
+        + ph: Float
+        + soil_temperature: Float
+        + air_temperature: Float
+        + air_humidity: Float
+        + nitrogen: Float
+        + phosphorus: Float
+        + potassium: Float
+        --
+        + to_dict(): dict
+    }
+
+    class SoilAnalysis <<db.Model>> {
+        + id: Integer [PK]
+        + timestamp: DateTime
+        + sensor_reading_id: Integer [FK]
+        + soil_image_path: String
+        + soil_type: String
+        + soil_type_confidence: Float
+        + soil_health_status: String
+        + health_score: Float
+        + notes: Text
+        --
+        + to_dict(): dict
+    }
+
+    class Prediction <<db.Model>> {
+        + id: Integer [PK]
+        + timestamp: DateTime
+        + analysis_id: Integer [FK]
+        + prediction_type: String
+        - _result_json: Text
+        + top_recommendation: String
+        + model_version: String
+        --
+        + result: dict <<property>>
+        + to_dict(): dict
+    }
+
+    class User <<db.Model>> {
+        + id: Integer [PK]
+        + username: String
+        + password_hash: String
+        + role: String
+        + created_at: DateTime
+        --
+        + to_dict(): dict
+        .. note ..
+        Scaffolded model; auth disabled in MVP
+    }
+}
+
+package "app.hardware (HAL & Simulation Layer)" {
+
+    interface SensorInterface <<abstract>> {
+        + {abstract} read_moisture(): float
+        + {abstract} read_ph(): float
+        + {abstract} read_soil_temperature(): float
+        + {abstract} read_air_temperature(): float
+        + {abstract} read_air_humidity(): float
+        + {abstract} read_npk(): dict
+        + read_all(): dict
+    }
+
+    class SimulatedSensor {
+        - _rng: Random
+        - _generate(key: String): float
+        + read_moisture(): float
+        + read_ph(): float
+        + read_soil_temperature(): float
+        + read_air_temperature(): float
+        + read_air_humidity(): float
+        + read_npk(): dict
+        + read_all(): dict
+    }
+
+    class RaspberryPiSensor {
+        + read_moisture(): float
+        + read_ph(): float
+        + read_soil_temperature(): float
+        + read_air_temperature(): float
+        + read_air_humidity(): float
+        + read_npk(): dict
+        + read_all(): dict
+        .. note ..
+        Hardware driver scaffolded for Pi;
+        inactive in simulation mode
+    }
+
+    class HALFactory <<module>> {
+        + get_sensor(mode: String): SensorInterface
+    }
+}
+
+package "app.ml (Preprocessing & ML Inference)" {
+
+    class CropInferencePreprocessor {
+        - _scaler: StandardScaler
+        + transform(sensor: dict): ndarray
+    }
+
+    class FertilizerInferencePreprocessor {
+        - _scaler: StandardScaler
+        - _soil_enc: LabelEncoder
+        - _crop_enc: LabelEncoder
+        + transform(sensor: dict, soil_type: String, crop: String): ndarray
+    }
+
+    class CropModel <<module>> {
+        - _model: RandomForestClassifier
+        - _preprocessor: CropInferencePreprocessor
+        + predict_crops(sensor: dict, config: dict, top_n: int): list
+        + reload_model(): void
+    }
+
+    class FertilizerModel <<module>> {
+        - _model: DecisionTreeClassifier
+        - _preprocessor: FertilizerInferencePreprocessor
+        - _model_label: String
+        + predict_fertilizer(sensor: dict, soil_type: String, top_crop: String, config: dict, confirmed_texture: String): dict
+    }
+
+    class SoilCNNModel <<module>> {
+        - _model: tf.keras.Model
+        - _classes: list
+        + predict_soil_type(image_array: ndarray, config: dict): dict
+    }
+}
+
+package "app.services (Orchestration & Business Logic)" {
+
+    class AnalysisService <<module>> {
+        + run_analysis(reading_id: int, sensor_data: dict, image_path: str, cnn_result: dict, soil_type: str, confirmed_soil_texture: str, notes: str): dict
+        + get_analysis(analysis_id: int): dict
+        + get_analysis_history(page: int, per_page: int): dict
+        - _compute_health_score(sensor: dict, soil_type: str): tuple
+        - _heuristic_soil_type(sensor: dict): str
+    }
+
+    class SensorService <<module>> {
+        + capture_reading(): SensorReading
+        + get_latest_reading(): SensorReading
+        + get_reading_history(page: int, per_page: int): dict
+        - _clamp_or_none(value: float, key: str): float
+    }
+
+    class ImageService <<module>> {
+        + classify_image(file: FileStorage): dict
+        + preprocess_image(path: Path): ndarray
+        + save_upload(file: FileStorage): Path
+        + get_upload_path(filename: str): Path
+    }
+
+    class RecommendationService <<module>> {
+        + generate_irrigation_advice(sensor: dict, soil_type: str, top_crop: str): dict
+        - _effective_moisture(moisture: float, soil_type: str, crop: str): float
+        - _temperature_warning(air_temp: float): str
+    }
+}
+
+package "frontend.src (Client Application & State)" {
+
+    class ApiService <<client>> {
+        + getHealth(): Promise
+        + getLatestReading(): Promise
+        + postManualReading(data: Object): Promise
+        + runAnalysis(params: Object): Promise
+        + getAnalysis(id: Integer): Promise
+        + getAnalysisHistory(page: Integer, perPage: Integer): Promise
+        + uploadImage(file: File, options: Object): Promise
+    }
+
+    class SensorStore <<state>> {
+        + reading: Object
+        + status: String
+        + errorMessage: String
+        + lastUpdated: Date
+        + setReading(reading: Object): void
+        + setError(message: String): void
+        + setConnecting(): void
+    }
+}
+
+' ── Associations & Relationships ──────────────────────────────
+SensorReading "1" o-- "0..*" SoilAnalysis : analyses
+SoilAnalysis "1" *-- "3" Prediction : predictions
+
+SimulatedSensor .up.|> SensorInterface
+RaspberryPiSensor .up.|> SensorInterface
+HALFactory ..> SensorInterface : returns
+
+SensorService ..> HALFactory : calls get_sensor()
+SensorService ..> SensorReading : creates & saves
+
+AnalysisService ..> SensorService : gets sensor reading
+AnalysisService ..> SoilAnalysis : persists
+AnalysisService ..> Prediction : persists
+AnalysisService ..> CropModel : calls predict_crops()
+AnalysisService ..> FertilizerModel : calls predict_fertilizer()
+AnalysisService ..> RecommendationService : calls generate_irrigation_advice()
+AnalysisService ..> SoilCNNModel : calls predict_soil_type() (optional)
+
+ImageService ..> SoilCNNModel : executes inference
+ImageService ..> AnalysisService : triggers pipeline when requested
+
+CropModel ..> CropInferencePreprocessor : scales features
+FertilizerModel ..> FertilizerInferencePreprocessor : scales & encodes
+
+ApiService ..> AnalysisService : via HTTP REST API
+ApiService ..> SensorService : via HTTP REST API
+ApiService ..> ImageService : via HTTP REST API
+SensorStore ..> ApiService : invokes for state sync
+
+@enduml

@@ -1,0 +1,81 @@
+@startuml component_diagram
+' AgroSmart - UML Component Diagram
+' Architectural View: Presentation, Application, Machine Learning, HAL, and Data Layers
+
+skinparam componentStyle uml2
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam roundCorner 6
+
+package "Client Tier (React Frontend SPA)" {
+    component [Web UI Views & Workstations\n(Dashboard, SoilAnalysis, History)] as Comp_UI
+    component [State Store & Hooks\n(Zustand sensorStore, useAnalysis)] as Comp_Store
+    component [Frontend API Service\n(api.js / Axios)] as Comp_ApiClient
+
+    Comp_UI ..> Comp_Store : reads state & dispatches
+    Comp_Store ..> Comp_ApiClient : triggers requests
+    Comp_UI ..> Comp_ApiClient : calls directly for actions
+}
+
+cloud "HTTP / JSON REST API" as REST_IF
+
+package "Application Tier (Flask Backend)" {
+    component [Flask REST API Gateway\n(Blueprints: /sensors, /analysis, /images, /predictions)] as Comp_FlaskAPI
+
+    package "Service & Orchestration Layer" {
+        component [Analysis Orchestration Pipeline\n(analysis_service.py)] as Comp_AnalysisService
+        component [Sensor Management Service\n(sensor_service.py)] as Comp_SensorService
+        component [Image Processing Service\n(image_service.py)] as Comp_ImageService
+    }
+
+    Comp_FlaskAPI --> Comp_AnalysisService : dispatches /analysis/run
+    Comp_FlaskAPI --> Comp_SensorService : dispatches /sensors/*
+    Comp_FlaskAPI --> Comp_ImageService : dispatches /images/upload
+}
+
+package "Intelligence & ML Tier" {
+    component [Soil Image Classification Component\n(soil_cnn.py + MobileNetV2)] as Comp_SoilCNN
+    component [Crop Recommendation Component\n(crop_model.py + Random Forest)] as Comp_CropML
+    component [Fertilizer Recommendation Component\n(fertilizer_model.py + Decision Tree)] as Comp_FertML
+    component [Irrigation Advisory Rule Engine\n(recommendation_service.py)] as Comp_IrrigEngine
+    component [Soil Health Scoring Component\n(_compute_health_score)] as Comp_HealthScorer
+
+    Comp_ImageService ..> Comp_SoilCNN : delegates image classification
+    Comp_AnalysisService ..> Comp_SoilCNN : queries (optional image path)
+    Comp_AnalysisService ..> Comp_CropML : invokes crop prediction
+    Comp_AnalysisService ..> Comp_FertML : invokes fertilizer prediction
+    Comp_AnalysisService ..> Comp_IrrigEngine : invokes irrigation rules
+    Comp_AnalysisService ..> Comp_HealthScorer : computes health score
+}
+
+package "Hardware Abstraction Tier (Simulation Mode)" {
+    component [Hardware Abstraction Layer (HAL)\n(SensorInterface & Factory)] as Comp_HAL
+    component [Sensor Simulator\n(SimulatedSensor with Sinusoidal Drift)] as Comp_Simulator
+
+    Comp_SensorService ..> Comp_HAL : reads telemetry
+    Comp_HAL ..> Comp_Simulator : instantiates in simulator mode
+}
+
+package "Data & Persistence Tier" {
+    component [Database ORM Layer\n(Flask-SQLAlchemy)] as Comp_ORM
+    database "SQLite Database\n(agrosmart.db)" as DB_SQLite
+    folder "File System Storage\n(uploads/ & trained_models/)" as Storage_FS
+
+    Comp_SensorService ..> Comp_ORM : persists SensorReading
+    Comp_AnalysisService ..> Comp_ORM : persists SoilAnalysis & Predictions
+    Comp_FlaskAPI ..> Comp_ORM : queries historical records
+    Comp_ORM ..> DB_SQLite : SQL queries & transactions
+
+    Comp_ImageService ..> Storage_FS : stores uploads/
+    Comp_SoilCNN ..> Storage_FS : loads soil_cnn_v1.h5
+    Comp_CropML ..> Storage_FS : loads crop_rf_v1.pkl & scaler
+    Comp_FertML ..> Storage_FS : loads fertilizer_dt_prototype.pkl
+}
+
+' Client to Backend connection
+Comp_ApiClient -->> REST_IF : HTTP POST / GET
+REST_IF -->> Comp_FlaskAPI : routes JSON requests
+
+@enduml

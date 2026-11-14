@@ -42,5 +42,5 @@ src/
   hooks/                   # useSensorData, useAnalysis, useHistory
   services/api.js          # All axios API calls
   store/sensorStore.js     # Zustand live sensor state
-  utils/                   # formatters.js, constants.js
+  utils/                   # formatters.js, constants.js, errors.js
 ```

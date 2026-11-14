@@ -8,6 +8,7 @@ import IrrigationCard from '../components/recommendations/IrrigationCard'
 import LoadingSpinner from '../components/shared/LoadingSpinner'
 import ErrorAlert     from '../components/shared/ErrorAlert'
 import { fmtDate }   from '../utils/formatters'
+import { getErrorMessage } from '../utils/errors'
 import { RefreshCw } from 'lucide-react'
 
 export default function IrrigationAdvice() {
@@ -22,7 +23,7 @@ export default function IrrigationAdvice() {
       .then(({ data: d }) => setData(d))
       .catch((err) => {
         if (err?.response?.status === 404) setData(null)
-        else setError(err?.response?.data?.error || err.message)
+        else setError(getErrorMessage(err, 'Failed to load irrigation advice.'))
       })
       .finally(() => setLoading(false))
   }

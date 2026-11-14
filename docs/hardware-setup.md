@@ -1,9 +1,13 @@
-# AgroSmart — Hardware Setup Guide
+# AgroSmart — Hardware Architecture & Sensor Reference Guide
+
+> [!IMPORTANT]
+> **Minor Project Academic Disclosure — Conceptual Hardware Design**
+> In this B.Tech Minor Project implementation, AgroSmart operates strictly as an autonomous **software decision support system** using a deterministic sensor simulator (`SENSOR_MODE=simulator`) and manual 8-parameter telemetry input.
+> The pinouts, wiring schematics, and sensor driver specifications in this document represent a **validated hardware reference architecture** engineered for future major project physical prototyping. Physical hardware fabrication is neither claimed nor required for evaluation of this software repository.
 
 ## Overview
 
-This guide covers wiring, enabling interfaces, calibration, and switching
-from simulator mode to real hardware mode.
+This guide documents the conceptual hardware integration blueprint, GPIO pinout mapping, ADC wiring, calibration parameters, and driver abstraction layer for physical sensor integration.
 
 ---
 

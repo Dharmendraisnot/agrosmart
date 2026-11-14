@@ -11,6 +11,7 @@ import CropList       from '../components/recommendations/CropList'
 import LoadingSpinner from '../components/shared/LoadingSpinner'
 import ErrorAlert     from '../components/shared/ErrorAlert'
 import { fmtDate }    from '../utils/formatters'
+import { getErrorMessage } from '../utils/errors'
 import { RefreshCw }  from 'lucide-react'
 
 export default function CropRecommendation() {
@@ -24,12 +25,11 @@ export default function CropRecommendation() {
     getLatestPredictions()
       .then(({ data: d }) => setData(d))
       .catch((err) => {
-        const msg = err?.response?.data?.error || err.message
         if (err?.response?.status === 404) {
           setData(null)
           setError(null)
         } else {
-          setError(msg)
+          setError(getErrorMessage(err, 'Failed to load crop recommendations.'))
         }
       })
       .finally(() => setLoading(false))

@@ -3,6 +3,7 @@
  */
 import { useState, useEffect, useCallback } from 'react'
 import { getPredictionHistory, getAnalysisHistory } from '../services/api'
+import { getErrorMessage } from '../utils/errors'
 
 export function usePredictionHistory(perPage = 20) {
   const [items,   setItems]   = useState([])
@@ -22,7 +23,7 @@ export function usePredictionHistory(perPage = 20) {
       setPages(data.pages)
       setPage(p)
     } catch (err) {
-      setError(err?.response?.data?.error || err.message)
+      setError(getErrorMessage(err, 'Failed to load prediction history.'))
     } finally {
       setLoading(false)
     }
@@ -51,7 +52,7 @@ export function useAnalysisHistory(perPage = 20) {
       setPages(data.pages)
       setPage(p)
     } catch (err) {
-      setError(err?.response?.data?.error || err.message)
+      setError(getErrorMessage(err, 'Failed to load analysis history.'))
     } finally {
       setLoading(false)
     }

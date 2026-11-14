@@ -1,0 +1,3851 @@
+{
+  "summary": {
+    "total_test_samples": 71,
+    "v1_accuracy": 0.8169,
+    "v1_correct_count": 58,
+    "v2_accuracy": 0.8028,
+    "v2_correct_count": 57,
+    "groups": {
+      "group1_both_correct": 51,
+      "group2_both_incorrect": 7,
+      "group3_v1_correct_v2_incorrect": 7,
+      "group4_v2_correct_v1_incorrect": 6
+    }
+  },
+  "records": [
+    {
+      "index": 0,
+      "filename": "red_0114.jpg",
+      "relative_path": "Red/red_0114.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.6857,
+        "true_class_prob": 0.6857,
+        "all_probs": {
+          "Alluvial": 0.0092,
+          "Black": 0.304,
+          "Clay": 0.001,
+          "Red": 0.6857
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.901,
+        "true_class_prob": 0.901,
+        "all_probs": {
+          "Alluvial": 0.0416,
+          "Black": 0.0561,
+          "Clay": 0.0014,
+          "Red": 0.901
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 284,
+        "height": 177,
+        "mean_rgb": [
+          218.1,
+          203.34,
+          197.81
+        ],
+        "std_rgb": [
+          62.31,
+          84.61,
+          92.01
+        ],
+        "mean_lum": 207.15,
+        "contrast_lum": 78.68,
+        "mean_hsv": [
+          65.76,
+          45.59,
+          218.18
+        ],
+        "sharpness_var": 1374.41
+      }
+    },
+    {
+      "index": 1,
+      "filename": "red_0112.jpg",
+      "relative_path": "Red/red_0112.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9651,
+        "true_class_prob": 0.9651,
+        "all_probs": {
+          "Alluvial": 0.0065,
+          "Black": 0.0283,
+          "Clay": 0.0001,
+          "Red": 0.9651
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9837,
+        "true_class_prob": 0.9837,
+        "all_probs": {
+          "Alluvial": 0.0151,
+          "Black": 0.001,
+          "Clay": 0.0002,
+          "Red": 0.9837
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 100,
+        "height": 100,
+        "mean_rgb": [
+          176.19,
+          98.57,
+          66.92
+        ],
+        "std_rgb": [
+          30.85,
+          45.41,
+          52.13
+        ],
+        "mean_lum": 118.17,
+        "contrast_lum": 41.14,
+        "mean_hsv": [
+          18.82,
+          165.43,
+          176.19
+        ],
+        "sharpness_var": 10622.55
+      }
+    },
+    {
+      "index": 2,
+      "filename": "black_0038.jpg",
+      "relative_path": "Black/black_0038.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.9223,
+        "true_class_prob": 0.9223,
+        "all_probs": {
+          "Alluvial": 0.0645,
+          "Black": 0.9223,
+          "Clay": 0.0005,
+          "Red": 0.0127
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.9336,
+        "true_class_prob": 0.9336,
+        "all_probs": {
+          "Alluvial": 0.0482,
+          "Black": 0.9336,
+          "Clay": 0.0057,
+          "Red": 0.0125
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 262,
+        "height": 192,
+        "mean_rgb": [
+          73.96,
+          71.17,
+          61.1
+        ],
+        "std_rgb": [
+          24.27,
+          23.62,
+          24.18
+        ],
+        "mean_lum": 70.87,
+        "contrast_lum": 23.61,
+        "mean_hsv": [
+          48.15,
+          58.94,
+          75.91
+        ],
+        "sharpness_var": 3599.94
+      }
+    },
+    {
+      "index": 3,
+      "filename": "red_0027.jpg",
+      "relative_path": "Red/red_0027.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9666,
+        "true_class_prob": 0.9666,
+        "all_probs": {
+          "Alluvial": 0.0108,
+          "Black": 0.0214,
+          "Clay": 0.0012,
+          "Red": 0.9666
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.8816,
+        "true_class_prob": 0.8816,
+        "all_probs": {
+          "Alluvial": 0.0793,
+          "Black": 0.0366,
+          "Clay": 0.0025,
+          "Red": 0.8816
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          152.83,
+          104.08,
+          94.04
+        ],
+        "std_rgb": [
+          50.42,
+          59.31,
+          62.51
+        ],
+        "mean_lum": 117.54,
+        "contrast_lum": 54.76,
+        "mean_hsv": [
+          33.58,
+          107.89,
+          154.52
+        ],
+        "sharpness_var": 1613.8
+      }
+    },
+    {
+      "index": 4,
+      "filename": "clay_0114.jpg",
+      "relative_path": "Clay/clay_0114.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.7237,
+        "true_class_prob": 0.7237,
+        "all_probs": {
+          "Alluvial": 0.2748,
+          "Black": 0.0013,
+          "Clay": 0.7237,
+          "Red": 0.0002
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9831,
+        "true_class_prob": 0.9831,
+        "all_probs": {
+          "Alluvial": 0.0169,
+          "Black": 0.0,
+          "Clay": 0.9831,
+          "Red": 0.0
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          143.97,
+          135.96,
+          136.37
+        ],
+        "std_rgb": [
+          39.37,
+          40.94,
+          43.2
+        ],
+        "mean_lum": 138.42,
+        "contrast_lum": 40.6,
+        "mean_hsv": [
+          109.89,
+          21.18,
+          145.23
+        ],
+        "sharpness_var": 404.78
+      }
+    },
+    {
+      "index": 5,
+      "filename": "clay_0063.jpg",
+      "relative_path": "Clay/clay_0063.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9848,
+        "true_class_prob": 0.9848,
+        "all_probs": {
+          "Alluvial": 0.0034,
+          "Black": 0.0076,
+          "Clay": 0.9848,
+          "Red": 0.0043
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9345,
+        "true_class_prob": 0.9345,
+        "all_probs": {
+          "Alluvial": 0.0193,
+          "Black": 0.0286,
+          "Clay": 0.9345,
+          "Red": 0.0176
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 200,
+        "height": 130,
+        "mean_rgb": [
+          178.96,
+          169.57,
+          159.45
+        ],
+        "std_rgb": [
+          57.77,
+          58.04,
+          59.2
+        ],
+        "mean_lum": 171.27,
+        "contrast_lum": 58.08,
+        "mean_hsv": [
+          21.79,
+          37.47,
+          178.96
+        ],
+        "sharpness_var": 15397.42
+      }
+    },
+    {
+      "index": 6,
+      "filename": "black_0035.jpg",
+      "relative_path": "Black/black_0035.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.5474,
+        "true_class_prob": 0.2916,
+        "all_probs": {
+          "Alluvial": 0.5474,
+          "Black": 0.2916,
+          "Clay": 0.004,
+          "Red": 0.157
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.6697,
+        "true_class_prob": 0.1547,
+        "all_probs": {
+          "Alluvial": 0.6697,
+          "Black": 0.1547,
+          "Clay": 0.081,
+          "Red": 0.0946
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 262,
+        "height": 192,
+        "mean_rgb": [
+          66.26,
+          57.07,
+          52.01
+        ],
+        "std_rgb": [
+          24.13,
+          21.79,
+          21.87
+        ],
+        "mean_lum": 59.21,
+        "contrast_lum": 22.18,
+        "mean_hsv": [
+          33.55,
+          64.37,
+          67.93
+        ],
+        "sharpness_var": 2059.0
+      }
+    },
+    {
+      "index": 7,
+      "filename": "alluvial_0062.jpg",
+      "relative_path": "Alluvial/alluvial_0062.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.5529,
+        "true_class_prob": 0.3641,
+        "all_probs": {
+          "Alluvial": 0.3641,
+          "Black": 0.0777,
+          "Clay": 0.0052,
+          "Red": 0.5529
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.936,
+        "true_class_prob": 0.936,
+        "all_probs": {
+          "Alluvial": 0.936,
+          "Black": 0.0007,
+          "Clay": 0.007,
+          "Red": 0.0563
+        },
+        "is_correct": true
+      },
+      "group": "v2_correct_v1_incorrect",
+      "group_label": "Group 4: V2 Correct, V1 Incorrect (V2 Wins)",
+      "features": {
+        "width": 146,
+        "height": 280,
+        "mean_rgb": [
+          156.85,
+          120.66,
+          101.58
+        ],
+        "std_rgb": [
+          48.25,
+          46.4,
+          46.8
+        ],
+        "mean_lum": 129.3,
+        "contrast_lum": 45.67,
+        "mean_hsv": [
+          36.29,
+          94.26,
+          157.8
+        ],
+        "sharpness_var": 6339.88
+      }
+    },
+    {
+      "index": 8,
+      "filename": "black_0007.jpg",
+      "relative_path": "Black/black_0007.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.9471,
+        "true_class_prob": 0.9471,
+        "all_probs": {
+          "Alluvial": 0.0481,
+          "Black": 0.9471,
+          "Clay": 0.0009,
+          "Red": 0.0039
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.749,
+        "true_class_prob": 0.749,
+        "all_probs": {
+          "Alluvial": 0.2208,
+          "Black": 0.749,
+          "Clay": 0.0271,
+          "Red": 0.0031
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 262,
+        "height": 193,
+        "mean_rgb": [
+          83.25,
+          58.83,
+          42.37
+        ],
+        "std_rgb": [
+          32.71,
+          30.85,
+          31.88
+        ],
+        "mean_lum": 64.28,
+        "contrast_lum": 30.94,
+        "mean_hsv": [
+          32.34,
+          146.48,
+          84.95
+        ],
+        "sharpness_var": 9745.25
+      }
+    },
+    {
+      "index": 9,
+      "filename": "red_0051.jpg",
+      "relative_path": "Red/red_0051.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.7676,
+        "true_class_prob": 0.7676,
+        "all_probs": {
+          "Alluvial": 0.2146,
+          "Black": 0.0038,
+          "Clay": 0.014,
+          "Red": 0.7676
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9003,
+        "true_class_prob": 0.9003,
+        "all_probs": {
+          "Alluvial": 0.0981,
+          "Black": 0.0003,
+          "Clay": 0.0014,
+          "Red": 0.9003
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 500,
+        "height": 500,
+        "mean_rgb": [
+          214.64,
+          153.07,
+          138.7
+        ],
+        "std_rgb": [
+          42.25,
+          78.15,
+          89.59
+        ],
+        "mean_lum": 169.82,
+        "contrast_lum": 65.22,
+        "mean_hsv": [
+          15.67,
+          99.08,
+          215.39
+        ],
+        "sharpness_var": 365.51
+      }
+    },
+    {
+      "index": 10,
+      "filename": "alluvial_0032.webp",
+      "relative_path": "Alluvial/alluvial_0032.webp",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.8379,
+        "true_class_prob": 0.0749,
+        "all_probs": {
+          "Alluvial": 0.0749,
+          "Black": 0.0827,
+          "Clay": 0.0045,
+          "Red": 0.8379
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.634,
+        "true_class_prob": 0.634,
+        "all_probs": {
+          "Alluvial": 0.634,
+          "Black": 0.0652,
+          "Clay": 0.005,
+          "Red": 0.2959
+        },
+        "is_correct": true
+      },
+      "group": "v2_correct_v1_incorrect",
+      "group_label": "Group 4: V2 Correct, V1 Incorrect (V2 Wins)",
+      "features": {
+        "width": 602,
+        "height": 452,
+        "mean_rgb": [
+          102.13,
+          90.9,
+          80.13
+        ],
+        "std_rgb": [
+          70.98,
+          80.32,
+          88.23
+        ],
+        "mean_lum": 93.0,
+        "contrast_lum": 78.17,
+        "mean_hsv": [
+          45.73,
+          110.62,
+          106.04
+        ],
+        "sharpness_var": 2063.11
+      }
+    },
+    {
+      "index": 11,
+      "filename": "red_0006.jpg",
+      "relative_path": "Red/red_0006.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.6854,
+        "true_class_prob": 0.6854,
+        "all_probs": {
+          "Alluvial": 0.0281,
+          "Black": 0.2727,
+          "Clay": 0.0138,
+          "Red": 0.6854
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.6583,
+        "true_class_prob": 0.6583,
+        "all_probs": {
+          "Alluvial": 0.2205,
+          "Black": 0.026,
+          "Clay": 0.0952,
+          "Red": 0.6583
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          172.65,
+          89.4,
+          54.03
+        ],
+        "std_rgb": [
+          48.58,
+          43.16,
+          35.95
+        ],
+        "mean_lum": 110.27,
+        "contrast_lum": 43.46,
+        "mean_hsv": [
+          11.92,
+          183.16,
+          172.65
+        ],
+        "sharpness_var": 8200.41
+      }
+    },
+    {
+      "index": 12,
+      "filename": "alluvial_0089.jpeg",
+      "relative_path": "Alluvial/alluvial_0089.jpeg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9384,
+        "true_class_prob": 0.0316,
+        "all_probs": {
+          "Alluvial": 0.0316,
+          "Black": 0.0249,
+          "Clay": 0.005,
+          "Red": 0.9384
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.79,
+        "true_class_prob": 0.79,
+        "all_probs": {
+          "Alluvial": 0.79,
+          "Black": 0.0475,
+          "Clay": 0.006,
+          "Red": 0.1565
+        },
+        "is_correct": true
+      },
+      "group": "v2_correct_v1_incorrect",
+      "group_label": "Group 4: V2 Correct, V1 Incorrect (V2 Wins)",
+      "features": {
+        "width": 276,
+        "height": 183,
+        "mean_rgb": [
+          183.65,
+          150.39,
+          110.61
+        ],
+        "std_rgb": [
+          41.87,
+          49.89,
+          69.39
+        ],
+        "mean_lum": 155.81,
+        "contrast_lum": 47.79,
+        "mean_hsv": [
+          46.83,
+          118.47,
+          187.74
+        ],
+        "sharpness_var": 6781.34
+      }
+    },
+    {
+      "index": 13,
+      "filename": "alluvial_0263.jpg",
+      "relative_path": "Alluvial/alluvial_0263.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8562,
+        "true_class_prob": 0.8562,
+        "all_probs": {
+          "Alluvial": 0.8562,
+          "Black": 0.0538,
+          "Clay": 0.0492,
+          "Red": 0.0408
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.989,
+        "true_class_prob": 0.989,
+        "all_probs": {
+          "Alluvial": 0.989,
+          "Black": 0.0006,
+          "Clay": 0.0082,
+          "Red": 0.0022
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          40.57,
+          35.2,
+          27.24
+        ],
+        "std_rgb": [
+          56.37,
+          49.41,
+          39.14
+        ],
+        "mean_lum": 35.92,
+        "contrast_lum": 50.3,
+        "mean_hsv": [
+          12.48,
+          37.93,
+          40.62
+        ],
+        "sharpness_var": 951.74
+      }
+    },
+    {
+      "index": 14,
+      "filename": "black_0046.jpg",
+      "relative_path": "Black/black_0046.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.9926,
+        "true_class_prob": 0.9926,
+        "all_probs": {
+          "Alluvial": 0.0026,
+          "Black": 0.9926,
+          "Clay": 0.0001,
+          "Red": 0.0047
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.9902,
+        "true_class_prob": 0.9902,
+        "all_probs": {
+          "Alluvial": 0.0056,
+          "Black": 0.9902,
+          "Clay": 0.003,
+          "Red": 0.0012
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 259,
+        "height": 194,
+        "mean_rgb": [
+          64.09,
+          54.73,
+          56.77
+        ],
+        "std_rgb": [
+          18.27,
+          18.32,
+          18.43
+        ],
+        "mean_lum": 57.78,
+        "contrast_lum": 18.27,
+        "mean_hsv": [
+          218.95,
+          40.97,
+          64.1
+        ],
+        "sharpness_var": 2434.31
+      }
+    },
+    {
+      "index": 15,
+      "filename": "red_0072.jpg",
+      "relative_path": "Red/red_0072.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9144,
+        "true_class_prob": 0.9144,
+        "all_probs": {
+          "Alluvial": 0.0832,
+          "Black": 0.0007,
+          "Clay": 0.0018,
+          "Red": 0.9144
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9263,
+        "true_class_prob": 0.9263,
+        "all_probs": {
+          "Alluvial": 0.0717,
+          "Black": 0.0006,
+          "Clay": 0.0014,
+          "Red": 0.9263
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          237.69,
+          153.55,
+          88.7
+        ],
+        "std_rgb": [
+          23.44,
+          25.91,
+          25.35
+        ],
+        "mean_lum": 171.31,
+        "contrast_lum": 22.91,
+        "mean_hsv": [
+          18.87,
+          159.74,
+          237.73
+        ],
+        "sharpness_var": 1459.11
+      }
+    },
+    {
+      "index": 16,
+      "filename": "red_0108.jpg",
+      "relative_path": "Red/red_0108.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.7799,
+        "true_class_prob": 0.7799,
+        "all_probs": {
+          "Alluvial": 0.0506,
+          "Black": 0.1572,
+          "Clay": 0.0123,
+          "Red": 0.7799
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.4416,
+        "true_class_prob": 0.4416,
+        "all_probs": {
+          "Alluvial": 0.1175,
+          "Black": 0.3798,
+          "Clay": 0.0611,
+          "Red": 0.4416
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 910,
+        "height": 683,
+        "mean_rgb": [
+          173.98,
+          38.95,
+          25.86
+        ],
+        "std_rgb": [
+          55.71,
+          36.25,
+          20.85
+        ],
+        "mean_lum": 77.82,
+        "contrast_lum": 38.47,
+        "mean_hsv": [
+          80.57,
+          227.07,
+          173.98
+        ],
+        "sharpness_var": 2227.87
+      }
+    },
+    {
+      "index": 17,
+      "filename": "clay_0017.jpg",
+      "relative_path": "Clay/clay_0017.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9978,
+        "true_class_prob": 0.9978,
+        "all_probs": {
+          "Alluvial": 0.0006,
+          "Black": 0.0001,
+          "Clay": 0.9978,
+          "Red": 0.0015
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9858,
+        "true_class_prob": 0.9858,
+        "all_probs": {
+          "Alluvial": 0.0027,
+          "Black": 0.0027,
+          "Clay": 0.9858,
+          "Red": 0.0088
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 318,
+        "height": 159,
+        "mean_rgb": [
+          168.37,
+          158.16,
+          122.14
+        ],
+        "std_rgb": [
+          45.81,
+          44.85,
+          38.13
+        ],
+        "mean_lum": 157.1,
+        "contrast_lum": 44.3,
+        "mean_hsv": [
+          32.11,
+          79.55,
+          168.38
+        ],
+        "sharpness_var": 4041.63
+      }
+    },
+    {
+      "index": 18,
+      "filename": "red_0044.jpg",
+      "relative_path": "Red/red_0044.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.6919,
+        "true_class_prob": 0.6919,
+        "all_probs": {
+          "Alluvial": 0.0658,
+          "Black": 0.219,
+          "Clay": 0.0233,
+          "Red": 0.6919
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.564,
+        "true_class_prob": 0.564,
+        "all_probs": {
+          "Alluvial": 0.3741,
+          "Black": 0.0254,
+          "Clay": 0.0365,
+          "Red": 0.564
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 100,
+        "height": 100,
+        "mean_rgb": [
+          176.97,
+          93.03,
+          56.6
+        ],
+        "std_rgb": [
+          43.13,
+          38.82,
+          33.41
+        ],
+        "mean_lum": 113.98,
+        "contrast_lum": 39.14,
+        "mean_hsv": [
+          12.15,
+          179.86,
+          176.97
+        ],
+        "sharpness_var": 8395.7
+      }
+    },
+    {
+      "index": 19,
+      "filename": "black_0036.jpg",
+      "relative_path": "Black/black_0036.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.512,
+        "true_class_prob": 0.512,
+        "all_probs": {
+          "Alluvial": 0.3833,
+          "Black": 0.512,
+          "Clay": 0.1002,
+          "Red": 0.0045
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.5921,
+        "true_class_prob": 0.2938,
+        "all_probs": {
+          "Alluvial": 0.1134,
+          "Black": 0.2938,
+          "Clay": 0.5921,
+          "Red": 0.0007
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 265,
+        "height": 190,
+        "mean_rgb": [
+          119.55,
+          100.19,
+          93.25
+        ],
+        "std_rgb": [
+          65.36,
+          66.27,
+          65.65
+        ],
+        "mean_lum": 105.18,
+        "contrast_lum": 65.81,
+        "mean_hsv": [
+          18.76,
+          83.24,
+          119.55
+        ],
+        "sharpness_var": 14454.17
+      }
+    },
+    {
+      "index": 20,
+      "filename": "black_0054.jpg",
+      "relative_path": "Black/black_0054.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.925,
+        "true_class_prob": 0.925,
+        "all_probs": {
+          "Alluvial": 0.01,
+          "Black": 0.925,
+          "Clay": 0.0001,
+          "Red": 0.0649
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.952,
+        "true_class_prob": 0.952,
+        "all_probs": {
+          "Alluvial": 0.0253,
+          "Black": 0.952,
+          "Clay": 0.0022,
+          "Red": 0.0205
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 300,
+        "height": 168,
+        "mean_rgb": [
+          42.63,
+          30.77,
+          22.78
+        ],
+        "std_rgb": [
+          20.51,
+          18.95,
+          17.59
+        ],
+        "mean_lum": 33.43,
+        "contrast_lum": 19.16,
+        "mean_hsv": [
+          16.74,
+          140.92,
+          42.64
+        ],
+        "sharpness_var": 3595.92
+      }
+    },
+    {
+      "index": 21,
+      "filename": "alluvial_0277.jpg",
+      "relative_path": "Alluvial/alluvial_0277.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.7589,
+        "true_class_prob": 0.7589,
+        "all_probs": {
+          "Alluvial": 0.7589,
+          "Black": 0.071,
+          "Clay": 0.1509,
+          "Red": 0.0192
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9851,
+        "true_class_prob": 0.9851,
+        "all_probs": {
+          "Alluvial": 0.9851,
+          "Black": 0.0051,
+          "Clay": 0.0093,
+          "Red": 0.0005
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          24.06,
+          21.65,
+          19.33
+        ],
+        "std_rgb": [
+          46.75,
+          42.19,
+          37.93
+        ],
+        "mean_lum": 22.11,
+        "contrast_lum": 43.07,
+        "mean_hsv": [
+          6.99,
+          15.62,
+          24.08
+        ],
+        "sharpness_var": 455.6
+      }
+    },
+    {
+      "index": 22,
+      "filename": "black_0050.jpg",
+      "relative_path": "Black/black_0050.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.8645,
+        "true_class_prob": 0.8645,
+        "all_probs": {
+          "Alluvial": 0.0492,
+          "Black": 0.8645,
+          "Clay": 0.0006,
+          "Red": 0.0857
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.8591,
+        "true_class_prob": 0.8591,
+        "all_probs": {
+          "Alluvial": 0.0723,
+          "Black": 0.8591,
+          "Clay": 0.0071,
+          "Red": 0.0614
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          86.1,
+          61.17,
+          50.29
+        ],
+        "std_rgb": [
+          25.77,
+          25.09,
+          24.5
+        ],
+        "mean_lum": 67.44,
+        "contrast_lum": 25.19,
+        "mean_hsv": [
+          12.47,
+          116.93,
+          86.1
+        ],
+        "sharpness_var": 8565.18
+      }
+    },
+    {
+      "index": 23,
+      "filename": "clay_0003.jpg",
+      "relative_path": "Clay/clay_0003.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.5891,
+        "true_class_prob": 0.1607,
+        "all_probs": {
+          "Alluvial": 0.2478,
+          "Black": 0.0024,
+          "Clay": 0.1607,
+          "Red": 0.5891
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.5015,
+        "true_class_prob": 0.002,
+        "all_probs": {
+          "Alluvial": 0.5015,
+          "Black": 0.0004,
+          "Clay": 0.002,
+          "Red": 0.4962
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 800,
+        "height": 533,
+        "mean_rgb": [
+          180.34,
+          115.31,
+          73.17
+        ],
+        "std_rgb": [
+          39.51,
+          34.52,
+          29.53
+        ],
+        "mean_lum": 129.97,
+        "contrast_lum": 35.2,
+        "mean_hsv": [
+          16.05,
+          156.1,
+          180.34
+        ],
+        "sharpness_var": 2957.61
+      }
+    },
+    {
+      "index": 24,
+      "filename": "black_0001.jpg",
+      "relative_path": "Black/black_0001.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.8952,
+        "true_class_prob": 0.8952,
+        "all_probs": {
+          "Alluvial": 0.0735,
+          "Black": 0.8952,
+          "Clay": 0.0005,
+          "Red": 0.0308
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.8966,
+        "true_class_prob": 0.8966,
+        "all_probs": {
+          "Alluvial": 0.0721,
+          "Black": 0.8966,
+          "Clay": 0.0162,
+          "Red": 0.015
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 259,
+        "height": 194,
+        "mean_rgb": [
+          51.58,
+          51.58,
+          51.58
+        ],
+        "std_rgb": [
+          23.52,
+          23.52,
+          23.52
+        ],
+        "mean_lum": 51.58,
+        "contrast_lum": 23.52,
+        "mean_hsv": [
+          0.0,
+          0.0,
+          51.58
+        ],
+        "sharpness_var": 4389.23
+      }
+    },
+    {
+      "index": 25,
+      "filename": "clay_0100.jpg",
+      "relative_path": "Clay/clay_0100.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9216,
+        "true_class_prob": 0.9216,
+        "all_probs": {
+          "Alluvial": 0.0624,
+          "Black": 0.0001,
+          "Clay": 0.9216,
+          "Red": 0.0159
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.979,
+        "true_class_prob": 0.979,
+        "all_probs": {
+          "Alluvial": 0.0202,
+          "Black": 0.0,
+          "Clay": 0.979,
+          "Red": 0.0008
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          47.5,
+          35.39,
+          25.32
+        ],
+        "std_rgb": [
+          50.88,
+          38.44,
+          28.01
+        ],
+        "mean_lum": 37.87,
+        "contrast_lum": 40.94,
+        "mean_hsv": [
+          11.58,
+          64.02,
+          47.53
+        ],
+        "sharpness_var": 170.96
+      }
+    },
+    {
+      "index": 26,
+      "filename": "alluvial_0068.jpg",
+      "relative_path": "Alluvial/alluvial_0068.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8252,
+        "true_class_prob": 0.8252,
+        "all_probs": {
+          "Alluvial": 0.8252,
+          "Black": 0.059,
+          "Clay": 0.0293,
+          "Red": 0.0865
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.431,
+        "true_class_prob": 0.399,
+        "all_probs": {
+          "Alluvial": 0.399,
+          "Black": 0.431,
+          "Clay": 0.1034,
+          "Red": 0.0666
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 390,
+        "height": 280,
+        "mean_rgb": [
+          144.3,
+          144.29,
+          144.3
+        ],
+        "std_rgb": [
+          38.96,
+          38.95,
+          38.96
+        ],
+        "mean_lum": 144.29,
+        "contrast_lum": 38.95,
+        "mean_hsv": [
+          2.58,
+          0.02,
+          144.3
+        ],
+        "sharpness_var": 2380.89
+      }
+    },
+    {
+      "index": 27,
+      "filename": "clay_0055.jpeg",
+      "relative_path": "Clay/clay_0055.jpeg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.7506,
+        "true_class_prob": 0.2025,
+        "all_probs": {
+          "Alluvial": 0.7506,
+          "Black": 0.0162,
+          "Clay": 0.2025,
+          "Red": 0.0307
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.4624,
+        "true_class_prob": 0.4599,
+        "all_probs": {
+          "Alluvial": 0.4624,
+          "Black": 0.0019,
+          "Clay": 0.4599,
+          "Red": 0.0758
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 1280,
+        "height": 960,
+        "mean_rgb": [
+          136.07,
+          99.69,
+          77.6
+        ],
+        "std_rgb": [
+          59.23,
+          50.27,
+          46.19
+        ],
+        "mean_lum": 108.06,
+        "contrast_lum": 51.92,
+        "mean_hsv": [
+          29.77,
+          115.55,
+          136.17
+        ],
+        "sharpness_var": 830.43
+      }
+    },
+    {
+      "index": 28,
+      "filename": "alluvial_0015.jpg",
+      "relative_path": "Alluvial/alluvial_0015.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.573,
+        "true_class_prob": 0.573,
+        "all_probs": {
+          "Alluvial": 0.573,
+          "Black": 0.0011,
+          "Clay": 0.0204,
+          "Red": 0.4054
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9845,
+        "true_class_prob": 0.9845,
+        "all_probs": {
+          "Alluvial": 0.9845,
+          "Black": 0.0,
+          "Clay": 0.0014,
+          "Red": 0.014
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 415,
+        "height": 188,
+        "mean_rgb": [
+          141.63,
+          132.91,
+          112.16
+        ],
+        "std_rgb": [
+          35.13,
+          28.61,
+          34.46
+        ],
+        "mean_lum": 133.15,
+        "contrast_lum": 30.5,
+        "mean_hsv": [
+          29.77,
+          62.6,
+          144.99
+        ],
+        "sharpness_var": 1474.71
+      }
+    },
+    {
+      "index": 29,
+      "filename": "red_0049.jpg",
+      "relative_path": "Red/red_0049.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.773,
+        "true_class_prob": 0.773,
+        "all_probs": {
+          "Alluvial": 0.1681,
+          "Black": 0.0241,
+          "Clay": 0.0348,
+          "Red": 0.773
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8542,
+        "true_class_prob": 0.1121,
+        "all_probs": {
+          "Alluvial": 0.8542,
+          "Black": 0.0249,
+          "Clay": 0.0088,
+          "Red": 0.1121
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 2560,
+        "height": 1920,
+        "mean_rgb": [
+          177.57,
+          144.6,
+          143.21
+        ],
+        "std_rgb": [
+          57.24,
+          70.44,
+          74.26
+        ],
+        "mean_lum": 154.33,
+        "contrast_lum": 66.2,
+        "mean_hsv": [
+          115.29,
+          62.78,
+          177.91
+        ],
+        "sharpness_var": 236.92
+      }
+    },
+    {
+      "index": 30,
+      "filename": "clay_0102.jpg",
+      "relative_path": "Clay/clay_0102.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.986,
+        "true_class_prob": 0.986,
+        "all_probs": {
+          "Alluvial": 0.0119,
+          "Black": 0.0005,
+          "Clay": 0.986,
+          "Red": 0.0017
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9994,
+        "true_class_prob": 0.9994,
+        "all_probs": {
+          "Alluvial": 0.0004,
+          "Black": 0.0,
+          "Clay": 0.9994,
+          "Red": 0.0002
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          10.34,
+          9.88,
+          8.27
+        ],
+        "std_rgb": [
+          30.13,
+          29.18,
+          26.32
+        ],
+        "mean_lum": 9.83,
+        "contrast_lum": 29.09,
+        "mean_hsv": [
+          6.32,
+          11.0,
+          10.42
+        ],
+        "sharpness_var": 62.19
+      }
+    },
+    {
+      "index": 31,
+      "filename": "black_0080.jpg",
+      "relative_path": "Black/black_0080.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.834,
+        "true_class_prob": 0.834,
+        "all_probs": {
+          "Alluvial": 0.0009,
+          "Black": 0.834,
+          "Clay": 0.0001,
+          "Red": 0.165
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.8556,
+        "true_class_prob": 0.8556,
+        "all_probs": {
+          "Alluvial": 0.0023,
+          "Black": 0.8556,
+          "Clay": 0.0002,
+          "Red": 0.1419
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 225,
+        "height": 225,
+        "mean_rgb": [
+          47.16,
+          35.37,
+          34.12
+        ],
+        "std_rgb": [
+          15.84,
+          14.34,
+          13.89
+        ],
+        "mean_lum": 38.82,
+        "contrast_lum": 14.64,
+        "mean_hsv": [
+          53.18,
+          76.47,
+          47.17
+        ],
+        "sharpness_var": 1123.67
+      }
+    },
+    {
+      "index": 32,
+      "filename": "alluvial_0281.jpg",
+      "relative_path": "Alluvial/alluvial_0281.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9771,
+        "true_class_prob": 0.9771,
+        "all_probs": {
+          "Alluvial": 0.9771,
+          "Black": 0.0011,
+          "Clay": 0.0201,
+          "Red": 0.0017
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9347,
+        "true_class_prob": 0.9347,
+        "all_probs": {
+          "Alluvial": 0.9347,
+          "Black": 0.0009,
+          "Clay": 0.0634,
+          "Red": 0.001
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 460,
+        "height": 307,
+        "mean_rgb": [
+          126.91,
+          119.06,
+          107.19
+        ],
+        "std_rgb": [
+          43.92,
+          45.14,
+          45.72
+        ],
+        "mean_lum": 120.07,
+        "contrast_lum": 44.33,
+        "mean_hsv": [
+          34.46,
+          54.18,
+          130.31
+        ],
+        "sharpness_var": 4437.45
+      }
+    },
+    {
+      "index": 33,
+      "filename": "red_0077.jpg",
+      "relative_path": "Red/red_0077.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9587,
+        "true_class_prob": 0.9587,
+        "all_probs": {
+          "Alluvial": 0.0136,
+          "Black": 0.0268,
+          "Clay": 0.0009,
+          "Red": 0.9587
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9619,
+        "true_class_prob": 0.9619,
+        "all_probs": {
+          "Alluvial": 0.0339,
+          "Black": 0.0034,
+          "Clay": 0.0009,
+          "Red": 0.9619
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 197,
+        "height": 64,
+        "mean_rgb": [
+          112.67,
+          53.36,
+          38.33
+        ],
+        "std_rgb": [
+          42.13,
+          36.17,
+          29.23
+        ],
+        "mean_lum": 69.39,
+        "contrast_lum": 36.14,
+        "mean_hsv": [
+          15.4,
+          179.34,
+          112.67
+        ],
+        "sharpness_var": 2241.62
+      }
+    },
+    {
+      "index": 34,
+      "filename": "clay_0110.jpg",
+      "relative_path": "Clay/clay_0110.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9358,
+        "true_class_prob": 0.9358,
+        "all_probs": {
+          "Alluvial": 0.0543,
+          "Black": 0.0004,
+          "Clay": 0.9358,
+          "Red": 0.0094
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9974,
+        "true_class_prob": 0.9974,
+        "all_probs": {
+          "Alluvial": 0.0014,
+          "Black": 0.0012,
+          "Clay": 0.9974,
+          "Red": 0.0
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          74.37,
+          70.26,
+          70.48
+        ],
+        "std_rgb": [
+          77.11,
+          73.86,
+          74.71
+        ],
+        "mean_lum": 71.53,
+        "contrast_lum": 74.89,
+        "mean_hsv": [
+          58.39,
+          14.34,
+          75.03
+        ],
+        "sharpness_var": 767.31
+      }
+    },
+    {
+      "index": 35,
+      "filename": "clay_0044.jpg",
+      "relative_path": "Clay/clay_0044.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.6417,
+        "true_class_prob": 0.3493,
+        "all_probs": {
+          "Alluvial": 0.6417,
+          "Black": 0.0035,
+          "Clay": 0.3493,
+          "Red": 0.0055
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.5093,
+        "true_class_prob": 0.5093,
+        "all_probs": {
+          "Alluvial": 0.4797,
+          "Black": 0.002,
+          "Clay": 0.5093,
+          "Red": 0.009
+        },
+        "is_correct": true
+      },
+      "group": "v2_correct_v1_incorrect",
+      "group_label": "Group 4: V2 Correct, V1 Incorrect (V2 Wins)",
+      "features": {
+        "width": 406,
+        "height": 280,
+        "mean_rgb": [
+          153.12,
+          125.33,
+          102.08
+        ],
+        "std_rgb": [
+          57.65,
+          56.37,
+          56.91
+        ],
+        "mean_lum": 131.0,
+        "contrast_lum": 56.37,
+        "mean_hsv": [
+          20.65,
+          94.1,
+          153.15
+        ],
+        "sharpness_var": 4122.36
+      }
+    },
+    {
+      "index": 36,
+      "filename": "clay_0012.jpg",
+      "relative_path": "Clay/clay_0012.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9884,
+        "true_class_prob": 0.9884,
+        "all_probs": {
+          "Alluvial": 0.0109,
+          "Black": 0.0003,
+          "Clay": 0.9884,
+          "Red": 0.0003
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.999,
+        "true_class_prob": 0.999,
+        "all_probs": {
+          "Alluvial": 0.0008,
+          "Black": 0.0001,
+          "Clay": 0.999,
+          "Red": 0.0001
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 266,
+        "height": 189,
+        "mean_rgb": [
+          159.47,
+          168.37,
+          159.48
+        ],
+        "std_rgb": [
+          63.87,
+          65.2,
+          62.03
+        ],
+        "mean_lum": 164.71,
+        "contrast_lum": 64.33,
+        "mean_hsv": [
+          90.17,
+          32.11,
+          170.24
+        ],
+        "sharpness_var": 9270.71
+      }
+    },
+    {
+      "index": 37,
+      "filename": "black_0076.jpg",
+      "relative_path": "Black/black_0076.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.7435,
+        "true_class_prob": 0.04,
+        "all_probs": {
+          "Alluvial": 0.7435,
+          "Black": 0.04,
+          "Clay": 0.0277,
+          "Red": 0.1888
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.6764,
+        "true_class_prob": 0.0019,
+        "all_probs": {
+          "Alluvial": 0.6764,
+          "Black": 0.0019,
+          "Clay": 0.015,
+          "Red": 0.3067
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          22.26,
+          18.49,
+          14.33
+        ],
+        "std_rgb": [
+          47.79,
+          40.05,
+          31.5
+        ],
+        "mean_lum": 19.14,
+        "contrast_lum": 41.35,
+        "mean_hsv": [
+          5.27,
+          20.3,
+          22.28
+        ],
+        "sharpness_var": 273.69
+      }
+    },
+    {
+      "index": 38,
+      "filename": "red_0143.jpg",
+      "relative_path": "Red/red_0143.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9793,
+        "true_class_prob": 0.9793,
+        "all_probs": {
+          "Alluvial": 0.0077,
+          "Black": 0.001,
+          "Clay": 0.012,
+          "Red": 0.9793
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9906,
+        "true_class_prob": 0.9906,
+        "all_probs": {
+          "Alluvial": 0.0085,
+          "Black": 0.0,
+          "Clay": 0.0009,
+          "Red": 0.9906
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          47.75,
+          32.15,
+          19.14
+        ],
+        "std_rgb": [
+          86.0,
+          58.72,
+          36.0
+        ],
+        "mean_lum": 35.33,
+        "contrast_lum": 64.19,
+        "mean_hsv": [
+          6.49,
+          42.42,
+          47.79
+        ],
+        "sharpness_var": 649.64
+      }
+    },
+    {
+      "index": 39,
+      "filename": "black_0014.jpg",
+      "relative_path": "Black/black_0014.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.6421,
+        "true_class_prob": 0.6421,
+        "all_probs": {
+          "Alluvial": 0.3481,
+          "Black": 0.6421,
+          "Clay": 0.0042,
+          "Red": 0.0056
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.7516,
+        "true_class_prob": 0.1053,
+        "all_probs": {
+          "Alluvial": 0.7516,
+          "Black": 0.1053,
+          "Clay": 0.1388,
+          "Red": 0.0043
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 248,
+        "height": 203,
+        "mean_rgb": [
+          75.38,
+          75.48,
+          77.1
+        ],
+        "std_rgb": [
+          36.32,
+          36.26,
+          35.99
+        ],
+        "mean_lum": 75.63,
+        "contrast_lum": 36.21,
+        "mean_hsv": [
+          18.22,
+          6.91,
+          77.15
+        ],
+        "sharpness_var": 16719.34
+      }
+    },
+    {
+      "index": 40,
+      "filename": "black_0091.jpg",
+      "relative_path": "Black/black_0091.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.978,
+        "true_class_prob": 0.978,
+        "all_probs": {
+          "Alluvial": 0.0033,
+          "Black": 0.978,
+          "Clay": 0.0002,
+          "Red": 0.0185
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.9699,
+        "true_class_prob": 0.9699,
+        "all_probs": {
+          "Alluvial": 0.0032,
+          "Black": 0.9699,
+          "Clay": 0.0009,
+          "Red": 0.026
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 251,
+        "height": 201,
+        "mean_rgb": [
+          78.14,
+          49.87,
+          34.38
+        ],
+        "std_rgb": [
+          35.26,
+          31.24,
+          28.04
+        ],
+        "mean_lum": 56.55,
+        "contrast_lum": 31.9,
+        "mean_hsv": [
+          14.36,
+          159.99,
+          78.14
+        ],
+        "sharpness_var": 6646.09
+      }
+    },
+    {
+      "index": 41,
+      "filename": "alluvial_0266.jpg",
+      "relative_path": "Alluvial/alluvial_0266.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.877,
+        "true_class_prob": 0.877,
+        "all_probs": {
+          "Alluvial": 0.877,
+          "Black": 0.0574,
+          "Clay": 0.0338,
+          "Red": 0.0317
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9912,
+        "true_class_prob": 0.9912,
+        "all_probs": {
+          "Alluvial": 0.9912,
+          "Black": 0.0013,
+          "Clay": 0.0071,
+          "Red": 0.0003
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          40.57,
+          35.21,
+          27.24
+        ],
+        "std_rgb": [
+          56.37,
+          49.42,
+          39.14
+        ],
+        "mean_lum": 35.92,
+        "contrast_lum": 50.3,
+        "mean_hsv": [
+          12.46,
+          37.88,
+          40.61
+        ],
+        "sharpness_var": 951.75
+      }
+    },
+    {
+      "index": 42,
+      "filename": "black_0051.jpg",
+      "relative_path": "Black/black_0051.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.5785,
+        "true_class_prob": 0.5785,
+        "all_probs": {
+          "Alluvial": 0.0827,
+          "Black": 0.5785,
+          "Clay": 0.001,
+          "Red": 0.3378
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8504,
+        "true_class_prob": 0.0579,
+        "all_probs": {
+          "Alluvial": 0.8504,
+          "Black": 0.0579,
+          "Clay": 0.0039,
+          "Red": 0.0878
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 100,
+        "height": 100,
+        "mean_rgb": [
+          57.01,
+          48.45,
+          37.19
+        ],
+        "std_rgb": [
+          18.79,
+          18.25,
+          16.85
+        ],
+        "mean_lum": 49.73,
+        "contrast_lum": 18.2,
+        "mean_hsv": [
+          23.37,
+          99.38,
+          57.02
+        ],
+        "sharpness_var": 2833.83
+      }
+    },
+    {
+      "index": 43,
+      "filename": "clay_0107.jpg",
+      "relative_path": "Clay/clay_0107.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9955,
+        "true_class_prob": 0.9955,
+        "all_probs": {
+          "Alluvial": 0.0032,
+          "Black": 0.0002,
+          "Clay": 0.9955,
+          "Red": 0.0011
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9998,
+        "true_class_prob": 0.9998,
+        "all_probs": {
+          "Alluvial": 0.0001,
+          "Black": 0.0,
+          "Clay": 0.9998,
+          "Red": 0.0001
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          19.68,
+          18.8,
+          15.72
+        ],
+        "std_rgb": [
+          39.36,
+          38.22,
+          34.75
+        ],
+        "mean_lum": 18.71,
+        "contrast_lum": 38.09,
+        "mean_hsv": [
+          11.17,
+          18.91,
+          19.83
+        ],
+        "sharpness_var": 108.29
+      }
+    },
+    {
+      "index": 44,
+      "filename": "red_0067.jpg",
+      "relative_path": "Red/red_0067.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9501,
+        "true_class_prob": 0.9501,
+        "all_probs": {
+          "Alluvial": 0.0411,
+          "Black": 0.008,
+          "Clay": 0.0008,
+          "Red": 0.9501
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9939,
+        "true_class_prob": 0.9939,
+        "all_probs": {
+          "Alluvial": 0.0058,
+          "Black": 0.0002,
+          "Clay": 0.0001,
+          "Red": 0.9939
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 274,
+        "height": 91,
+        "mean_rgb": [
+          167.86,
+          92.17,
+          49.08
+        ],
+        "std_rgb": [
+          56.71,
+          42.69,
+          35.39
+        ],
+        "mean_lum": 109.89,
+        "contrast_lum": 41.35,
+        "mean_hsv": [
+          18.51,
+          183.72,
+          169.2
+        ],
+        "sharpness_var": 6090.98
+      }
+    },
+    {
+      "index": 45,
+      "filename": "alluvial_0021.jpg",
+      "relative_path": "Alluvial/alluvial_0021.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.4702,
+        "true_class_prob": 0.4702,
+        "all_probs": {
+          "Alluvial": 0.4702,
+          "Black": 0.0784,
+          "Clay": 0.0235,
+          "Red": 0.4279
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8916,
+        "true_class_prob": 0.8916,
+        "all_probs": {
+          "Alluvial": 0.8916,
+          "Black": 0.0227,
+          "Clay": 0.0153,
+          "Red": 0.0704
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 390,
+        "height": 280,
+        "mean_rgb": [
+          112.74,
+          82.35,
+          51.16
+        ],
+        "std_rgb": [
+          47.54,
+          53.7,
+          58.33
+        ],
+        "mean_lum": 87.88,
+        "contrast_lum": 52.11,
+        "mean_hsv": [
+          19.86,
+          160.11,
+          112.75
+        ],
+        "sharpness_var": 3243.81
+      }
+    },
+    {
+      "index": 46,
+      "filename": "black_0081.jpg",
+      "relative_path": "Black/black_0081.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.9314,
+        "true_class_prob": 0.9314,
+        "all_probs": {
+          "Alluvial": 0.0156,
+          "Black": 0.9314,
+          "Clay": 0.0021,
+          "Red": 0.0509
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.5777,
+        "true_class_prob": 0.5777,
+        "all_probs": {
+          "Alluvial": 0.2459,
+          "Black": 0.5777,
+          "Clay": 0.0224,
+          "Red": 0.154
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 225,
+        "height": 225,
+        "mean_rgb": [
+          42.2,
+          35.61,
+          31.16
+        ],
+        "std_rgb": [
+          28.07,
+          24.21,
+          21.98
+        ],
+        "mean_lum": 37.08,
+        "contrast_lum": 25.0,
+        "mean_hsv": [
+          29.22,
+          70.04,
+          42.35
+        ],
+        "sharpness_var": 2287.07
+      }
+    },
+    {
+      "index": 47,
+      "filename": "alluvial_0074.jpg",
+      "relative_path": "Alluvial/alluvial_0074.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.762,
+        "true_class_prob": 0.762,
+        "all_probs": {
+          "Alluvial": 0.762,
+          "Black": 0.1475,
+          "Clay": 0.006,
+          "Red": 0.0845
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9778,
+        "true_class_prob": 0.9778,
+        "all_probs": {
+          "Alluvial": 0.9778,
+          "Black": 0.0033,
+          "Clay": 0.0028,
+          "Red": 0.016
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 384,
+        "height": 185,
+        "mean_rgb": [
+          161.3,
+          142.38,
+          126.41
+        ],
+        "std_rgb": [
+          38.45,
+          37.83,
+          42.58
+        ],
+        "mean_lum": 146.22,
+        "contrast_lum": 37.19,
+        "mean_hsv": [
+          28.73,
+          71.94,
+          166.3
+        ],
+        "sharpness_var": 6970.75
+      }
+    },
+    {
+      "index": 48,
+      "filename": "clay_0080.jpg",
+      "relative_path": "Clay/clay_0080.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.9545,
+        "true_class_prob": 0.9545,
+        "all_probs": {
+          "Alluvial": 0.0326,
+          "Black": 0.0116,
+          "Clay": 0.9545,
+          "Red": 0.0013
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.992,
+        "true_class_prob": 0.992,
+        "all_probs": {
+          "Alluvial": 0.0052,
+          "Black": 0.0028,
+          "Clay": 0.992,
+          "Red": 0.0001
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 262,
+        "height": 192,
+        "mean_rgb": [
+          158.95,
+          135.31,
+          118.17
+        ],
+        "std_rgb": [
+          70.99,
+          67.39,
+          62.37
+        ],
+        "mean_lum": 140.4,
+        "contrast_lum": 67.61,
+        "mean_hsv": [
+          32.67,
+          85.79,
+          160.63
+        ],
+        "sharpness_var": 21485.35
+      }
+    },
+    {
+      "index": 49,
+      "filename": "red_0102.jpg",
+      "relative_path": "Red/red_0102.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.9949,
+        "true_class_prob": 0.9949,
+        "all_probs": {
+          "Alluvial": 0.0023,
+          "Black": 0.0025,
+          "Clay": 0.0003,
+          "Red": 0.9949
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9981,
+        "true_class_prob": 0.9981,
+        "all_probs": {
+          "Alluvial": 0.0006,
+          "Black": 0.0013,
+          "Clay": 0.0,
+          "Red": 0.9981
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          128.89,
+          90.7,
+          73.02
+        ],
+        "std_rgb": [
+          51.62,
+          66.72,
+          75.75
+        ],
+        "mean_lum": 100.11,
+        "contrast_lum": 60.28,
+        "mean_hsv": [
+          46.52,
+          139.66,
+          134.62
+        ],
+        "sharpness_var": 1567.82
+      }
+    },
+    {
+      "index": 50,
+      "filename": "black_0015.jpg",
+      "relative_path": "Black/black_0015.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.9711,
+        "true_class_prob": 0.9711,
+        "all_probs": {
+          "Alluvial": 0.0058,
+          "Black": 0.9711,
+          "Clay": 0.0002,
+          "Red": 0.0229
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.8226,
+        "true_class_prob": 0.8226,
+        "all_probs": {
+          "Alluvial": 0.0391,
+          "Black": 0.8226,
+          "Clay": 0.0175,
+          "Red": 0.1207
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 276,
+        "height": 183,
+        "mean_rgb": [
+          73.82,
+          62.46,
+          44.91
+        ],
+        "std_rgb": [
+          60.22,
+          58.48,
+          39.02
+        ],
+        "mean_lum": 63.85,
+        "contrast_lum": 56.41,
+        "mean_hsv": [
+          25.64,
+          126.67,
+          73.9
+        ],
+        "sharpness_var": 11422.88
+      }
+    },
+    {
+      "index": 51,
+      "filename": "alluvial_0071.jpg",
+      "relative_path": "Alluvial/alluvial_0071.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9665,
+        "true_class_prob": 0.9665,
+        "all_probs": {
+          "Alluvial": 0.9665,
+          "Black": 0.0012,
+          "Clay": 0.0178,
+          "Red": 0.0144
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8352,
+        "true_class_prob": 0.8352,
+        "all_probs": {
+          "Alluvial": 0.8352,
+          "Black": 0.0002,
+          "Clay": 0.0004,
+          "Red": 0.1643
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 347,
+        "height": 280,
+        "mean_rgb": [
+          177.48,
+          168.06,
+          154.53
+        ],
+        "std_rgb": [
+          24.36,
+          26.09,
+          29.09
+        ],
+        "mean_lum": 169.3,
+        "contrast_lum": 25.85,
+        "mean_hsv": [
+          23.25,
+          33.53,
+          177.48
+        ],
+        "sharpness_var": 1515.73
+      }
+    },
+    {
+      "index": 52,
+      "filename": "black_0003.jpg",
+      "relative_path": "Black/black_0003.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.8606,
+        "true_class_prob": 0.8606,
+        "all_probs": {
+          "Alluvial": 0.0117,
+          "Black": 0.8606,
+          "Clay": 0.001,
+          "Red": 0.1267
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.8295,
+        "true_class_prob": 0.8295,
+        "all_probs": {
+          "Alluvial": 0.0064,
+          "Black": 0.8295,
+          "Clay": 0.0013,
+          "Red": 0.1628
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 265,
+        "height": 190,
+        "mean_rgb": [
+          57.0,
+          49.84,
+          44.18
+        ],
+        "std_rgb": [
+          55.34,
+          56.6,
+          57.89
+        ],
+        "mean_lum": 51.2,
+        "contrast_lum": 56.36,
+        "mean_hsv": [
+          18.16,
+          84.69,
+          57.0
+        ],
+        "sharpness_var": 2288.39
+      }
+    },
+    {
+      "index": 53,
+      "filename": "clay_0090.jpeg",
+      "relative_path": "Clay/clay_0090.jpeg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9061,
+        "true_class_prob": 0.078,
+        "all_probs": {
+          "Alluvial": 0.9061,
+          "Black": 0.0068,
+          "Clay": 0.078,
+          "Red": 0.009
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9308,
+        "true_class_prob": 0.0644,
+        "all_probs": {
+          "Alluvial": 0.9308,
+          "Black": 0.0009,
+          "Clay": 0.0644,
+          "Red": 0.0038
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 100,
+        "height": 100,
+        "mean_rgb": [
+          193.53,
+          174.93,
+          156.05
+        ],
+        "std_rgb": [
+          46.83,
+          49.22,
+          49.87
+        ],
+        "mean_lum": 178.33,
+        "contrast_lum": 48.43,
+        "mean_hsv": [
+          23.12,
+          55.12,
+          193.58
+        ],
+        "sharpness_var": 6962.49
+      }
+    },
+    {
+      "index": 54,
+      "filename": "alluvial_0235.jpg",
+      "relative_path": "Alluvial/alluvial_0235.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9888,
+        "true_class_prob": 0.9888,
+        "all_probs": {
+          "Alluvial": 0.9888,
+          "Black": 0.0012,
+          "Clay": 0.0082,
+          "Red": 0.0018
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.991,
+        "true_class_prob": 0.991,
+        "all_probs": {
+          "Alluvial": 0.991,
+          "Black": 0.0003,
+          "Clay": 0.0054,
+          "Red": 0.0032
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 1160,
+        "height": 522,
+        "mean_rgb": [
+          167.13,
+          159.49,
+          123.72
+        ],
+        "std_rgb": [
+          22.45,
+          22.41,
+          21.61
+        ],
+        "mean_lum": 157.63,
+        "contrast_lum": 22.29,
+        "mean_hsv": [
+          34.51,
+          67.02,
+          167.14
+        ],
+        "sharpness_var": 2548.67
+      }
+    },
+    {
+      "index": 55,
+      "filename": "black_0023.jpg",
+      "relative_path": "Black/black_0023.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.7541,
+        "true_class_prob": 0.7541,
+        "all_probs": {
+          "Alluvial": 0.2053,
+          "Black": 0.7541,
+          "Clay": 0.0029,
+          "Red": 0.0378
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8822,
+        "true_class_prob": 0.0595,
+        "all_probs": {
+          "Alluvial": 0.8822,
+          "Black": 0.0595,
+          "Clay": 0.0115,
+          "Red": 0.0468
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 265,
+        "height": 190,
+        "mean_rgb": [
+          115.88,
+          85.1,
+          70.88
+        ],
+        "std_rgb": [
+          41.16,
+          48.07,
+          51.57
+        ],
+        "mean_lum": 92.69,
+        "contrast_lum": 46.28,
+        "mean_hsv": [
+          11.87,
+          110.89,
+          115.88
+        ],
+        "sharpness_var": 2834.47
+      }
+    },
+    {
+      "index": 56,
+      "filename": "clay_0045.jpg",
+      "relative_path": "Clay/clay_0045.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.6049,
+        "true_class_prob": 0.3811,
+        "all_probs": {
+          "Alluvial": 0.6049,
+          "Black": 0.009,
+          "Clay": 0.3811,
+          "Red": 0.005
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8926,
+        "true_class_prob": 0.1057,
+        "all_probs": {
+          "Alluvial": 0.8926,
+          "Black": 0.0009,
+          "Clay": 0.1057,
+          "Red": 0.0008
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 500,
+        "height": 500,
+        "mean_rgb": [
+          132.8,
+          120.25,
+          105.03
+        ],
+        "std_rgb": [
+          62.62,
+          57.97,
+          51.61
+        ],
+        "mean_lum": 122.26,
+        "contrast_lum": 58.56,
+        "mean_hsv": [
+          36.42,
+          58.03,
+          133.28
+        ],
+        "sharpness_var": 3684.92
+      }
+    },
+    {
+      "index": 57,
+      "filename": "alluvial_0261.jpg",
+      "relative_path": "Alluvial/alluvial_0261.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9264,
+        "true_class_prob": 0.9264,
+        "all_probs": {
+          "Alluvial": 0.9264,
+          "Black": 0.0245,
+          "Clay": 0.0078,
+          "Red": 0.0414
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9424,
+        "true_class_prob": 0.9424,
+        "all_probs": {
+          "Alluvial": 0.9424,
+          "Black": 0.0023,
+          "Clay": 0.0047,
+          "Red": 0.0507
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          20.75,
+          16.15,
+          12.87
+        ],
+        "std_rgb": [
+          38.35,
+          30.52,
+          25.02
+        ],
+        "mean_lum": 17.15,
+        "contrast_lum": 32.19,
+        "mean_hsv": [
+          5.85,
+          28.41,
+          20.77
+        ],
+        "sharpness_var": 497.98
+      }
+    },
+    {
+      "index": 58,
+      "filename": "red_0132.jpg",
+      "relative_path": "Red/red_0132.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.6004,
+        "true_class_prob": 0.3909,
+        "all_probs": {
+          "Alluvial": 0.0085,
+          "Black": 0.6004,
+          "Clay": 0.0001,
+          "Red": 0.3909
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.379,
+        "true_class_prob": 0.379,
+        "all_probs": {
+          "Alluvial": 0.238,
+          "Black": 0.3748,
+          "Clay": 0.0082,
+          "Red": 0.379
+        },
+        "is_correct": true
+      },
+      "group": "v2_correct_v1_incorrect",
+      "group_label": "Group 4: V2 Correct, V1 Incorrect (V2 Wins)",
+      "features": {
+        "width": 100,
+        "height": 100,
+        "mean_rgb": [
+          177.47,
+          102.15,
+          101.21
+        ],
+        "std_rgb": [
+          36.74,
+          48.86,
+          48.97
+        ],
+        "mean_lum": 124.59,
+        "contrast_lum": 44.51,
+        "mean_hsv": [
+          63.52,
+          117.01,
+          177.49
+        ],
+        "sharpness_var": 14413.96
+      }
+    },
+    {
+      "index": 59,
+      "filename": "red_0138.jpg",
+      "relative_path": "Red/red_0138.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.8587,
+        "true_class_prob": 0.8587,
+        "all_probs": {
+          "Alluvial": 0.0011,
+          "Black": 0.1342,
+          "Clay": 0.006,
+          "Red": 0.8587
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.3582,
+        "true_class_prob": 0.2904,
+        "all_probs": {
+          "Alluvial": 0.0577,
+          "Black": 0.2938,
+          "Clay": 0.3582,
+          "Red": 0.2904
+        },
+        "is_correct": false
+      },
+      "group": "v1_correct_v2_incorrect",
+      "group_label": "Group 3: V1 Correct, V2 Incorrect (V1 Wins)",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          168.71,
+          114.68,
+          101.49
+        ],
+        "std_rgb": [
+          18.68,
+          17.65,
+          17.35
+        ],
+        "mean_lum": 129.31,
+        "contrast_lum": 17.85,
+        "mean_hsv": [
+          7.85,
+          102.31,
+          168.71
+        ],
+        "sharpness_var": 2033.26
+      }
+    },
+    {
+      "index": 60,
+      "filename": "alluvial_0183.jpg",
+      "relative_path": "Alluvial/alluvial_0183.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9783,
+        "true_class_prob": 0.9783,
+        "all_probs": {
+          "Alluvial": 0.9783,
+          "Black": 0.0077,
+          "Clay": 0.0028,
+          "Red": 0.0111
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9877,
+        "true_class_prob": 0.9877,
+        "all_probs": {
+          "Alluvial": 0.9877,
+          "Black": 0.0032,
+          "Clay": 0.0017,
+          "Red": 0.0075
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 1160,
+        "height": 522,
+        "mean_rgb": [
+          193.57,
+          175.93,
+          131.22
+        ],
+        "std_rgb": [
+          36.46,
+          36.3,
+          34.89
+        ],
+        "mean_lum": 176.13,
+        "contrast_lum": 36.11,
+        "mean_hsv": [
+          30.37,
+          84.91,
+          193.66
+        ],
+        "sharpness_var": 4085.64
+      }
+    },
+    {
+      "index": 61,
+      "filename": "red_0046.jpg",
+      "relative_path": "Red/red_0046.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.596,
+        "true_class_prob": 0.3597,
+        "all_probs": {
+          "Alluvial": 0.0425,
+          "Black": 0.596,
+          "Clay": 0.0019,
+          "Red": 0.3597
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.6888,
+        "true_class_prob": 0.6888,
+        "all_probs": {
+          "Alluvial": 0.005,
+          "Black": 0.2936,
+          "Clay": 0.0125,
+          "Red": 0.6888
+        },
+        "is_correct": true
+      },
+      "group": "v2_correct_v1_incorrect",
+      "group_label": "Group 4: V2 Correct, V1 Incorrect (V2 Wins)",
+      "features": {
+        "width": 193,
+        "height": 262,
+        "mean_rgb": [
+          138.47,
+          78.57,
+          61.31
+        ],
+        "std_rgb": [
+          67.72,
+          71.22,
+          69.74
+        ],
+        "mean_lum": 94.52,
+        "contrast_lum": 68.63,
+        "mean_hsv": [
+          14.69,
+          170.42,
+          138.61
+        ],
+        "sharpness_var": 13784.53
+      }
+    },
+    {
+      "index": 62,
+      "filename": "alluvial_0181.jpg",
+      "relative_path": "Alluvial/alluvial_0181.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9574,
+        "true_class_prob": 0.9574,
+        "all_probs": {
+          "Alluvial": 0.9574,
+          "Black": 0.0087,
+          "Clay": 0.0257,
+          "Red": 0.0082
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9361,
+        "true_class_prob": 0.9361,
+        "all_probs": {
+          "Alluvial": 0.9361,
+          "Black": 0.017,
+          "Clay": 0.0347,
+          "Red": 0.0123
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 1160,
+        "height": 522,
+        "mean_rgb": [
+          190.43,
+          175.6,
+          131.76
+        ],
+        "std_rgb": [
+          38.54,
+          38.63,
+          37.0
+        ],
+        "mean_lum": 175.12,
+        "contrast_lum": 38.38,
+        "mean_hsv": [
+          31.29,
+          81.78,
+          190.43
+        ],
+        "sharpness_var": 3905.13
+      }
+    },
+    {
+      "index": 63,
+      "filename": "red_0100.png",
+      "relative_path": "Red/red_0100.png",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.8553,
+        "true_class_prob": 0.8553,
+        "all_probs": {
+          "Alluvial": 0.1329,
+          "Black": 0.0012,
+          "Clay": 0.0106,
+          "Red": 0.8553
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.7069,
+        "true_class_prob": 0.7069,
+        "all_probs": {
+          "Alluvial": 0.2929,
+          "Black": 0.0001,
+          "Clay": 0.0001,
+          "Red": 0.7069
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 500,
+        "height": 500,
+        "mean_rgb": [
+          167.34,
+          94.16,
+          49.01
+        ],
+        "std_rgb": [
+          44.11,
+          34.19,
+          36.42
+        ],
+        "mean_lum": 110.92,
+        "contrast_lum": 32.65,
+        "mean_hsv": [
+          22.95,
+          178.64,
+          169.32
+        ],
+        "sharpness_var": 725.39
+      }
+    },
+    {
+      "index": 64,
+      "filename": "red_0078.jpg",
+      "relative_path": "Red/red_0078.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.8762,
+        "true_class_prob": 0.8762,
+        "all_probs": {
+          "Alluvial": 0.044,
+          "Black": 0.0465,
+          "Clay": 0.0332,
+          "Red": 0.8762
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.8011,
+        "true_class_prob": 0.8011,
+        "all_probs": {
+          "Alluvial": 0.1809,
+          "Black": 0.0049,
+          "Clay": 0.0131,
+          "Red": 0.8011
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 184,
+        "height": 274,
+        "mean_rgb": [
+          144.38,
+          81.21,
+          72.39
+        ],
+        "std_rgb": [
+          46.88,
+          53.33,
+          48.94
+        ],
+        "mean_lum": 99.11,
+        "contrast_lum": 49.99,
+        "mean_hsv": [
+          43.72,
+          138.71,
+          144.38
+        ],
+        "sharpness_var": 2703.36
+      }
+    },
+    {
+      "index": 65,
+      "filename": "black_0082.jpg",
+      "relative_path": "Black/black_0082.jpg",
+      "true_class": "Black",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.9305,
+        "true_class_prob": 0.9305,
+        "all_probs": {
+          "Alluvial": 0.0209,
+          "Black": 0.9305,
+          "Clay": 0.0013,
+          "Red": 0.0473
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.9228,
+        "true_class_prob": 0.9228,
+        "all_probs": {
+          "Alluvial": 0.0397,
+          "Black": 0.9228,
+          "Clay": 0.007,
+          "Red": 0.0305
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 216,
+        "height": 233,
+        "mean_rgb": [
+          75.4,
+          61.08,
+          51.79
+        ],
+        "std_rgb": [
+          53.41,
+          55.46,
+          56.6
+        ],
+        "mean_lum": 64.3,
+        "contrast_lum": 54.86,
+        "mean_hsv": [
+          19.42,
+          106.16,
+          75.45
+        ],
+        "sharpness_var": 3888.75
+      }
+    },
+    {
+      "index": 66,
+      "filename": "clay_0021.jpg",
+      "relative_path": "Clay/clay_0021.jpg",
+      "true_class": "Clay",
+      "v1": {
+        "pred_class": "Clay",
+        "confidence": 0.8616,
+        "true_class_prob": 0.8616,
+        "all_probs": {
+          "Alluvial": 0.1205,
+          "Black": 0.0061,
+          "Clay": 0.8616,
+          "Red": 0.0118
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Clay",
+        "confidence": 0.9992,
+        "true_class_prob": 0.9992,
+        "all_probs": {
+          "Alluvial": 0.0005,
+          "Black": 0.0003,
+          "Clay": 0.9992,
+          "Red": 0.0001
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 275,
+        "height": 183,
+        "mean_rgb": [
+          204.63,
+          196.83,
+          161.89
+        ],
+        "std_rgb": [
+          62.59,
+          62.17,
+          58.54
+        ],
+        "mean_lum": 195.17,
+        "contrast_lum": 61.67,
+        "mean_hsv": [
+          34.61,
+          63.75,
+          204.67
+        ],
+        "sharpness_var": 23911.48
+      }
+    },
+    {
+      "index": 67,
+      "filename": "red_0081.jpg",
+      "relative_path": "Red/red_0081.jpg",
+      "true_class": "Red",
+      "v1": {
+        "pred_class": "Red",
+        "confidence": 0.8978,
+        "true_class_prob": 0.8978,
+        "all_probs": {
+          "Alluvial": 0.0018,
+          "Black": 0.1003,
+          "Clay": 0.0001,
+          "Red": 0.8978
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Red",
+        "confidence": 0.9768,
+        "true_class_prob": 0.9768,
+        "all_probs": {
+          "Alluvial": 0.0001,
+          "Black": 0.023,
+          "Clay": 0.0,
+          "Red": 0.9768
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 260,
+        "height": 194,
+        "mean_rgb": [
+          117.02,
+          37.15,
+          37.67
+        ],
+        "std_rgb": [
+          43.65,
+          27.8,
+          27.89
+        ],
+        "mean_lum": 61.09,
+        "contrast_lum": 30.05,
+        "mean_hsv": [
+          111.8,
+          170.86,
+          117.04
+        ],
+        "sharpness_var": 10932.7
+      }
+    },
+    {
+      "index": 68,
+      "filename": "alluvial_0229.jpg",
+      "relative_path": "Alluvial/alluvial_0229.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9788,
+        "true_class_prob": 0.9788,
+        "all_probs": {
+          "Alluvial": 0.9788,
+          "Black": 0.011,
+          "Clay": 0.0067,
+          "Red": 0.0035
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9609,
+        "true_class_prob": 0.9609,
+        "all_probs": {
+          "Alluvial": 0.9609,
+          "Black": 0.0069,
+          "Clay": 0.0105,
+          "Red": 0.0216
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 1160,
+        "height": 522,
+        "mean_rgb": [
+          180.1,
+          163.49,
+          119.11
+        ],
+        "std_rgb": [
+          27.1,
+          27.04,
+          26.65
+        ],
+        "mean_lum": 163.41,
+        "contrast_lum": 26.98,
+        "mean_hsv": [
+          30.47,
+          88.11,
+          180.1
+        ],
+        "sharpness_var": 4125.52
+      }
+    },
+    {
+      "index": 69,
+      "filename": "alluvial_0270.jpg",
+      "relative_path": "Alluvial/alluvial_0270.jpg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Alluvial",
+        "confidence": 0.8217,
+        "true_class_prob": 0.8217,
+        "all_probs": {
+          "Alluvial": 0.8217,
+          "Black": 0.0253,
+          "Clay": 0.0252,
+          "Red": 0.1278
+        },
+        "is_correct": true
+      },
+      "v2": {
+        "pred_class": "Alluvial",
+        "confidence": 0.9917,
+        "true_class_prob": 0.9917,
+        "all_probs": {
+          "Alluvial": 0.9917,
+          "Black": 0.0004,
+          "Clay": 0.005,
+          "Red": 0.0029
+        },
+        "is_correct": true
+      },
+      "group": "both_correct",
+      "group_label": "Group 1: Both Correct",
+      "features": {
+        "width": 728,
+        "height": 728,
+        "mean_rgb": [
+          17.7,
+          14.82,
+          12.32
+        ],
+        "std_rgb": [
+          44.61,
+          37.91,
+          31.9
+        ],
+        "mean_lum": 15.39,
+        "contrast_lum": 39.19,
+        "mean_hsv": [
+          3.99,
+          14.54,
+          17.71
+        ],
+        "sharpness_var": 587.89
+      }
+    },
+    {
+      "index": 70,
+      "filename": "alluvial_0037.jpeg",
+      "relative_path": "Alluvial/alluvial_0037.jpeg",
+      "true_class": "Alluvial",
+      "v1": {
+        "pred_class": "Black",
+        "confidence": 0.7744,
+        "true_class_prob": 0.2011,
+        "all_probs": {
+          "Alluvial": 0.2011,
+          "Black": 0.7744,
+          "Clay": 0.0025,
+          "Red": 0.022
+        },
+        "is_correct": false
+      },
+      "v2": {
+        "pred_class": "Black",
+        "confidence": 0.6911,
+        "true_class_prob": 0.2958,
+        "all_probs": {
+          "Alluvial": 0.2958,
+          "Black": 0.6911,
+          "Clay": 0.0025,
+          "Red": 0.0106
+        },
+        "is_correct": false
+      },
+      "group": "both_incorrect",
+      "group_label": "Group 2: Both Incorrect",
+      "features": {
+        "width": 100,
+        "height": 100,
+        "mean_rgb": [
+          123.38,
+          109.06,
+          80.16
+        ],
+        "std_rgb": [
+          41.34,
+          44.93,
+          41.98
+        ],
+        "mean_lum": 110.07,
+        "contrast_lum": 43.21,
+        "mean_hsv": [
+          27.93,
+          98.44,
+          124.55
+        ],
+        "sharpness_var": 4050.86
+      }
+    }
+  ]
+}

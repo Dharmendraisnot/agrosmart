@@ -23,13 +23,37 @@ ADEQUATE      = 60.0   # Monitor
 HIGH          = 75.0   # No irrigation needed
 
 # ── Soil type drainage modifiers ──────────────────────────────────────────────
-# Sandy drains fast → effective moisture is lower than measured
-# Clay retains water → effective moisture is higher than measured
+# Hydraulic texture categories (USDA particle-size):
+#   Sandy drains fast → effective moisture lower than measured
+#   Clay retains water → effective moisture higher than measured
+#
+# Pedological soil categories (MobileNetV2 visual CNN classes):
+#   IMPORTANT AGRONOMIC NOTE:
+#   Visual CNN soil labels (Alluvial, Black, Clay, Red) represent genetic/regional
+#   pedological groups and surface coloration, NOT exact laboratory mechanical
+#   particle-size measurements.
+#   - Clay / Clayey: Directly represents heavy textural clay (+8.0%).
+#   - Black (Vertisol): High in montmorillonite shrink-swell clay minerals; possesses
+#     high field capacity and slow percolation. Heuristically mapped to +6.0%.
+#   - Red (Alfisol/Ultisol): Well-drained, porous, typically coarse/sandy loam in
+#     upper profile; faster drainage. Heuristically mapped to -4.0%.
+#   - Alluvial (Entisol/Inceptisol): Fluvial deposits with high textural heterogeneity
+#     (ranging from coarse sandy riverbeds to dense floodplain silt/clay). Visual
+#     color alone cannot determine texture; defaults safely to neutral Loamy baseline
+#     (0.0%) unless a confirmed mechanical texture is provided.
+#
+# Unrecognized or None labels safely fall back to neutral Loamy baseline (0.0%).
 _SOIL_MODIFIER = {
-    "Sandy": -8.0,
-    "Loamy":  0.0,   # baseline
-    "Silty": +3.0,
-    "Clay":  +8.0,
+    # Hydraulic textures (USDA)
+    "Sandy":    -8.0,
+    "Loamy":     0.0,   # baseline
+    "Silty":    +3.0,
+    "Clay":     +8.0,
+    "Clayey":   +8.0,
+    # Pedological categories (MobileNetV2 visual CNN classes)
+    "Black":    +6.0,   # Vertisol/Regur high clay content heuristic
+    "Red":      -4.0,   # Alfisol well-drained / coarse loam heuristic
+    "Alluvial":  0.0,   # Fluvial neutral baseline (requires textural test for specific offset)
 }
 
 # ── Crop water requirement tiers ──────────────────────────────────────────────
@@ -55,10 +79,28 @@ _CROP_WATER_TIER: dict[str, str] = {
 _TIER_ADJUST = {"high": +5.0, "medium": 0.0, "low": -5.0}
 
 
+def _resolve_soil_modifier(soil_texture: str | None = None,
+                           soil_type: str | None = None) -> float:
+    """
+    Resolve hydraulic drainage modifier from confirmed texture or visual soil type.
+
+    Precedence:
+      1. Confirmed mechanical soil texture (e.g. "Sandy", "Clay", "Loamy")
+      2. Pedological CNN soil type (e.g. "Black", "Red", "Alluvial", "Clay")
+      3. Safe neutral default (0.0% — Loamy baseline)
+    """
+    candidate = soil_texture or soil_type
+    if not candidate:
+        return 0.0
+    normalized = candidate.strip().capitalize()
+    return _SOIL_MODIFIER.get(normalized, 0.0)
+
+
 def _effective_moisture(moisture: float, soil_type: str | None,
-                        crop: str | None) -> float:
-    """Apply soil-type and crop-tier adjustments to raw moisture %."""
-    soil_adj = _SOIL_MODIFIER.get(soil_type or "Loamy", 0.0)
+                        crop: str | None,
+                        soil_texture: str | None = None) -> float:
+    """Apply soil-type/texture and crop-tier adjustments to raw moisture %."""
+    soil_adj = _resolve_soil_modifier(soil_texture=soil_texture, soil_type=soil_type)
     tier      = _CROP_WATER_TIER.get((crop or "").lower(), "medium")
     crop_adj  = _TIER_ADJUST[tier]
     return moisture + soil_adj - crop_adj   # note: crop adjust adds demand
@@ -76,14 +118,17 @@ def _temperature_warning(air_temp: float | None) -> str | None:
 
 
 def generate_irrigation_advice(sensor: dict, soil_type: str | None = None,
-                                top_crop: str | None = None) -> dict:
+                                top_crop: str | None = None,
+                                soil_texture: str | None = None) -> dict:
     """
     Generate irrigation advice from sensor readings.
 
     Args:
-        sensor:    sensor reading dict (moisture, air_temperature, etc.)
-        soil_type: CNN-predicted soil type (optional — defaults to Loamy)
-        top_crop:  top-1 crop recommendation (optional)
+        sensor:       sensor reading dict (moisture, air_temperature, etc.)
+        soil_type:    CNN-predicted or heuristic soil type (e.g. Alluvial, Black, Clay, Red)
+        top_crop:     top-1 crop recommendation (optional)
+        soil_texture: confirmed physical soil texture (e.g. Sandy, Loamy, Silty, Clay)
+                      which overrides visual pedological soil_type if provided.
 
     Returns:
         {
@@ -113,7 +158,7 @@ def generate_irrigation_advice(sensor: dict, soil_type: str | None = None,
             "reasoning":         "Moisture reading was NULL — cannot determine irrigation need.",
         }
 
-    eff = _effective_moisture(raw_moisture, soil_type, top_crop)
+    eff = _effective_moisture(raw_moisture, soil_type, top_crop, soil_texture=soil_texture)
     temp_note = _temperature_warning(air_temp)
 
     # Decision table

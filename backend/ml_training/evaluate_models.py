@@ -19,6 +19,7 @@ NOTE: Evaluation metrics are computed fresh each run against real test data.
 from __future__ import annotations
 
 import sys
+import json
 import argparse
 import logging
 from pathlib import Path
@@ -155,53 +156,161 @@ def evaluate_fertilizer_model() -> None:
 
 # ── CNN evaluation ────────────────────────────────────────────────────────────
 
-def evaluate_cnn_model() -> None:
-    model_path   = MODELS_DIR / "soil_cnn_v1.h5"
-    classes_path = MODELS_DIR / "soil_cnn_classes.pkl"
-    images_dir   = DATASETS_DIR / "soil_images"
+def evaluate_cnn_model(
+    split: str = "test",
+    splits_file: Path | None = None,
+    clean_dir: Path | None = None,
+    model_path: Path | None = None,
+    classes_path: Path | None = None,
+) -> dict | None:
+    """
+    Evaluates the saved MobileNetV2 CNN model against the clean dataset and official splits.
+
+    Loads images strictly from: ml_training/datasets/soil_images_clean/
+    Uses official split metadata: trained_models/soil_cnn_splits_v2.json
+    Applies deterministic MobileNetV2 preprocessing ([-1.0, 1.0]) with zero augmentation.
+    """
+    if model_path is None:
+        model_path = MODELS_DIR / "soil_cnn_v1.h5"
+    else:
+        model_path = Path(model_path)
+
+    if classes_path is None:
+        classes_path = MODELS_DIR / "soil_cnn_classes.pkl"
+    else:
+        classes_path = Path(classes_path)
+
+    if splits_file is None:
+        splits_file = MODELS_DIR / "soil_cnn_splits_v2.json"
+        if not splits_file.exists():
+            splits_file = MODELS_DIR / "soil_cnn_splits.json"
+            logger.warning("soil_cnn_splits_v2.json not found — falling back to %s", splits_file)
+
+    if clean_dir is None:
+        clean_dir = DATASETS_DIR / "soil_images_clean"
+        if not clean_dir.exists():
+            clean_dir = DATASETS_DIR / "soil_images"
+            logger.warning("soil_images_clean not found — falling back to %s", clean_dir)
 
     if not model_path.exists():
         logger.warning("CNN model not found at %s — skipping.", model_path)
-        return
-    if not images_dir.exists():
-        logger.warning("Soil images not found at %s — skipping.", images_dir)
-        return
+        return None
+    if not splits_file.exists():
+        logger.warning("Split file not found at %s — skipping.", splits_file)
+        return None
 
     try:
         import tensorflow as tf
-        from tensorflow.keras.preprocessing.image import ImageDataGenerator
-    except ImportError:
-        logger.warning("TensorFlow not installed — skipping CNN evaluation.")
-        return
+        from PIL import Image
+        from sklearn.metrics import (
+            accuracy_score, precision_score, recall_score,
+            f1_score, confusion_matrix, classification_report
+        )
+    except ImportError as exc:
+        logger.warning("Required ML libraries not installed (%s) — skipping CNN evaluation.", exc)
+        return None
 
     logger.info("=" * 60)
-    logger.info("SOIL IMAGE CNN MODEL  (soil_cnn_v1.h5)")
+    logger.info("SOIL IMAGE CNN MODEL  (%s)", model_path.name)
+    logger.info("Splits metadata : %s", splits_file.name)
+    logger.info("Image source    : %s", clean_dir.name)
+    logger.info("Target split    : %s", split.upper())
     logger.info("=" * 60)
 
     classes = joblib.load(classes_path)
-    model   = tf.keras.models.load_model(str(model_path))
+    class_to_idx = {c: i for i, c in enumerate(classes)}
 
-    from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+    with open(splits_file, "r", encoding="utf-8") as f:
+        splits_data = json.load(f)
 
-    datagen = ImageDataGenerator(
-        preprocessing_function=preprocess_input,
-        validation_split=0.2,
-    )
-    val_gen = datagen.flow_from_directory(
-        images_dir,
-        target_size=(224, 224),
-        batch_size=32,
-        class_mode="categorical",
-        subset="validation",
-        seed=42,
-        classes=classes,
-    )
+    # Cross-split overlap integrity check
+    train_paths = set(item.get("relative_path", item.get("filepath")) for item in splits_data.get("train_files", []))
+    val_paths   = set(item.get("relative_path", item.get("filepath")) for item in splits_data.get("val_files", []))
+    test_paths  = set(item.get("relative_path", item.get("filepath")) for item in splits_data.get("test_files", []))
 
-    val_loss, val_acc = model.evaluate(val_gen, verbose=0)
-    logger.info("Classes       : %s", classes)
-    logger.info("Val accuracy  : %.4f  (%.1f%%)", val_acc, val_acc * 100)
-    logger.info("Val loss      : %.4f", val_loss)
-    logger.info("Parameters    : %d", model.count_params())
+    if train_paths and test_paths:
+        assert len(train_paths & test_paths) == 0, "Data leakage detected: overlap between train and test splits!"
+    if train_paths and val_paths:
+        assert len(train_paths & val_paths) == 0, "Data leakage detected: overlap between train and val splits!"
+    if val_paths and test_paths:
+        assert len(val_paths & test_paths) == 0, "Data leakage detected: overlap between val and test splits!"
+
+    # Select target split list
+    split_key = f"{split.lower()}_files"
+    if split_key not in splits_data:
+        raise ValueError(f"Unknown split '{split}'. Available: train, val, test")
+
+    target_files = splits_data[split_key]
+    if len(target_files) == 0:
+        raise ValueError(f"Target split '{split}' is empty in {splits_file}")
+
+    # Load and preprocess all target images deterministically
+    images = []
+    y_true = []
+    skipped_count = 0
+
+    for item in target_files:
+        rel_p = item.get("relative_path")
+        if rel_p and (clean_dir / rel_p).exists():
+            img_path = clean_dir / rel_p
+        elif Path(item["filepath"]).exists():
+            img_path = Path(item["filepath"])
+        else:
+            raise FileNotFoundError(f"Split image missing from disk: {item.get('filepath') or rel_p}")
+
+        label = item["label"]
+        if label not in class_to_idx:
+            raise ValueError(f"Unknown label '{label}' in split item (valid classes: {classes})")
+
+        with Image.open(img_path) as img:
+            rgb_img = img.convert("RGB").resize((224, 224), Image.Resampling.LANCZOS)
+            arr = (np.array(rgb_img, dtype=np.float32) / 127.5) - 1.0
+            images.append(arr)
+        y_true.append(class_to_idx[label])
+
+    model = tf.keras.models.load_model(str(model_path))
+    x = np.array(images, dtype=np.float32)
+    preds = model.predict(x, verbose=0)
+    y_pred = np.argmax(preds, axis=1)
+
+    # Loss calculation
+    y_one_hot = tf.keras.utils.to_categorical(y_true, num_classes=len(classes))
+    loss = float(tf.keras.losses.categorical_crossentropy(y_one_hot, preds).numpy().mean())
+
+    acc = float(accuracy_score(y_true, y_pred))
+    prec_macro = float(precision_score(y_true, y_pred, average="macro", zero_division=0))
+    rec_macro = float(recall_score(y_true, y_pred, average="macro", zero_division=0))
+    f1_macro = float(f1_score(y_true, y_pred, average="macro", zero_division=0))
+    f1_weighted = float(f1_score(y_true, y_pred, average="weighted", zero_division=0))
+    cm = confusion_matrix(y_true, y_pred, labels=range(len(classes)))
+    report = classification_report(y_true, y_pred, target_names=classes, output_dict=True)
+
+    logger.info("Split evaluated: %s (n=%d, skipped=%d)", split.upper(), len(target_files), skipped_count)
+    logger.info("Loss           : %.4f", loss)
+    logger.info("Accuracy       : %.4f (%.2f%%)", acc, acc * 100)
+    logger.info("Macro Precision: %.4f", prec_macro)
+    logger.info("Macro Recall   : %.4f", rec_macro)
+    logger.info("Macro F1-Score : %.4f", f1_macro)
+    logger.info("Weighted F1    : %.4f", f1_weighted)
+    logger.info("\nClassification Report:\n%s", classification_report(y_true, y_pred, target_names=classes))
+    logger.info("\nConfusion Matrix (%s):\n%s", classes, cm)
+
+    return {
+        "split": split,
+        "splits_file": str(splits_file),
+        "clean_dir": str(clean_dir),
+        "total_evaluated": len(target_files),
+        "total_skipped": skipped_count,
+        "classes": classes,
+        "loss": loss,
+        "accuracy": acc,
+        "macro_precision": prec_macro,
+        "macro_recall": rec_macro,
+        "macro_f1": f1_macro,
+        "weighted_f1": f1_weighted,
+        "confusion_matrix": cm.tolist(),
+        "classification_report": report,
+    }
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -213,6 +322,12 @@ def main() -> None:
         choices=["crop", "fertilizer", "cnn", "all"],
         default="all",
     )
+    parser.add_argument(
+        "--split",
+        choices=["train", "val", "test", "all"],
+        default="test",
+        help="Split to evaluate for CNN (default: test)",
+    )
     args = parser.parse_args()
 
     logger.info("AgroSmart — Model Evaluation Report")
@@ -223,7 +338,13 @@ def main() -> None:
     if args.model in ("fertilizer", "all"):
         evaluate_fertilizer_model()
     if args.model in ("cnn", "all"):
-        evaluate_cnn_model()
+        if args.split == "all":
+            logger.info("\n>>> Evaluating Validation Split:")
+            evaluate_cnn_model(split="val")
+            logger.info("\n>>> Evaluating Held-Out Test Split:")
+            evaluate_cnn_model(split="test")
+        else:
+            evaluate_cnn_model(split=args.split)
 
     logger.info("Evaluation complete.")
 

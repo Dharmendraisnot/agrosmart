@@ -4,6 +4,7 @@
  */
 import { useState, useRef } from 'react'
 import { uploadImage } from '../../services/api'
+import { getErrorMessage } from '../../utils/errors'
 import { Upload, Image as ImageIcon, CheckCircle, AlertCircle, Info, X } from 'lucide-react'
 
 export default function ImageUpload({ onResult, onClear }) {
@@ -27,7 +28,7 @@ export default function ImageUpload({ onResult, onClear }) {
       setResult(data)
       if (onResult) onResult(data)
     } catch (err) {
-      setError(err?.response?.data?.error || err?.response?.data?.detail || 'Upload failed')
+      setError(getErrorMessage(err, 'Soil image upload failed. Please try again.'))
     } finally {
       setUploading(false)
     }

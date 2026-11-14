@@ -9,7 +9,7 @@
  *   └──────────┴───────────────────────────────┘
  */
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 
 import Sidebar     from './components/layout/Sidebar'
 import Navbar      from './components/layout/Navbar'
@@ -33,10 +33,10 @@ const PAGE_TITLES = {
 
 function AppLayout() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
 
-  // Determine current title from URL
-  const path   = window.location.pathname
-  const title  = PAGE_TITLES[path] || 'AgroSmart'
+  // Determine current title reactively from active route location
+  const title = PAGE_TITLES[location.pathname] || 'AgroSmart'
 
   return (
     <div className="flex min-h-screen bg-gray-50">

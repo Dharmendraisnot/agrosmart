@@ -4,6 +4,7 @@
  */
 import { useEffect, useRef } from 'react'
 import { getLatestReading } from '../services/api'
+import { getErrorMessage } from '../utils/errors'
 import useSensorStore from '../store/sensorStore'
 
 const POLL_INTERVAL_MS = 10_000
@@ -17,7 +18,7 @@ export function useSensorData() {
       const { data } = await getLatestReading()
       setReading(data)
     } catch (err) {
-      setError(err?.response?.data?.error || err.message || 'Connection failed')
+      setError(getErrorMessage(err, 'Failed to fetch sensor reading.'))
     }
   }
 

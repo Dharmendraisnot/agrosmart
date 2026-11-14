@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "model_artifact": "backend/trained_models/soil_cnn_v1.h5",
+    "model_classes": [
+      "Alluvial",
+      "Black",
+      "Clay",
+      "Red"
+    ],
+    "splits_file": "backend/trained_models/soil_cnn_splits_v2.json",
+    "clean_dataset_dir": "backend/ml_training/datasets/soil_images_clean",
+    "note": "Evaluation performed using existing CNN weights (soil_cnn_v1.h5). No weights were modified or retrained."
+  },
+  "held_out_test_evaluation": {
+    "split": "test",
+    "splits_file": "D:\\minor 1\\Agrosmart\\backend\\trained_models\\soil_cnn_splits_v2.json",
+    "clean_dir": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images_clean",
+    "total_evaluated": 71,
+    "total_skipped": 0,
+    "classes": [
+      "Alluvial",
+      "Black",
+      "Clay",
+      "Red"
+    ],
+    "loss": 0.4537127912044525,
+    "accuracy": 0.8169014084507042,
+    "macro_precision": 0.8414786967418546,
+    "macro_recall": 0.8099415204678363,
+    "macro_f1": 0.8162162162162162,
+    "weighted_f1": 0.8164446136277121,
+    "confusion_matrix": [
+      [
+        15,
+        1,
+        0,
+        3
+      ],
+      [
+        2,
+        16,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        10,
+        1
+      ],
+      [
+        0,
+        2,
+        0,
+        17
+      ]
+    ],
+    "classification_report": {
+      "Alluvial": {
+        "precision": 0.7142857142857143,
+        "recall": 0.7894736842105263,
+        "f1-score": 0.75,
+        "support": 19.0
+      },
+      "Black": {
+        "precision": 0.8421052631578947,
+        "recall": 0.8888888888888888,
+        "f1-score": 0.8648648648648649,
+        "support": 18.0
+      },
+      "Clay": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.8,
+        "support": 15.0
+      },
+      "Red": {
+        "precision": 0.8095238095238095,
+        "recall": 0.8947368421052632,
+        "f1-score": 0.85,
+        "support": 19.0
+      },
+      "accuracy": 0.8169014084507042,
+      "macro avg": {
+        "precision": 0.8414786967418546,
+        "recall": 0.8099415204678363,
+        "f1-score": 0.8162162162162162,
+        "support": 71.0
+      },
+      "weighted avg": {
+        "precision": 0.8325390942144093,
+        "recall": 0.8169014084507042,
+        "f1-score": 0.8164446136277121,
+        "support": 71.0
+      }
+    }
+  },
+  "validation_evaluation": {
+    "split": "val",
+    "splits_file": "D:\\minor 1\\Agrosmart\\backend\\trained_models\\soil_cnn_splits_v2.json",
+    "clean_dir": "D:\\minor 1\\Agrosmart\\backend\\ml_training\\datasets\\soil_images_clean",
+    "total_evaluated": 70,
+    "total_skipped": 0,
+    "classes": [
+      "Alluvial",
+      "Black",
+      "Clay",
+      "Red"
+    ],
+    "loss": 0.3451593816280365,
+    "accuracy": 0.9,
+    "macro_precision": 0.905889724310777,
+    "macro_recall": 0.9000365497076023,
+    "macro_f1": 0.898453979523589,
+    "weighted_f1": 0.8990695213106079,
+    "confusion_matrix": [
+      [
+        14,
+        3,
+        1,
+        0
+      ],
+      [
+        0,
+        17,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        14,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        18
+      ]
+    ],
+    "classification_report": {
+      "Alluvial": {
+        "precision": 0.9333333333333333,
+        "recall": 0.7777777777777778,
+        "f1-score": 0.8484848484848485,
+        "support": 18.0
+      },
+      "Black": {
+        "precision": 0.8095238095238095,
+        "recall": 1.0,
+        "f1-score": 0.8947368421052632,
+        "support": 17.0
+      },
+      "Clay": {
+        "precision": 0.9333333333333333,
+        "recall": 0.875,
+        "f1-score": 0.9032258064516129,
+        "support": 16.0
+      },
+      "Red": {
+        "precision": 0.9473684210526315,
+        "recall": 0.9473684210526315,
+        "f1-score": 0.9473684210526315,
+        "support": 19.0
+      },
+      "accuracy": 0.9,
+      "macro avg": {
+        "precision": 0.905889724310777,
+        "recall": 0.9000365497076023,
+        "f1-score": 0.898453979523589,
+        "support": 70.0
+      },
+      "weighted avg": {
+        "precision": 0.9070748299319727,
+        "recall": 0.9,
+        "f1-score": 0.8990695213106079,
+        "support": 70.0
+      }
+    }
+  }
+}

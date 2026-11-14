@@ -1,7 +1,7 @@
 # AgroSmart — Panel Presentation Guide (Slide-by-Slide)
 **B.Tech Minor Project Panel 2 Evaluation Reference Manual**
-**System Title:** AgroSmart — AI-Based Soil Analysis & Crop Recommendation System  
-**Repository Location:** `D:\minor 1\Agrosmart`  
+**System Title:** AgroSmart — AI-Based Soil Analysis & Crop Recommendation System
+**Repository Location:** `D:\minor 1\Agrosmart`
 **Team Members:**
 - Dharmendra Meena (241B616)
 - Mayur Kushwah (241B623)

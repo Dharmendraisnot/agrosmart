@@ -380,6 +380,40 @@ class TestIrrigationAdvice:
         sandy = self.gen({"moisture": 50.0}, soil_type="Sandy")
         assert sandy["effective_moisture"] < loamy["effective_moisture"]
 
+    def test_pedological_black_soil_modifier(self):
+        loamy = self.gen({"moisture": 40.0}, soil_type="Loamy")
+        black = self.gen({"moisture": 40.0}, soil_type="Black")
+        assert black["effective_moisture"] > loamy["effective_moisture"]
+        assert black["effective_moisture"] == loamy["effective_moisture"] + 6.0
+
+    def test_pedological_red_soil_modifier(self):
+        loamy = self.gen({"moisture": 40.0}, soil_type="Loamy")
+        red   = self.gen({"moisture": 40.0}, soil_type="Red")
+        assert red["effective_moisture"] < loamy["effective_moisture"]
+        assert red["effective_moisture"] == loamy["effective_moisture"] - 4.0
+
+    def test_pedological_alluvial_soil_neutral_fallback(self):
+        loamy    = self.gen({"moisture": 40.0}, soil_type="Loamy")
+        alluvial = self.gen({"moisture": 40.0}, soil_type="Alluvial")
+        assert alluvial["effective_moisture"] == loamy["effective_moisture"]
+
+    def test_confirmed_texture_overrides_pedological_type(self):
+        # Alluvial with confirmed Clay texture should get +8.0% rather than 0.0%
+        unconfirmed = self.gen({"moisture": 40.0}, soil_type="Alluvial")
+        confirmed   = self.gen({"moisture": 40.0}, soil_type="Alluvial", soil_texture="Clay")
+        assert confirmed["effective_moisture"] == unconfirmed["effective_moisture"] + 8.0
+
+    def test_case_insensitive_and_alias_normalization(self):
+        clay1 = self.gen({"moisture": 40.0}, soil_type="Clay")
+        clay2 = self.gen({"moisture": 40.0}, soil_type="clay")
+        clay3 = self.gen({"moisture": 40.0}, soil_type="Clayey")
+        assert clay1["effective_moisture"] == clay2["effective_moisture"] == clay3["effective_moisture"]
+
+    def test_unknown_soil_type_safe_fallback(self):
+        loamy   = self.gen({"moisture": 40.0}, soil_type="Loamy")
+        unknown = self.gen({"moisture": 40.0}, soil_type="MarsRegolith99")
+        assert unknown["effective_moisture"] == loamy["effective_moisture"]
+
 
 # ── Health score tests ────────────────────────────────────────────────────────
 

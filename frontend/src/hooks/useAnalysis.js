@@ -3,6 +3,7 @@
  */
 import { useState } from 'react'
 import { runAnalysis } from '../services/api'
+import { getErrorMessage } from '../utils/errors'
 
 export function useAnalysis() {
   const [result,   setResult]   = useState(null)
@@ -17,7 +18,7 @@ export function useAnalysis() {
       setResult(data)
       return data
     } catch (err) {
-      const msg = err?.response?.data?.error || err?.response?.data?.detail || err.message || 'Analysis failed'
+      const msg = getErrorMessage(err, 'Analysis failed. Please check inputs and try again.')
       setError(msg)
       return null
     } finally {

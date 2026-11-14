@@ -1,4 +1,4 @@
-# -- Python --------------------------------------------------------------------
+# -- Python & Compilation Artifacts --------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
@@ -8,50 +8,76 @@ dist/
 build/
 .eggs/
 
-# -- Virtual environments ------------------------------------------------------
+# -- Virtual Environments ------------------------------------------------------
 venv/
 .venv/
 env/
+ENV/
+env.bak/
+venv.bak/
 
-# -- Environment variables -----------------------------------------------------
+# -- Environment Variables & Secrets -------------------------------------------
 .env
+*.env
+**/.env
+frontend/.env
+*.env.local
+*.env.*.local
 !.env.example
+!**/.env.example
 
-# -- Flask / SQLite ------------------------------------------------------------
+# -- Flask / SQLite Databases --------------------------------------------------
 instance/
 *.db
 *.sqlite
+*.sqlite3
 
-# -- Uploads & Logs ------------------------------------------------------------
+# -- Uploads & Runtime Logs ----------------------------------------------------
 backend/uploads/*
 !backend/uploads/.gitkeep
 backend/logs/*
 !backend/logs/.gitkeep
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# -- Trained model binaries ----------------------------------------------------
+# -- Trained Model Binaries (Preserving Production .h5 and .pkl) ---------------
 backend/trained_models/*.joblib
 !backend/trained_models/.gitkeep
 
-# -- ML datasets ---------------------------------------------------------------
+# -- ML Datasets (Image Binaries Excluded due to Licensing; Manifests Tracked) -
 backend/ml_training/datasets/*.csv
 backend/ml_training/datasets/soil_images/
+backend/ml_training/datasets/soil_images_clean/
 !backend/ml_training/datasets/.gitkeep
 !backend/ml_training/datasets/README.md
+!backend/ml_training/datasets/soil_images_manifest.json
 
-# -- Node / Frontend -----------------------------------------------------------
+# -- Node.js / Frontend --------------------------------------------------------
 node_modules/
+**/node_modules/
 frontend/dist/
-frontend/.env
-!frontend/.env.example
 
-# -- IDE / OS ------------------------------------------------------------------
+# -- IDE, Editor & OS Temporary Files ------------------------------------------
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
 .DS_Store
 Thumbs.db
-*.swp
+Desktop.ini
+ehthumbs.db
+*.sublime-workspace
+*.sublime-project
 
-# -- Testing / Coverage --------------------------------------------------------
+# -- Testing, Coverage & Tool Caches -------------------------------------------
 .pytest_cache/
 .coverage
 htmlcov/
+.cache/
+.eslintcache

@@ -239,7 +239,12 @@ def run_analysis(reading_id: int | None = None,
             fert_version = "error"
 
     # ── Step 6: irrigation advice ─────────────────────────────────────────────
-    irrigation_result = generate_irrigation_advice(sensor, chosen_soil_type, top_crop)
+    irrigation_result = generate_irrigation_advice(
+        sensor,
+        soil_type=chosen_soil_type,
+        top_crop=top_crop,
+        soil_texture=resolved_texture,
+    )
 
     # ── Step 7: persist SoilAnalysis ─────────────────────────────────────────
     analysis = SoilAnalysis(

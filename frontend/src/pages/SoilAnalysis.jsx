@@ -8,9 +8,10 @@
  *   4. Run Analysis → executes crop recommendation, fertilizer advice, irrigation plan, health index
  *   5. Consolidated view of all outputs with scientific explanations
  */
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAnalysis } from '../hooks/useAnalysis'
+import { getFertilizerAdvice } from '../services/api'
 import AnalysisForm from '../components/analysis/AnalysisForm'
 import ImageUpload  from '../components/analysis/ImageUpload'
 import ResultCard   from '../components/analysis/ResultCard'
@@ -24,6 +25,16 @@ import { ArrowRight, Database, Sprout, Leaf, Droplets, CheckCircle } from 'lucid
 export default function SoilAnalysis() {
   const { result, loading, error, trigger, reset } = useAnalysis()
   const [cnnResult, setCnnResult] = useState(null)
+  const [activeFertilizer, setActiveFertilizer] = useState(null)
+  const [loadingFertCrop, setLoadingFertCrop] = useState(null)
+
+  useEffect(() => {
+    if (result?.fertilizer) {
+      setActiveFertilizer(result.fertilizer)
+    } else {
+      setActiveFertilizer(null)
+    }
+  }, [result])
 
   const handleRun = (options) => {
     trigger({
@@ -34,6 +45,35 @@ export default function SoilAnalysis() {
 
   const handleClearImage = () => {
     setCnnResult(null)
+  }
+
+  const handleSelectCrop = async (cropName) => {
+    if (!result) return
+    setLoadingFertCrop(cropName)
+    try {
+      const resp = await getFertilizerAdvice({
+        sensor_data: result.sensor_reading,
+        soil_type: result.soil?.type,
+        confirmed_soil_texture: result.soil?.confirmed_soil_texture,
+        target_crop: cropName,
+      })
+      if (resp?.data) {
+        setActiveFertilizer(resp.data)
+        const el = document.getElementById('fertilizer-section')
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        }
+      }
+    } catch (err) {
+      console.error('Failed to fetch fertilizer advice for crop:', cropName, err)
+    } finally {
+      setLoadingFertCrop(null)
+    }
+  }
+
+  const handleReset = () => {
+    setActiveFertilizer(null)
+    reset()
   }
 
   return (
@@ -89,7 +129,7 @@ export default function SoilAnalysis() {
               </p>
             </div>
             <button
-              onClick={reset}
+              onClick={handleReset}
               className="text-xs text-gray-500 hover:text-gray-800 underline self-start sm:self-auto"
             >
               Clear Results
@@ -105,18 +145,30 @@ export default function SoilAnalysis() {
               <Sprout size={18} className="text-agro-green" />
               Recommended Crops (Random Forest Multi-Class)
             </h3>
-            <CropList crops={result.crops || []} />
+            <CropList
+              crops={result.crops || []}
+              activeCrop={activeFertilizer?.crop}
+              onSelectCrop={handleSelectCrop}
+              loadingCrop={loadingFertCrop}
+            />
           </div>
 
           {/* Fertilizer & Irrigation Advice in 2 columns */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Fertilizer */}
-            <div className="space-y-3">
-              <h3 className="text-gray-800 font-semibold flex items-center gap-2">
-                <Leaf size={18} className="text-agro-green" />
-                Fertilizer Recommendation (Decision Tree)
-              </h3>
-              <FertilizerCard fertilizer={result.fertilizer} />
+            <div id="fertilizer-section" className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-gray-800 font-semibold flex items-center gap-2">
+                  <Leaf size={18} className="text-agro-green" />
+                  Fertilizer Recommendation
+                </h3>
+                {activeFertilizer?.crop && (
+                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-agro-green-pale text-agro-green capitalize">
+                    Active Target: {activeFertilizer.crop}
+                  </span>
+                )}
+              </div>
+              <FertilizerCard fertilizer={activeFertilizer || result.fertilizer} />
             </div>
 
             {/* Irrigation */}

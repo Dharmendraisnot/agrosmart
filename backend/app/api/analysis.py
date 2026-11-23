@@ -9,13 +9,14 @@ Endpoints:
 from __future__ import annotations
 
 import logging
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 from app.services.analysis_service import (
     run_analysis,
     get_analysis,
     get_analysis_history,
 )
+from app.ml.fertilizer_model import predict_fertilizer
 
 logger = logging.getLogger(__name__)
 
@@ -62,6 +63,23 @@ def run_analysis_endpoint():
     confirmed_soil_texture = data.get("confirmed_soil_texture") or data.get("confirmed_texture")
     image_path             = data.get("image_path") or data.get("image_filename")
     notes                  = data.get("notes")
+    target_crop            = data.get("target_crop") or data.get("crop")
+    tree_age_years         = data.get("tree_age_years") or data.get("tree_age")
+
+    # Validate target_crop if provided
+    if target_crop is not None:
+        if not isinstance(target_crop, str) or not target_crop.strip():
+            return jsonify({"error": "target_crop must be a non-empty string"}), 422
+        target_crop = target_crop.strip().lower()
+
+    # Validate tree_age_years if provided
+    if tree_age_years is not None:
+        try:
+            tree_age_years = int(tree_age_years)
+            if tree_age_years < 1 or tree_age_years > 150:
+                return jsonify({"error": "tree_age_years must be an integer between 1 and 150"}), 422
+        except (ValueError, TypeError):
+            return jsonify({"error": "tree_age_years must be a valid integer"}), 422
 
     # Validate reading_id if provided
     if reading_id is not None:
@@ -103,6 +121,8 @@ def run_analysis_endpoint():
             confirmed_soil_texture=confirmed_soil_texture,
             image_path=image_path,
             notes=notes,
+            target_crop=target_crop,
+            tree_age_years=tree_age_years,
         )
         return jsonify(result), 200
     except ValueError as exc:
@@ -110,6 +130,48 @@ def run_analysis_endpoint():
     except Exception as exc:
         logger.error("Analysis pipeline error: %s", exc, exc_info=True)
         return jsonify({"error": "Analysis failed", "detail": str(exc)}), 500
+
+
+@analysis_bp.post("/analysis/fertilizer")
+def query_fertilizer_endpoint():
+    """
+    On-demand fertilizer query for a specific crop and sensor state
+    without executing or persisting a full analysis. Useful for switching crops
+    (e.g., clicking on Rank-2 or Rank-3 crops in CropList).
+    """
+    data                   = request.get_json(silent=True) or {}
+    sensor_data            = data.get("sensor_data") or {}
+    soil_type              = data.get("soil_type") or "Loamy"
+    confirmed_soil_texture = data.get("confirmed_soil_texture") or data.get("confirmed_texture")
+    target_crop            = data.get("target_crop") or data.get("crop")
+    tree_age_years         = data.get("tree_age_years") or data.get("tree_age")
+
+    if not target_crop or not isinstance(target_crop, str) or not target_crop.strip():
+        return jsonify({"error": "target_crop is required"}), 422
+    target_crop = target_crop.strip().lower()
+
+    if tree_age_years is not None:
+        try:
+            tree_age_years = int(tree_age_years)
+            if tree_age_years < 1 or tree_age_years > 150:
+                return jsonify({"error": "tree_age_years must be an integer between 1 and 150"}), 422
+        except (ValueError, TypeError):
+            return jsonify({"error": "tree_age_years must be a valid integer"}), 422
+
+    config = current_app.config
+    try:
+        fert_result = predict_fertilizer(
+            sensor_data,
+            soil_type,
+            target_crop,
+            config,
+            confirmed_texture=confirmed_soil_texture,
+            tree_age_years=tree_age_years,
+        )
+        return jsonify(fert_result), 200
+    except Exception as exc:
+        logger.error("Fertilizer query error: %s", exc, exc_info=True)
+        return jsonify({"error": "Fertilizer prediction failed", "detail": str(exc)}), 500
 
 
 @analysis_bp.get("/analysis/history")

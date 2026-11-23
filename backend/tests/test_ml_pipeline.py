@@ -216,8 +216,38 @@ class TestFertilizerModel:
                 assert result["mapped_crop_category"] is not None
                 assert len(result["advice"]) > 10
 
+    def test_predict_fertilizer_horticultural_routing(self, app):
+        """Verify that the 12 non-field crops route to the horticultural knowledge base."""
+        with app.app_context():
+            from pathlib import Path
+            if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
+                pytest.skip("fertilizer model not found")
+            from app.ml.fertilizer_model import predict_fertilizer, reload_model
+            reload_model()
+
+            hort_crops = [
+                "apple", "banana", "coconut", "coffee", "grapes", "jute",
+                "mango", "muskmelon", "orange", "papaya", "pomegranate", "watermelon",
+            ]
+            sensor = {"air_temperature": 28, "air_humidity": 65, "moisture": 50,
+                      "nitrogen": 45, "potassium": 160, "phosphorus": 25}
+
+            for crop in hort_crops:
+                result = predict_fertilizer(sensor, "Loamy", crop, dict(app.config))
+                assert result["crop"] == crop
+                assert result["status"] == "horticultural_guideline"
+                assert "Extension Package of Practices" in result["fertilizer"]
+                assert result["mapped_crop_category"] == "Horticultural Knowledge Base"
+                assert result["model_label"] == "icar_extension_v1.0"
+                assert len(result["advice"]) > 10
+                assert len(result["application_method"]) > 10
+                assert isinstance(result["authority_sources"], list) and len(result["authority_sources"]) > 0
+                assert isinstance(result["timing_and_splits"], list) and len(result["timing_and_splits"]) > 0
+                assert result["verified"] is True
+                assert isinstance(result["missing_or_unverified_fields"], list)
+
     def test_predict_fertilizer_unsupported_crops(self, app):
-        """Verify that crops lacking experimental data return explicit unavailable responses."""
+        """Verify that crops lacking data in both ML dataset and horticulture KB return unavailable."""
         with app.app_context():
             from pathlib import Path
             if not Path(app.config["FERTILIZER_MODEL_PATH"]).exists():
@@ -226,8 +256,7 @@ class TestFertilizerModel:
             reload_model()
 
             unsupported_crops = [
-                "apple", "banana", "coconut", "coffee", "grapes", "jute",
-                "mango", "muskmelon", "orange", "papaya", "pomegranate", "watermelon",
+                "dragonfruit", "kiwi", "rubber", "avocado", "cardamom",
             ]
             sensor = {"air_temperature": 28, "air_humidity": 65, "moisture": 50,
                       "nitrogen": 45, "potassium": 160, "phosphorus": 25}

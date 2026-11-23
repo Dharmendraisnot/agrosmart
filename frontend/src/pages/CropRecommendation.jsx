@@ -5,7 +5,7 @@
  * Provides a "Re-run Analysis" button if no data is present.
  */
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getLatestPredictions } from '../services/api'
 import CropList       from '../components/recommendations/CropList'
 import LoadingSpinner from '../components/shared/LoadingSpinner'
@@ -15,9 +15,14 @@ import { getErrorMessage } from '../utils/errors'
 import { RefreshCw }  from 'lucide-react'
 
 export default function CropRecommendation() {
+  const navigate = useNavigate()
   const [data,    setData]    = useState(null)
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(null)
+
+  const handleSelectCrop = (cropName) => {
+    navigate('/fertilizer', { state: { selectedCrop: cropName } })
+  }
 
   const load = () => {
     setLoading(true)
@@ -89,7 +94,11 @@ export default function CropRecommendation() {
           </Link>
         </div>
       ) : (
-        <CropList crops={crops} />
+        <CropList
+          crops={crops}
+          activeCrop={data?.predictions?.fertilizer?.result?.crop || data?.predictions?.crop?.top_recommendation}
+          onSelectCrop={handleSelectCrop}
+        />
       )}
     </div>
   )

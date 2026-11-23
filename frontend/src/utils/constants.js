@@ -78,3 +78,42 @@ export const URGENCY_COLOR = {
   none:     'text-blue-700 bg-blue-50 border-blue-200',
   unknown:  'text-gray-600 bg-gray-50 border-gray-200',
 }
+
+// 22 supported crops partitioned into Horticultural & Orchard vs Field Crops & Legumes
+export const CROP_GROUPS = [
+  {
+    group: 'Horticultural & Orchard Crops (12)',
+    crops: [
+      { value: 'mango',       label: 'Mango (Mangifera indica)',            isTree: true  },
+      { value: 'apple',       label: 'Apple (Malus domestica)',             isTree: true  },
+      { value: 'orange',      label: 'Orange / Citrus (Citrus sinensis)',   isTree: true  },
+      { value: 'pomegranate', label: 'Pomegranate (Punica granatum)',       isTree: true  },
+      { value: 'coconut',     label: 'Coconut (Cocos nucifera)',            isTree: true  },
+      { value: 'banana',      label: 'Banana (Musa acuminata)',             isTree: false },
+      { value: 'grapes',      label: 'Grapes (Vitis vinifera)',             isTree: false },
+      { value: 'papaya',      label: 'Papaya (Carica papaya)',              isTree: false },
+      { value: 'coffee',      label: 'Coffee (Coffea arabica / canephora)', isTree: false },
+      { value: 'jute',        label: 'Jute (Corchorus olitorius)',          isTree: false },
+      { value: 'watermelon',  label: 'Watermelon (Citrullus lanatus)',      isTree: false },
+      { value: 'muskmelon',   label: 'Muskmelon (Cucumis melo)',            isTree: false },
+    ],
+  },
+  {
+    group: 'Field Crops & Legumes (10)',
+    crops: [
+      { value: 'rice',        label: 'Rice / Paddy (Oryza sativa)' },
+      { value: 'maize',       label: 'Maize / Corn (Zea mays)' },
+      { value: 'cotton',      label: 'Cotton (Gossypium hirsutum)' },
+      { value: 'chickpea',    label: 'Chickpea / Gram (Cicer arietinum)' },
+      { value: 'kidneybeans', label: 'Kidney Beans / Rajma (Phaseolus vulgaris)' },
+      { value: 'pigeonpeas',  label: 'Pigeon Peas / Arhar (Cajanus cajan)' },
+      { value: 'mothbeans',   label: 'Moth Beans (Vigna aconitifolia)' },
+      { value: 'mungbean',    label: 'Mung Bean / Green Gram (Vigna radiata)' },
+      { value: 'blackgram',   label: 'Black Gram / Urad (Vigna mungo)' },
+      { value: 'lentil',      label: 'Lentil / Masoor (Lens culinaris)' },
+    ],
+  },
+]
+
+// Perennial orchard crops supporting progressive annual tree age dosage scaling
+export const TREE_AGE_SUPPORTED_CROPS = ['mango', 'apple', 'orange', 'pomegranate', 'coconut']

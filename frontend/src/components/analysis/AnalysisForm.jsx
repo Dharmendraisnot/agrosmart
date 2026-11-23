@@ -3,8 +3,8 @@
  * validation, confirmed texture selection for Alluvial soils, and execution controls.
  */
 import { useState, useEffect } from 'react'
-import { FlaskConical, Loader2, Sparkles, Sliders, Cpu, HelpCircle, AlertCircle } from 'lucide-react'
-import { SOIL_PRESETS, VALID_SOIL_TEXTURES } from '../../utils/constants'
+import { FlaskConical, Loader2, Sparkles, Sliders, Cpu, HelpCircle, AlertCircle, TreeDeciduous } from 'lucide-react'
+import { SOIL_PRESETS, VALID_SOIL_TEXTURES, CROP_GROUPS, TREE_AGE_SUPPORTED_CROPS } from '../../utils/constants'
 
 const DEFAULT_VALUES = {
   nitrogen: 50,
@@ -28,6 +28,8 @@ export default function AnalysisForm({
   const [formValues, setFormValues] = useState(DEFAULT_VALUES)
   const [selectedSoilType, setSelectedSoilType] = useState('')
   const [confirmedTexture, setConfirmedTexture] = useState('')
+  const [targetCrop, setTargetCrop] = useState('')
+  const [treeAge, setTreeAge] = useState('')
   const [notes, setNotes] = useState('')
   const [validationErrors, setValidationErrors] = useState({})
 
@@ -39,6 +41,7 @@ export default function AnalysisForm({
   }, [detectedSoilType])
 
   const isAlluvial = (selectedSoilType || detectedSoilType || '').toLowerCase() === 'alluvial'
+  const isTreeCrop = TREE_AGE_SUPPORTED_CROPS.includes(targetCrop.toLowerCase())
 
   const handleInputChange = (field, rawVal) => {
     setFormValues((prev) => ({
@@ -98,6 +101,13 @@ export default function AnalysisForm({
       }
     }
 
+    if (targetCrop && isTreeCrop && treeAge !== '') {
+      const ageNum = Number(treeAge)
+      if (isNaN(ageNum) || !Number.isInteger(ageNum) || ageNum < 1 || ageNum > 150) {
+        errors.treeAge = 'Tree age must be a whole number between 1 and 150 years'
+      }
+    }
+
     setValidationErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -106,6 +116,9 @@ export default function AnalysisForm({
     e.preventDefault()
     if (!validate()) return
 
+    const targetCropParam = targetCrop ? targetCrop.trim().toLowerCase() : null
+    const treeAgeParam = isTreeCrop && treeAge !== '' ? parseInt(treeAge, 10) : null
+
     if (mode === 'simulator') {
       onRun({
         reading_id: null,
@@ -113,6 +126,8 @@ export default function AnalysisForm({
         confirmed_soil_texture: confirmedTexture || null,
         image_path: imagePath || null,
         notes: notes || null,
+        target_crop: targetCropParam,
+        tree_age_years: treeAgeParam,
       })
     } else {
       const numericData = {
@@ -134,6 +149,8 @@ export default function AnalysisForm({
         confirmed_soil_texture: confirmedTexture || null,
         image_path: imagePath || null,
         notes: notes || null,
+        target_crop: targetCropParam,
+        tree_age_years: treeAgeParam,
       })
     }
   }
@@ -458,6 +475,94 @@ export default function AnalysisForm({
               : 'Physical particle size distribution (sand/silt/clay ratio), distinct from genetic soil class.'}
           </p>
         </div>
+      </div>
+
+      {/* ── Target Crop for Fertilizer Advice (Optional Override) ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+        <div>
+          <label className="block text-xs font-semibold text-gray-700 mb-1">
+            Target Crop for Fertilizer Advice <span className="text-gray-400 font-normal">(optional override)</span>
+          </label>
+          <select
+            value={targetCrop}
+            onChange={(e) => {
+              setTargetCrop(e.target.value)
+              if (validationErrors.treeAge) {
+                setValidationErrors((prev) => {
+                  const next = { ...prev }
+                  delete next.treeAge
+                  return next
+                })
+              }
+            }}
+            className="w-full px-3 py-2 rounded-xl border border-gray-200 text-sm bg-white focus:border-agro-green"
+          >
+            <option value="">Auto-Detect (Recommended Rank-1 from Crop Model)</option>
+            {CROP_GROUPS.map((grp) => (
+              <optgroup key={grp.group} label={grp.group}>
+                {grp.crops.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+              </optgroup>
+            ))}
+          </select>
+          <p className="text-xs text-gray-400 mt-1">
+            Leave as Auto-Detect to automatically advise for the top ML crop recommendation, or choose a specific crop (e.g. Mango orchard).
+          </p>
+        </div>
+
+        {/* Tree / Orchard Age Input (Conditional for perennial orchard crops) */}
+        {isTreeCrop ? (
+          <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200">
+            <label className="block text-xs font-semibold text-gray-700 mb-1 flex items-center justify-between">
+              <span className="flex items-center gap-1">
+                <TreeDeciduous size={14} className="text-agro-green" />
+                Orchard / Tree Age <span className="text-gray-400 font-normal">(Years)</span>
+              </span>
+              <span className="text-xs font-normal text-agro-green">Dose scales by age</span>
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="150"
+              step="1"
+              value={treeAge}
+              onChange={(e) => {
+                setTreeAge(e.target.value)
+                if (validationErrors.treeAge) {
+                  setValidationErrors((prev) => {
+                    const next = { ...prev }
+                    delete next.treeAge
+                    return next
+                  })
+                }
+              }}
+              placeholder="e.g. 5 (Default: full adult dose)"
+              className={`w-full px-3 py-2 rounded-xl border text-sm bg-white ${
+                validationErrors.treeAge
+                  ? 'border-red-400 focus:border-red-500'
+                  : 'border-emerald-300 focus:border-agro-green'
+              }`}
+            />
+            {validationErrors.treeAge && (
+              <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <AlertCircle size={12} /> {validationErrors.treeAge}
+              </p>
+            )}
+            <p className="text-xs text-gray-500 mt-1">
+              For perennial tree crops (Mango, Apple, Citrus, Pomegranate, Coconut), nutrient dosage progressively scales with tree maturity.
+            </p>
+          </div>
+        ) : (
+          <div className="p-3 rounded-xl bg-gray-50 border border-gray-100 flex flex-col justify-center text-xs text-gray-400">
+            <p className="font-medium text-gray-600 mb-0.5">Crop Selection & Fertilizer Routing</p>
+            <p>
+              AgroSmart routes field crops to the ML Decision Tree model and horticultural crops to verified ICAR/CISH packages of practices.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Optional Field Notes */}

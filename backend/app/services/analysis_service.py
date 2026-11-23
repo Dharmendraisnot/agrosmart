@@ -111,7 +111,9 @@ def run_analysis(reading_id: int | None = None,
                  cnn_result: dict | None = None,
                  soil_type: str | None = None,
                  confirmed_soil_texture: str | None = None,
-                 notes: str | None = None) -> dict:
+                 notes: str | None = None,
+                 target_crop: str | None = None,
+                 tree_age_years: int | None = None) -> dict:
     """
     Run the full analysis pipeline and persist results to DB.
 
@@ -123,6 +125,8 @@ def run_analysis(reading_id: int | None = None,
         soil_type:              explicitly provided soil type (optional)
         confirmed_soil_texture: user-confirmed physical soil texture (required for Alluvial fertilizer advice)
         notes:                  optional notes text
+        target_crop:            optional user-specified crop override for fertilizer advice
+        tree_age_years:         optional tree/orchard age in years for dynamic dose scaling
 
     Returns:
         Consolidated analysis result dict suitable for the API response.
@@ -217,7 +221,10 @@ def run_analysis(reading_id: int | None = None,
         resolved_texture = sensor_data.get("confirmed_soil_texture") or sensor_data.get("soil_texture")
 
     # ── Step 5: fertilizer recommendation ────────────────────────────────────
-    if not top_crop:
+    # Prioritize user-specified target_crop if provided; otherwise fallback to top_crop from ML model
+    active_fert_crop = target_crop.strip().lower() if (target_crop and target_crop.strip()) else top_crop
+
+    if not active_fert_crop:
         logger.info("Crop unavailable — withholding fertilizer recommendation")
         fert_result = {
             "fertilizer":           "Reliable recommendation unavailable",
@@ -231,7 +238,14 @@ def run_analysis(reading_id: int | None = None,
         fert_version = fert_result["model_label"]
     else:
         try:
-            fert_result  = predict_fertilizer(sensor, chosen_soil_type, top_crop, config, confirmed_texture=resolved_texture)
+            fert_result  = predict_fertilizer(
+                sensor,
+                chosen_soil_type,
+                active_fert_crop,
+                config,
+                confirmed_texture=resolved_texture,
+                tree_age_years=tree_age_years,
+            )
             fert_version = fert_result.get("model_label", "unknown")
         except Exception as exc:
             logger.error("Fertilizer prediction failed: %s", exc)
@@ -239,10 +253,12 @@ def run_analysis(reading_id: int | None = None,
             fert_version = "error"
 
     # ── Step 6: irrigation advice ─────────────────────────────────────────────
+    # For irrigation advice, evaluate crop water requirement tier for active crop (or ML top crop)
+    irrigation_crop = active_fert_crop or top_crop
     irrigation_result = generate_irrigation_advice(
         sensor,
         soil_type=chosen_soil_type,
-        top_crop=top_crop,
+        top_crop=irrigation_crop,
         soil_texture=resolved_texture,
     )
 
@@ -318,6 +334,7 @@ def run_analysis(reading_id: int | None = None,
         "crops":       crop_results,
         "fertilizer":  fert_result,
         "irrigation":  irrigation_result,
+        "target_crop": target_crop,
         "prediction_ids": {
             "crop":       pred_crop.id,
             "fertilizer": pred_fert.id,

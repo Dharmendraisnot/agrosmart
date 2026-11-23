@@ -22,6 +22,10 @@ import joblib
 import numpy as np
 
 from app.ml.preprocessor import FertilizerInferencePreprocessor
+from app.ml.horticulture_knowledge import (
+    is_horticultural_crop,
+    format_horticultural_advisory,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -106,13 +110,18 @@ VALID_FERTILIZER_SOIL_TEXTURES = {
 
 def predict_fertilizer(sensor: dict, soil_type: str,
                        top_crop: str, config: dict,
-                       confirmed_texture: str | None = None) -> dict:
+                       confirmed_texture: str | None = None,
+                       tree_age_years: int | None = None) -> dict:
     """
     Predict the recommended fertilizer for the given soil + crop combination.
 
-    If the crop is not scientifically supported by the 12-class fertilizer dataset,
-    it returns an explicit 'Reliable recommendation unavailable' response rather
-    than fabricating a recommendation by forcing an unrelated crop category.
+    Hybrid routing:
+      1. For empirical field crops (cereals, legumes, cotton, sugarcane), inference
+         is routed to the Decision Tree ML pipeline.
+      2. For horticultural and plantation crops (fruits, vines, palms, vegetables),
+         inference is routed to the ICAR/SAU authoritative horticultural knowledge base.
+      3. For unverified, missing, or unrecognized crops, advice is explicitly withheld
+         with status="unsupported" to preserve scientific integrity.
 
     If the soil is Alluvial, fertilizer recommendations are withheld unless the
     user explicitly supplies a confirmed physical soil texture (e.g. Sandy, Clayey, Loamy).
@@ -120,9 +129,10 @@ def predict_fertilizer(sensor: dict, soil_type: str,
     Args:
         sensor:            sensor reading dict
         soil_type:         CNN-predicted soil type (e.g. "Loamy", "Alluvial")
-        top_crop:          top-1 crop recommendation (e.g. "wheat")
+        top_crop:          top-1 crop recommendation (e.g. "wheat", "mango")
         config:            Flask app.config dict
         confirmed_texture: optional user-confirmed physical soil texture
+        tree_age_years:    optional orchard tree age in years for dynamic dose scaling
 
     Returns:
         dict with fertilizer, advice, model_label, soil_type, crop, mapped_crop_category, status
@@ -196,6 +206,68 @@ def predict_fertilizer(sensor: dict, soil_type: str,
 
     # Check if the crop has a scientifically justified counterpart in the training data
     if crop_lower not in SCIENTIFIC_CROP_MAP:
+        # Check if the crop belongs to the horticultural / plantation knowledge base
+        if is_horticultural_crop(crop_lower):
+            age = tree_age_years
+            if age is None:
+                raw_age = sensor.get("tree_age") if sensor else None
+                if raw_age is None and sensor:
+                    raw_age = sensor.get("tree_age_years")
+                if raw_age is not None:
+                    try:
+                        age = int(raw_age)
+                    except (ValueError, TypeError):
+                        age = None
+
+            advisory = format_horticultural_advisory(crop_lower, tree_age_years=age)
+            if advisory is not None and advisory.get("verified", False):
+                logger.info(
+                    "Fertilizer recommendation routed to horticultural knowledge base for crop '%s' (age=%s)",
+                    top_crop, age,
+                )
+                return {
+                    "fertilizer":           f"Extension Package of Practices ({advisory['common_name']})",
+                    "advice":               advisory["dosage_summary"],
+                    "model_label":          "icar_extension_v1.0",
+                    "soil_type":            soil_type,
+                    "crop":                 top_crop,
+                    "scientific_name":      advisory.get("botanical_name"),
+                    "botanical_name":       advisory.get("botanical_name"),
+                    "tree_age_years":       age,
+                    "mapped_crop_category": "Horticultural Knowledge Base",
+                    "status":               "horticultural_guideline",
+                    "headline":             advisory["headline"],
+                    "dosage_summary":       advisory["dosage_summary"],
+                    "dosage_unit":          advisory["dosage_unit"],
+                    "application_method":   advisory["application_method"],
+                    "timing_and_splits":    advisory["timing_and_splits"],
+                    "organic_manure":       advisory["organic_manure"],
+                    "micronutrients":       advisory["micronutrients"],
+                    "special_cautions":     advisory["special_cautions"],
+                    "authority_sources":    advisory["authority_sources"],
+                    "verified":             advisory["verified"],
+                    "missing_or_unverified_fields": advisory["missing_or_unverified_fields"],
+                    "horticulture_details": advisory,
+                }
+            else:
+                logger.warning(
+                    "Horticultural profile for '%s' is missing or unverified — withholding advice",
+                    top_crop,
+                )
+                return {
+                    "fertilizer":           "Reliable recommendation unavailable",
+                    "advice": (
+                        f"Agronomic data for '{top_crop.title()}' is unverified or incomplete. "
+                        f"Automated recommendations are withheld to preserve scientific accuracy."
+                    ),
+                    "model_label":          "icar_extension_v1.0",
+                    "soil_type":            soil_type,
+                    "crop":                 top_crop,
+                    "mapped_crop_category": None,
+                    "status":               "unsupported",
+                }
+
+        # Crop is neither in ML training data nor in horticultural knowledge base
         logger.info(
             "Fertilizer prediction withheld for unsupported crop '%s' (no valid dataset counterpart)",
             top_crop,

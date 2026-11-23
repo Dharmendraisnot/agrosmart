@@ -7,7 +7,7 @@
  */
 import axios from 'axios'
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL
+const BASE_URL = import.meta.env?.VITE_API_BASE_URL
   ? `${import.meta.env.VITE_API_BASE_URL}/api`
   : '/api'
 
@@ -47,6 +47,13 @@ export const runAnalysis = (params = {}) => {
     image_path = null,
     imagePath = null,
     notes = null,
+    target_crop = null,
+    targetCrop = null,
+    crop = null,
+    tree_age_years = null,
+    treeAgeYears = null,
+    treeAge = null,
+    tree_age = null,
   } = params || {}
 
   const payload = {}
@@ -67,7 +74,53 @@ export const runAnalysis = (params = {}) => {
 
   if (notes) payload.notes = notes
 
+  const tc = target_crop ?? targetCrop ?? crop
+  if (tc) payload.target_crop = tc
+
+  const tage = tree_age_years ?? treeAgeYears ?? treeAge ?? tree_age
+  if (tage !== null && tage !== undefined && tage !== '') {
+    payload.tree_age_years = Number(tage)
+  }
+
   return api.post('/analysis/run', payload)
+}
+
+export const getFertilizerAdvice = (params = {}) => {
+  const {
+    sensor_data = null,
+    sensorData = null,
+    soil_type = null,
+    soilType = null,
+    confirmed_soil_texture = null,
+    confirmedSoilTexture = null,
+    target_crop = null,
+    targetCrop = null,
+    crop = null,
+    tree_age_years = null,
+    treeAgeYears = null,
+    treeAge = null,
+    tree_age = null,
+  } = params || {}
+
+  const payload = {}
+  const sdata = sensor_data ?? sensorData
+  if (sdata) payload.sensor_data = sdata
+
+  const stype = soil_type ?? soilType
+  if (stype) payload.soil_type = stype
+
+  const ctexture = confirmed_soil_texture ?? confirmedSoilTexture
+  if (ctexture) payload.confirmed_soil_texture = ctexture
+
+  const tc = target_crop ?? targetCrop ?? crop
+  if (tc) payload.target_crop = tc
+
+  const tage = tree_age_years ?? treeAgeYears ?? treeAge ?? tree_age
+  if (tage !== null && tage !== undefined && tage !== '') {
+    payload.tree_age_years = Number(tage)
+  }
+
+  return api.post('/analysis/fertilizer', payload)
 }
 
 export const getAnalysis = (id) => api.get(`/analysis/${id}`)
@@ -98,6 +151,7 @@ export const uploadImage = (file, options = {}) => {
   }
   return api.post('/images/upload', form, {
     headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: 180000, // 180s (3 min) timeout to accommodate cold-start CNN model initialization
   })
 }
 

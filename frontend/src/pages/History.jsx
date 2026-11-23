@@ -96,6 +96,10 @@ export default function History() {
                       <td className="px-4 py-3 text-gray-700 max-w-[180px] truncate" title={fert}>
                         {fert === 'Reliable recommendation unavailable' ? (
                           <span className="text-amber-700 font-medium italic text-xs">Withheld (Unsupported)</span>
+                        ) : fert?.startsWith('Extension Package of Practices') ? (
+                          <span className="text-emerald-800 font-medium text-xs bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200" title={fert}>
+                            Extension Guideline
+                          </span>
                         ) : (
                           fert
                         )}

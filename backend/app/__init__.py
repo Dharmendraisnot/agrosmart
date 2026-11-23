@@ -8,6 +8,7 @@ Usage:
 """
 import logging
 import logging.handlers
+import os
 from pathlib import Path
 
 from flask import Flask, jsonify
@@ -51,6 +52,13 @@ def create_app(config_name: str | None = None) -> Flask:
         app.config.get("SENSOR_MODE"),
         app.config.get("SQLALCHEMY_DATABASE_URI"),
     )
+
+    # ── Warmup CNN model in background thread ─────────────────────────────
+    # Avoid duplicate execution in the Werkzeug reloader parent process or during unit tests
+    if not app.config.get("TESTING"):
+        if not app.debug or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
+            from .ml.soil_cnn import warmup_model
+            warmup_model(app.config, async_mode=True)
 
     return app
 

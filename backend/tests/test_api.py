@@ -495,6 +495,106 @@ class TestAnalysisEndpoints:
         r = client.get("/api/analysis/999999")
         assert r.status_code == 404
 
+    def test_run_with_target_crop_mango_returns_horticultural_guideline(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+            "target_crop": "mango",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["target_crop"] == "mango"
+        assert len(d["crops"]) == 3
+        assert d["fertilizer"]["status"] == "horticultural_guideline"
+        assert d["fertilizer"]["crop"] == "mango"
+        assert d["fertilizer"]["scientific_name"] == "Mangifera indica"
+        assert "dosage_summary" in d["fertilizer"]
+
+    def test_run_with_target_crop_and_tree_age_scales_dose(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+            "target_crop": "mango",
+            "tree_age_years": 3,
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        fert = d["fertilizer"]
+        assert fert["tree_age_years"] == 3
+        # Age 3 should have scaled dose (approx 300g N, 150g P2O5, 300g K2O)
+        assert "Tree Age 3" in fert["dosage_summary"]
+
+    def test_run_without_target_crop_defaults_to_ml_top_crop(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "soil_type": "Loamy",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        top_crop = d["crops"][0]["crop"]
+        assert d["target_crop"] is None
+        assert d["fertilizer"]["crop"] == top_crop
+
+    def test_run_with_invalid_target_crop_returns_422(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "target_crop": "   ",
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 422
+
+    def test_run_with_invalid_tree_age_returns_422(self, client):
+        payload = {
+            "sensor_data": {"ph": 6.8, "moisture": 50.0, "nitrogen": 45.0, "source": "manual"},
+            "target_crop": "mango",
+            "tree_age_years": -5,
+        }
+        r = client.post("/api/analysis/run", json=payload)
+        assert r.status_code == 422
+
+        payload["tree_age_years"] = 300
+        r2 = client.post("/api/analysis/run", json=payload)
+        assert r2.status_code == 422
+
+    def test_query_fertilizer_endpoint_horticultural_crop(self, client):
+        payload = {
+            "sensor_data": {"nitrogen": 50.0, "phosphorus": 30.0, "potassium": 160.0},
+            "soil_type": "Loamy",
+            "target_crop": "mango",
+            "tree_age_years": 5,
+        }
+        r = client.post("/api/analysis/fertilizer", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["status"] == "horticultural_guideline"
+        assert d["crop"] == "mango"
+        assert d["tree_age_years"] == 5
+        assert "timing_and_splits" in d
+
+    def test_query_fertilizer_endpoint_field_crop(self, client):
+        payload = {
+            "sensor_data": {"nitrogen": 80.0, "phosphorus": 40.0, "potassium": 40.0, "moisture": 60.0, "ph": 6.5},
+            "soil_type": "Clayey",
+            "target_crop": "rice",
+        }
+        r = client.post("/api/analysis/fertilizer", json=payload)
+        assert r.status_code == 200
+        d = r.get_json()
+        assert d["crop"] == "rice"
+        assert "fertilizer" in d
+
+    def test_query_fertilizer_endpoint_validation_errors(self, client):
+        # Missing target_crop
+        r1 = client.post("/api/analysis/fertilizer", json={"soil_type": "Loamy"})
+        assert r1.status_code == 422
+
+        # Invalid tree_age_years
+        r2 = client.post("/api/analysis/fertilizer", json={"target_crop": "mango", "tree_age_years": "not_an_int"})
+        assert r2.status_code == 422
+
 
 # ── Predictions ───────────────────────────────────────────────────────────────
 
